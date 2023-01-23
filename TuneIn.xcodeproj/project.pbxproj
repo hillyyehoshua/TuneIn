@@ -62,6 +62,7 @@
 		7DBE293E297F3C2500A6DB06 /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DBE292C297F3C2400A6DB06 /* Poppins-Italic.ttf */; };
 		7DBE293F297F3C2500A6DB06 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DBE292D297F3C2500A6DB06 /* Poppins-ThinItalic.ttf */; };
 		7DBE2944297F4F8600A6DB06 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE2943297F4F8600A6DB06 /* Settings.swift */; };
+		7DBE2946297F50E100A6DB06 /* FindFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE2945297F50E100A6DB06 /* FindFriends.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		7DBE292D297F3C2500A6DB06 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		7DBE2940297F3D4200A6DB06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7DBE2943297F4F8600A6DB06 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		7DBE2945297F50E100A6DB06 /* FindFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFriends.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 				7DBE28B3297F30BF00A6DB06 /* TuneInApp.swift */,
 				7DBE28B5297F30BF00A6DB06 /* ContentView.swift */,
 				7DBE2919297F3ABF00A6DB06 /* LogIn.swift */,
+				7DBE2945297F50E100A6DB06 /* FindFriends.swift */,
 				7DBE2943297F4F8600A6DB06 /* Settings.swift */,
 				7DBE28B7297F30C000A6DB06 /* Assets.xcassets */,
 				7DBE28B9297F30C000A6DB06 /* Preview Content */,
@@ -459,6 +462,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DBE2946297F50E100A6DB06 /* FindFriends.swift in Sources */,
 				7DBE28B6297F30BF00A6DB06 /* ContentView.swift in Sources */,
 				7DBE291A297F3ABF00A6DB06 /* LogIn.swift in Sources */,
 				7DBE2944297F4F8600A6DB06 /* Settings.swift in Sources */,
