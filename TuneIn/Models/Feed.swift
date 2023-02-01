@@ -23,6 +23,7 @@ struct Feed: View {
                         .foregroundColor(.white)
                         //.frame(maxWidth: .infinity, alignment: .leading)
                         .frame(maxWidth: .infinity,alignment: .center)
+                        .padding(EdgeInsets(top: 5, leading: 10, bottom: 0, trailing: 0))
                         .font(.custom("Poppins-SemiBold", size: 32))
                     Image("HProfile")
                         .resizable()
