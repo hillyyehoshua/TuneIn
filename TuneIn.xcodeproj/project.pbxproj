@@ -240,13 +240,6 @@
 		7DBE28DD297F32AF00A6DB06 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7DBE2943297F4F8600A6DB06 /* Settings.swift */,
-				7DBE28B3297F30BF00A6DB06 /* TuneInApp.swift */,
-				7D242A4C2989FD0F00B77902 /* Feed.swift */,
-				7DBE2919297F3ABF00A6DB06 /* LogIn.swift */,
-				B46B42792981A74A00DFB1D1 /* EditProfile.swift */,
-				7DBE2945297F50E100A6DB06 /* FindFriends.swift */,
-				7D242A4A2989F0E200B77902 /* SongCard.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -254,6 +247,13 @@
 		7DBE28DE297F32B700A6DB06 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7DBE2943297F4F8600A6DB06 /* Settings.swift */,
+				7DBE28B3297F30BF00A6DB06 /* TuneInApp.swift */,
+				7D242A4C2989FD0F00B77902 /* Feed.swift */,
+				7DBE2919297F3ABF00A6DB06 /* LogIn.swift */,
+				B46B42792981A74A00DFB1D1 /* EditProfile.swift */,
+				7DBE2945297F50E100A6DB06 /* FindFriends.swift */,
+				7D242A4A2989F0E200B77902 /* SongCard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
