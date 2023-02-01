@@ -26,7 +26,6 @@ struct Settings: View {
                             .foregroundColor(.white)
                             .font(.custom("Poppins-SemiBold", size: 30))
                     }
-                    
                 }
                 ZStack{
                     RoundedRectangle(cornerRadius: 5)
