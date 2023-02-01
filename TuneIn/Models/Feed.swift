@@ -12,7 +12,7 @@ struct Feed: View {
         ZStack{
             Color ("Dark Blue")
                 .edgesIgnoringSafeArea(.all)
-            VStack{
+            VStack (spacing: 17){
                 HStack{
                     Image(systemName: "person.2.fill")
                         .foregroundColor(Color(.white))
