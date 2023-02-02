@@ -69,6 +69,9 @@
 		7DC31D3B298B1C7300BC43CA /* ProfileCreationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC31D3A298B1C7300BC43CA /* ProfileCreationName.swift */; };
 		7DC31D3D298B1C7800BC43CA /* ProfileCreationNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC31D3C298B1C7800BC43CA /* ProfileCreationNumber.swift */; };
 		B46B427A2981A74A00DFB1D1 /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46B42792981A74A00DFB1D1 /* EditProfile.swift */; };
+		B4F05CD2298B58F900977951 /* FriendCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD1298B58F900977951 /* FriendCard.swift */; };
+		B4F05CD4298B5AF800977951 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD3298B5AF800977951 /* Notifications.swift */; };
+		B4F05CD6298B5F0400977951 /* MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD5298B5F0400977951 /* MyProfile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +131,9 @@
 		7DC31D3A298B1C7300BC43CA /* ProfileCreationName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCreationName.swift; sourceTree = "<group>"; };
 		7DC31D3C298B1C7800BC43CA /* ProfileCreationNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCreationNumber.swift; sourceTree = "<group>"; };
 		B46B42792981A74A00DFB1D1 /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
+		B4F05CD1298B58F900977951 /* FriendCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCard.swift; sourceTree = "<group>"; };
+		B4F05CD3298B5AF800977951 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		B4F05CD5298B5F0400977951 /* MyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +292,8 @@
 			isa = PBXGroup;
 			children = (
 				7DBE2943297F4F8600A6DB06 /* Settings.swift */,
+				B4F05CD3298B5AF800977951 /* Notifications.swift */,
+				B4F05CD5298B5F0400977951 /* MyProfile.swift */,
 				7DBE28B3297F30BF00A6DB06 /* TuneInApp.swift */,
 				7D242A4C2989FD0F00B77902 /* Feed.swift */,
 				7DBE2919297F3ABF00A6DB06 /* LogIn.swift */,
@@ -294,6 +302,7 @@
 				7DC31D3A298B1C7300BC43CA /* ProfileCreationName.swift */,
 				7DBE2945297F50E100A6DB06 /* FindFriends.swift */,
 				7D242A4A2989F0E200B77902 /* SongCard.swift */,
+				B4F05CD1298B58F900977951 /* FriendCard.swift */,
 				7DC31D38298B1C5E00BC43CA /* ProfileCreationBday.swift */,
 			);
 			path = Views;
@@ -485,10 +494,13 @@
 				7DBE28B6297F30BF00A6DB06 /* ContentView.swift in Sources */,
 				7DC31D3B298B1C7300BC43CA /* ProfileCreationName.swift in Sources */,
 				7DBE291A297F3ABF00A6DB06 /* LogIn.swift in Sources */,
+				B4F05CD4298B5AF800977951 /* Notifications.swift in Sources */,
+				B4F05CD2298B58F900977951 /* FriendCard.swift in Sources */,
 				7DBE2944297F4F8600A6DB06 /* Settings.swift in Sources */,
 				7DC31D39298B1C5E00BC43CA /* ProfileCreationBday.swift in Sources */,
 				7D242A4B2989F0E200B77902 /* SongCard.swift in Sources */,
 				7DC31D3D298B1C7800BC43CA /* ProfileCreationNumber.swift in Sources */,
+				B4F05CD6298B5F0400977951 /* MyProfile.swift in Sources */,
 				7DBE28B4297F30BF00A6DB06 /* TuneInApp.swift in Sources */,
 				B46B427A2981A74A00DFB1D1 /* EditProfile.swift in Sources */,
 			);
