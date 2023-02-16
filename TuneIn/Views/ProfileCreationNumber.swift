@@ -75,16 +75,19 @@ struct ProfileCreationNumber: View {
                     
                 Spacer()
                     
-                HStack{
-                    Text("Next")
-                        .foregroundColor(.white)
-                        .font(.custom("Poppins-Regular", size: 16))
-                        .fixedSize(horizontal: false, vertical: true)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                        .frame(width: 230, height: 50)
-                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                NavigationLink(destination: ProfileCreationTimeZone()){
+                    HStack{
+                        Text("Next")
+                            .foregroundColor(.white)
+                            .font(.custom("Poppins-Regular", size: 16))
+                            .fixedSize(horizontal: false, vertical: true)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                            .frame(width: 230, height: 50)
+                            .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                    }
                 }
+                
             }
         }
     }

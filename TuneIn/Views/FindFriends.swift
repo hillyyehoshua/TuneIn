@@ -110,7 +110,7 @@ struct FindFriends: View {
                 Spacer()
             }
                 
-        }
+        }//.navigationBarBackButtonHidden(true)
     }
 }
 

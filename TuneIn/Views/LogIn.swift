@@ -47,24 +47,24 @@ struct LogIn: View {
                 Spacer()
                     .frame(height: 26)
                 
-                
-                                    // Ask to log in with Spotify
-                                    Text("Log In with Spotify")
-                                        .foregroundColor(.white)
-                                        .font(.custom("Poppins-Regular", size: 19))
-                                        .fixedSize(horizontal: false, vertical: true)
-                                        .multilineTextAlignment(.center)
-                                        .padding()
-                                        .frame(width: 230, height: 50)
-                                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
-                    
-                    
+                NavigationLink(destination: ProfileCreationName()) {
+                    // Ask to log in with Spotify
+                    Text("Log In with Spotify")
+                        .foregroundColor(.white)
+                        .font(.custom("Poppins-Regular", size: 19))
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .frame(width: 230, height: 50)
+                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
                     
                 }
-                .padding()
+                
             }
+            .padding()
         }
     }
+}
 
 
 struct LogIn_Previews: PreviewProvider {

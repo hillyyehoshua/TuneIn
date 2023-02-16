@@ -20,6 +20,8 @@ struct Settings: View {
                             .padding(.leading,  20)
                         Spacer()
                     }
+                    
+                    
                     HStack {
                         Text("Settings")
                             .frame(alignment: .center)
@@ -27,38 +29,41 @@ struct Settings: View {
                             .font(.custom("Poppins-SemiBold", size: 30))
                     }
                 }
-                ZStack{
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(.white)
-                        .opacity(0.1)
-                        .frame(width: 348, height: 74)
-                    HStack {
-                        ZStack {
-                            Circle()
-                                .fill(Color("Blue"))
-                                .frame(width: 52, height: 52)
-                            Text("H")
-                                .font(.custom("Poppins-Regular", size: 25))
-                        }
-                        .padding(.leading, 35)
-                        VStack (alignment: .leading){
-                            Text("Hilly Yehoshua")
-                                .foregroundColor(.white)
-                                .font(.custom("Poppins-SemiBold", size: 16))
-                                .padding(.leading, 5)
-                            Text("hilly_y29")
-                                .foregroundColor(.white)
-                                .font(.custom("Poppins-Regular", size: 14))
-                                .padding(.leading, 5)
-                        }
-                        Spacer()
+                NavigationLink(destination: MyProfile()){
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(.white)
+                            .opacity(0.1)
+                            .frame(width: 348, height: 74)
                         HStack {
-                            Image("right")
-                                .frame(alignment: .trailing)
+                            ZStack {
+                                Circle()
+                                    .fill(Color("Blue"))
+                                    .frame(width: 52, height: 52)
+                                Text("H")
+                                    .font(.custom("Poppins-Regular", size: 25))
+                            }
+                            .padding(.leading, 35)
+                            VStack (alignment: .leading){
+                                Text("Hilly Yehoshua")
+                                    .foregroundColor(.white)
+                                    .font(.custom("Poppins-SemiBold", size: 16))
+                                    .padding(.leading, 5)
+                                Text("hilly_y29")
+                                    .foregroundColor(.white)
+                                    .font(.custom("Poppins-Regular", size: 14))
+                                    .padding(.leading, 5)
+                            }
+                            Spacer()
+                            HStack {
+                                Image("right")
+                                    .frame(alignment: .trailing)
+                            }
+                            .padding(.trailing, 35)
                         }
-                        .padding(.trailing, 35)
                     }
                 }
+                
                 
                 Spacer()
                     .frame(height: 35)
@@ -190,6 +195,8 @@ struct Settings: View {
                 }
             }
         }
+//        }            .navigationBarBackButtonHidden(true)
+
     }
 }
 
