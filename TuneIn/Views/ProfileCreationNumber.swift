@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileCreationNumber: View {
+    @State private var phonenum: String = ""
     var body: some View {
         ZStack {
             Color("Dark Blue")
@@ -48,29 +49,35 @@ struct ProfileCreationNumber: View {
                         .frame(height: 20)
                     
                 HStack {
-                    Text("XXX")
+                    TextField("XXX XXX XXXX", text: $phonenum)
                         .frame(alignment: .center)
                         .foregroundColor(.white)
                         .font(.custom("Poppins-SemiBold", size: 36))
                         .opacity(0.5)
-                    
-                    Spacer()
-                        .frame(width: 25)
-                    
-                    Text("XXX")
-                        .frame(alignment: .center)
-                        .foregroundColor(.white)
-                        .font(.custom("Poppins-SemiBold", size: 36))
-                        .opacity(0.5)
-                    
-                    Spacer()
-                        .frame(width: 25)
-                    
-                    Text("XXXX")
-                        .frame(alignment: .center)
-                        .foregroundColor(.white)
-                        .font(.custom("Poppins-SemiBold", size: 36))
-                        .opacity(0.5)
+                        .multilineTextAlignment(.center)
+//                    Text("XXX")
+//                        .frame(alignment: .center)
+//                        .foregroundColor(.white)
+//                        .font(.custom("Poppins-SemiBold", size: 36))
+//                        .opacity(0.5)
+//
+//                    Spacer()
+//                        .frame(width: 25)
+//
+//                    Text("XXX")
+//                        .frame(alignment: .center)
+//                        .foregroundColor(.white)
+//                        .font(.custom("Poppins-SemiBold", size: 36))
+//                        .opacity(0.5)
+//
+//                    Spacer()
+//                        .frame(width: 25)
+//
+//                    Text("XXXX")
+//                        .frame(alignment: .center)
+//                        .foregroundColor(.white)
+//                        .font(.custom("Poppins-SemiBold", size: 36))
+//                        .opacity(0.5)
                 }
                     
                 Spacer()

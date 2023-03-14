@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ProfileCreationBday: View {
+    @State private var bdaymonth: String = ""
+    @State private var bdayday: String = ""
+    @State private var bdayyear: String = ""
+
     var body: some View {
         ZStack {
             Color("Dark Blue")
@@ -36,29 +40,67 @@ struct ProfileCreationBday: View {
                     .frame(height: 20)
                 
                 HStack {
-                    Text("MM")
+                    
+                        
+                    TextField("MM", text: $bdaymonth)
                         .frame(alignment: .center)
                         .foregroundColor(.white)
                         .font(.custom("Poppins-SemiBold", size: 36))
                         .opacity(0.5)
-                    
-                    Spacer()
-                        .frame(width: 25)
-                    
-                    Text("DD")
+                        .multilineTextAlignment(.center)
+//                    Text ("")
+//                        .frame(alignment: .center)
+//                        .foregroundColor(.white)
+//                        .font(.custom("Poppins-SemiBold", size: 36))
+//                        .opacity(0.5)
+//                        .multilineTextAlignment(.center)
+//                        .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
+                    TextField("DD", text: $bdayday)
                         .frame(alignment: .center)
                         .foregroundColor(.white)
                         .font(.custom("Poppins-SemiBold", size: 36))
                         .opacity(0.5)
-                    
-                    Spacer()
-                        .frame(width: 25)
-                    
-                    Text("YYYY")
+                        .multilineTextAlignment(.center)
+//                    Text ("")
+//                        .frame(alignment: .center)
+//                        .foregroundColor(.white)
+//                        .font(.custom("Poppins-SemiBold", size: 36))
+//                        .opacity(0.5)
+//                        .multilineTextAlignment(.center)
+//                        .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
+                    TextField("YYYY", text: $bdayyear)
                         .frame(alignment: .center)
                         .foregroundColor(.white)
                         .font(.custom("Poppins-SemiBold", size: 36))
                         .opacity(0.5)
+                        .multilineTextAlignment(.center)
+                  
+//                    Spacer()
+//                        .padding(.leading, 20)
+//                        .padding(.trailing, 20)
+//                    Text("MM")
+//                        .frame(alignment: .center)
+//                        .foregroundColor(.white)
+//                        .font(.custom("Poppins-SemiBold", size: 36))
+//                        .opacity(0.5)
+//
+//                    Spacer()
+//                        .frame(width: 25)
+//
+//                    Text("DD")
+//                        .frame(alignment: .center)
+//                        .foregroundColor(.white)
+//                        .font(.custom("Poppins-SemiBold", size: 36))
+//                        .opacity(0.5)
+//
+//                    Spacer()
+//                        .frame(width: 25)
+//
+//                    Text("YYYY")
+//                        .frame(alignment: .center)
+//                        .foregroundColor(.white)
+//                        .font(.custom("Poppins-SemiBold", size: 36))
+//                        .opacity(0.5)
                 }
                 
                 Spacer()

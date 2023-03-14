@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileCreationName: View {
+    @State private var nameuser: String = ""
+    
     var body: some View {
         ZStack {
             Color("Dark Blue")
@@ -35,12 +37,14 @@ struct ProfileCreationName: View {
                 Spacer()
                     .frame(height: 20)
                 
-                HStack {
-                    Text("Your name")
-                        .frame(alignment: .center)
-                        .foregroundColor(.white)
-                        .font(.custom("Poppins-SemiBold", size: 36))
-                        .opacity(0.5)
+                VStack(alignment: .center){
+
+                        TextField("Your name", text: $nameuser)
+                            .frame(alignment: .center)
+                            .foregroundColor(.white)
+                            .font(.custom("Poppins-SemiBold", size: 36))
+                            .opacity(0.5)
+                            .multilineTextAlignment(.center)
                 }
                 
                 Spacer()
