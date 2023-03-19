@@ -12,25 +12,25 @@ struct FindFriends: View {
     
     var body: some View {
         ZStack {
+            
+            //set the background
             Color("Dark Blue")
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
-                
                 // start header
                 ZStack {
-                    
                     HStack {
                         Text("TuneIn")
                             .frame(alignment: .center)
                             .foregroundColor(.white)
                             .font(.custom("Poppins-SemiBold", size: 30))
                     }
+                    
                     Spacer()
                     
                     HStack {
                         Spacer()
-                        
                         Image("right")
                             .frame(alignment: .trailing)
                             .padding(.trailing, 20)
@@ -99,6 +99,7 @@ struct FindFriends: View {
                         
                     }
                 }
+                //end invite your friends
                 
                 Spacer()
                     .frame(height: 35)
@@ -107,6 +108,8 @@ struct FindFriends: View {
                 ForEach (dataManager.users, id: \.id) { user in
                     // start friend card
                     HStack {
+                        
+                        // start profile pic
                         ZStack {
                             Circle()
                                 .fill(Color("Blue"))
@@ -114,7 +117,11 @@ struct FindFriends: View {
                             Text("L")
                                 .font(.custom("Poppins-Regular", size: 24))
                         }
+                        // end profile pic
+                        
+                        //add space
                         .padding(.leading, 20)
+                        
                         
                         VStack (alignment: .leading) {
                             Text (user.name)
@@ -143,7 +150,7 @@ struct FindFriends: View {
                     // end friend card
                     
                 }
-                    
+                
                 //}
                 
                 
@@ -152,11 +159,11 @@ struct FindFriends: View {
                 
                 
                 
-//                FriendCard()
-//
-//                FriendCard()
-//
-//                FriendCard()
+                //                FriendCard()
+                //
+                //                FriendCard()
+                //
+                //                FriendCard()
                 
                 Spacer()
             }
