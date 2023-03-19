@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FindFriends: View {
     @EnvironmentObject var dataManager: DataManager
+    
     var body: some View {
         ZStack {
             Color("Dark Blue")

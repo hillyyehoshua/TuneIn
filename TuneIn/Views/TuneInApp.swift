@@ -18,9 +18,10 @@ struct TuneInApp: App {
     
     var body: some Scene {
         WindowGroup {
-            listView()
+//            listView()
+//                .environmentObject(dataManager)
+            ContentView()
                 .environmentObject(dataManager)
-            //ContentView()
         }
     }
 }

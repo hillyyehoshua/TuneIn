@@ -79,7 +79,6 @@
 		B468500429A427F700ED1FF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500329A427F700ED1FF3 /* AppDelegate.swift */; };
 		B468500629A4281900ED1FF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500529A4281900ED1FF3 /* ViewController.swift */; };
 		B468500A29A42D9000ED1FF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500929A42D9000ED1FF3 /* SceneDelegate.swift */; };
-		B468500F29A42FD700ED1FF3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500E29A42FD700ED1FF3 /* Constants.swift */; };
 		B46B427A2981A74A00DFB1D1 /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46B42792981A74A00DFB1D1 /* EditProfile.swift */; };
 		B478FCB029C513B000F76B3E /* UploadSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCAF29C513B000F76B3E /* UploadSongView.swift */; };
 		B4F05CD2298B58F900977951 /* FriendCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD1298B58F900977951 /* FriendCard.swift */; };
@@ -298,7 +297,6 @@
 		7DBE28DD297F32AF00A6DB06 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7DE0566429C572DF000CE81E /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -308,6 +306,7 @@
 			children = (
 				7DE0566229C50EC8000CE81E /* DataManager.swift */,
 				7DE0566629C57347000CE81E /* listView.swift */,
+				7DE0566429C572DF000CE81E /* User.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -575,7 +574,6 @@
 				B4F05CD2298B58F900977951 /* FriendCard.swift in Sources */,
 				7DBE2944297F4F8600A6DB06 /* Settings.swift in Sources */,
 				7DC31D39298B1C5E00BC43CA /* ProfileCreationBday.swift in Sources */,
-				B468500F29A42FD700ED1FF3 /* Constants.swift in Sources */,
 				7D242A4B2989F0E200B77902 /* SongCard.swift in Sources */,
 				7DC31D3D298B1C7800BC43CA /* ProfileCreationNumber.swift in Sources */,
 				B468500429A427F700ED1FF3 /* AppDelegate.swift in Sources */,
