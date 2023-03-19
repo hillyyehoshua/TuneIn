@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileCreationTimeZone: View {
     @State private var selection = 1
+    
     var body: some View {
         ZStack {
             Color("Dark Blue")
@@ -53,10 +54,6 @@ struct ProfileCreationTimeZone: View {
                     
                 ZStack (alignment: .top){
                     
-//                    RoundedRectangle(cornerRadius: 5)
-//                        .fill(.white)
-//                        .frame(width: 230, height: 30)
-                    
                     Picker(selection: $selection, label: Text("Pick a time zone")) {
                         Text("America").tag(1)
                             .font(.custom("Poppins-Regular", size: 20))
@@ -75,34 +72,6 @@ struct ProfileCreationTimeZone: View {
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
 
                 }
-                
-                    
-                //.rectangle
-//                HStack {
-//                    Text("XXX")
-//                        .frame(alignment: .center)
-//                        .foregroundColor(.white)
-//                        .font(.custom("Poppins-SemiBold", size: 36))
-//                        .opacity(0.5)
-//
-//                    Spacer()
-//                        .frame(width: 25)
-//
-//                    Text("XXX")
-//                        .frame(alignment: .center)
-//                        .foregroundColor(.white)
-//                        .font(.custom("Poppins-SemiBold", size: 36))
-//                        .opacity(0.5)
-//
-//                    Spacer()
-//                        .frame(width: 25)
-//
-//                    Text("XXXX")
-//                        .frame(alignment: .center)
-//                        .foregroundColor(.white)
-//                        .font(.custom("Poppins-SemiBold", size: 36))
-//                        .opacity(0.5)
-//                }
                     
                 Spacer()
                 NavigationLink(destination: FeedEmpty()){

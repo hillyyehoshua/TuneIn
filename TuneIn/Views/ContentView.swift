@@ -10,11 +10,8 @@ import SwiftUI
 // Structure for the view that manages primary app screens and navigation.
 struct ContentView: View {
     var body: some View {
-//        NavigationView {
-//            LogIn()
-//        }
-        VStack {
-            Spotify()
+        NavigationView {
+            UploadSongView()
         }
 
     }

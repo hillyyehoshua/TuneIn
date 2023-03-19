@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ProfileCreationNumber: View {
+    
+    @State private var phoneNumber = ""
+    
     var body: some View {
         ZStack {
             Color("Dark Blue")
@@ -46,32 +49,18 @@ struct ProfileCreationNumber: View {
                     
                 Spacer()
                         .frame(height: 20)
-                    
-                HStack {
-                    Text("XXX")
-                        .frame(alignment: .center)
+                
+                HStack(alignment: .center) {
+                    TextField("", text: $phoneNumber)
+                        .modifier(PlaceholderStyle(showPlaceHolder: phoneNumber.isEmpty, placeholder: "XXX  XXX  XXXX"))
+                        .multilineTextAlignment(.center)
                         .foregroundColor(.white)
+                        .accentColor(.white)
                         .font(.custom("Poppins-SemiBold", size: 36))
-                        .opacity(0.5)
-                    
-                    Spacer()
-                        .frame(width: 25)
-                    
-                    Text("XXX")
-                        .frame(alignment: .center)
-                        .foregroundColor(.white)
-                        .font(.custom("Poppins-SemiBold", size: 36))
-                        .opacity(0.5)
-                    
-                    Spacer()
-                        .frame(width: 25)
-                    
-                    Text("XXXX")
-                        .frame(alignment: .center)
-                        .foregroundColor(.white)
-                        .font(.custom("Poppins-SemiBold", size: 36))
-                        .opacity(0.5)
                 }
+                .frame(alignment: .center)
+                .foregroundColor(.white)
+                
                     
                 Spacer()
                     

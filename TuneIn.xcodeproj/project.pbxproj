@@ -77,8 +77,9 @@
 		B468500F29A42FD700ED1FF3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500E29A42FD700ED1FF3 /* Constants.swift */; };
 		B468504729A465A000ED1FF3 /* SpotifyiOS.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B468504029A4630D00ED1FF3 /* SpotifyiOS.xcframework */; };
 		B468504829A465A100ED1FF3 /* SpotifyiOS.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B468504029A4630D00ED1FF3 /* SpotifyiOS.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B468504B29A4689A00ED1FF3 /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468504A29A4689A00ED1FF3 /* Spotify.swift */; };
 		B46B427A2981A74A00DFB1D1 /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46B42792981A74A00DFB1D1 /* EditProfile.swift */; };
+		B478FCB029C513B000F76B3E /* UploadSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCAF29C513B000F76B3E /* UploadSongView.swift */; };
+		B478FCB429C6A1F000F76B3E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCB329C6A1F000F76B3E /* User.swift */; };
 		B4F05CD2298B58F900977951 /* FriendCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD1298B58F900977951 /* FriendCard.swift */; };
 		B4F05CD4298B5AF800977951 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD3298B5AF800977951 /* Notifications.swift */; };
 		B4F05CD6298B5F0400977951 /* MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD5298B5F0400977951 /* MyProfile.swift */; };
@@ -163,8 +164,9 @@
 		B468500B29A42DE000ED1FF3 /* TuneIn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TuneIn-Bridging-Header.h"; sourceTree = "<group>"; };
 		B468500E29A42FD700ED1FF3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B468504029A4630D00ED1FF3 /* SpotifyiOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SpotifyiOS.xcframework; path = "../../../../../../Downloads/ios-sdk-1.2.3/SpotifyiOS.xcframework"; sourceTree = "<group>"; };
-		B468504A29A4689A00ED1FF3 /* Spotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotify.swift; sourceTree = "<group>"; };
 		B46B42792981A74A00DFB1D1 /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
+		B478FCAF29C513B000F76B3E /* UploadSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSongView.swift; sourceTree = "<group>"; };
+		B478FCB329C6A1F000F76B3E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = TuneIn/Views/User.swift; sourceTree = SOURCE_ROOT; };
 		B4F05CD1298B58F900977951 /* FriendCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCard.swift; sourceTree = "<group>"; };
 		B4F05CD3298B5AF800977951 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		B4F05CD5298B5F0400977951 /* MyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfile.swift; sourceTree = "<group>"; };
@@ -247,20 +249,19 @@
 		7DBE28B2297F30BF00A6DB06 /* TuneIn */ = {
 			isa = PBXGroup;
 			children = (
+				B468500E29A42FD700ED1FF3 /* Constants.swift */,
 				B468500329A427F700ED1FF3 /* AppDelegate.swift */,
 				B468500929A42D9000ED1FF3 /* SceneDelegate.swift */,
 				B468500529A4281900ED1FF3 /* ViewController.swift */,
 				7DC31D37298B1B8100BC43CA /* Views */,
-				7DBE28B5297F30BF00A6DB06 /* ContentView.swift */,
+				7DBE28DF297F32C500A6DB06 /* ViewModels */,
+				7DBE28DD297F32AF00A6DB06 /* Models */,
 				7DBE2940297F3D4200A6DB06 /* Info.plist */,
 				7DBE291B297F3BE100A6DB06 /* Fonts */,
 				7DBE28E0297F33F500A6DB06 /* GoogleService-Info.plist */,
-				7DBE28DF297F32C500A6DB06 /* ViewModels */,
-				7DBE28DD297F32AF00A6DB06 /* Models */,
 				7DBE28B7297F30C000A6DB06 /* Assets.xcassets */,
 				7DBE28B9297F30C000A6DB06 /* Preview Content */,
 				B468500B29A42DE000ED1FF3 /* TuneIn-Bridging-Header.h */,
-				B468500E29A42FD700ED1FF3 /* Constants.swift */,
 			);
 			path = TuneIn;
 			sourceTree = "<group>";
@@ -293,6 +294,7 @@
 		7DBE28DD297F32AF00A6DB06 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B478FCB329C6A1F000F76B3E /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -332,23 +334,24 @@
 		7DC31D37298B1B8100BC43CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7DBE28B3297F30BF00A6DB06 /* TuneInApp.swift */,
+				7DBE28B5297F30BF00A6DB06 /* ContentView.swift */,
 				7DBE2943297F4F8600A6DB06 /* Settings.swift */,
 				B4F05CD3298B5AF800977951 /* Notifications.swift */,
 				B4F05CD5298B5F0400977951 /* MyProfile.swift */,
-				7DBE28B3297F30BF00A6DB06 /* TuneInApp.swift */,
 				7D242A4C2989FD0F00B77902 /* Feed.swift */,
 				7DA10BCD299ED5EB00BCDB4F /* FeedEmpty.swift */,
+				B478FCAF29C513B000F76B3E /* UploadSongView.swift */,
 				7DBE2919297F3ABF00A6DB06 /* LogIn.swift */,
-				7DC31D3C298B1C7800BC43CA /* ProfileCreationNumber.swift */,
 				B46B42792981A74A00DFB1D1 /* EditProfile.swift */,
 				7DC31D3A298B1C7300BC43CA /* ProfileCreationName.swift */,
+				7DC31D38298B1C5E00BC43CA /* ProfileCreationBday.swift */,
+				7DC31D3C298B1C7800BC43CA /* ProfileCreationNumber.swift */,
+				7DA10BCB299ECD3900BCDB4F /* ProfileCreationTimeZone.swift */,
 				7DBE2945297F50E100A6DB06 /* FindFriends.swift */,
 				7D242A4A2989F0E200B77902 /* SongCard.swift */,
 				B4F05CD1298B58F900977951 /* FriendCard.swift */,
-				7DC31D38298B1C5E00BC43CA /* ProfileCreationBday.swift */,
-				7DA10BCB299ECD3900BCDB4F /* ProfileCreationTimeZone.swift */,
 				7DA10BCF299EF65000BCDB4F /* Styles.swift */,
-				B468504A29A4689A00ED1FF3 /* Spotify.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				7DBE291A297F3ABF00A6DB06 /* LogIn.swift in Sources */,
 				7DA10BCC299ECD3900BCDB4F /* ProfileCreationTimeZone.swift in Sources */,
 				B4F05CD4298B5AF800977951 /* Notifications.swift in Sources */,
+				B478FCB029C513B000F76B3E /* UploadSongView.swift in Sources */,
 				B4F05CD2298B58F900977951 /* FriendCard.swift in Sources */,
 				7DBE2944297F4F8600A6DB06 /* Settings.swift in Sources */,
 				7DC31D39298B1C5E00BC43CA /* ProfileCreationBday.swift in Sources */,
@@ -564,8 +568,8 @@
 				B4F05CD6298B5F0400977951 /* MyProfile.swift in Sources */,
 				7DA10BCE299ED5EB00BCDB4F /* FeedEmpty.swift in Sources */,
 				7DBE28B4297F30BF00A6DB06 /* TuneInApp.swift in Sources */,
-				B468504B29A4689A00ED1FF3 /* Spotify.swift in Sources */,
 				B46B427A2981A74A00DFB1D1 /* EditProfile.swift in Sources */,
+				B478FCB429C6A1F000F76B3E /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

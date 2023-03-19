@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SwiftUIView: View {
+        
     var body: some View {
         ZStack {
             Color("Dark Blue")
@@ -52,20 +53,21 @@ struct SwiftUIView: View {
                         .opacity(0.1)
                         .frame(width: 348, height: 43)
                     HStack{
-                        Text("Full Name")
+                        Text("Name")
                             .frame(alignment: .leading)
                             .padding(.leading, 35)
                             .foregroundColor(.white)
                             .font(.custom("Poppins-SemiBold", size: 16))
                             .padding(.leading, 5)
                         
+                        Spacer()
+                        
                         Text("Hilly Yehoshua")
                             .foregroundColor(.white)
                             .font(.custom("Poppins-Regular", size: 14))
-                            .padding(.leading, 8)
                         
-                        Spacer()
                     }
+                    .padding(.trailing, 35.0)
                 }
                 // end "Full Name" Card
                 
@@ -79,20 +81,22 @@ struct SwiftUIView: View {
                         .opacity(0.1)
                         .frame(width: 348, height: 43)
                     HStack{
-                        Text("Username")
+                        Text("Birthday")
                             .frame(alignment: .leading)
                             .padding(.leading, 35)
                             .foregroundColor(.white)
                             .font(.custom("Poppins-SemiBold", size: 16))
                             .padding(.leading, 5)
                         
-                        Text("hilly_y28")
-                            .foregroundColor(.white)
-                            .font(.custom("Poppins-Regular", size: 14))
-                            .padding(.leading, 6)
                         
                         Spacer()
+                        
+                        Text("09/10/2000")
+                            .foregroundColor(.white)
+                            .font(.custom("Poppins-Regular", size: 14))
+                        
                     }
+                    .padding(.trailing, 35.0)
                 }
                 // end "Username" Card
                 
@@ -106,20 +110,21 @@ struct SwiftUIView: View {
                         .opacity(0.1)
                         .frame(width: 348, height: 43)
                     HStack{
-                        Text("Spotify")
+                        Text("Phone number")
                             .frame(alignment: .leading)
                             .padding(.leading, 35)
                             .foregroundColor(.white)
                             .font(.custom("Poppins-SemiBold", size: 16))
                             .padding(.leading, 5)
                         
-                        Text("hilly_yeho_music")
+                        Spacer()
+                        
+                        Text("850-766-6888")
                             .foregroundColor(.white)
                             .font(.custom("Poppins-Regular", size: 14))
-                            .padding(.leading, 34)
                         
-                        Spacer()
                     }
+                    .padding(.trailing, 35.0)
                 }
                 // end "Spotify" Card
                 

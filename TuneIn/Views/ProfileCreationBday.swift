@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ProfileCreationBday: View {
+    
+    @State private var birthdate = Date()
+    
     var body: some View {
         ZStack {
             Color("Dark Blue")
@@ -36,30 +39,15 @@ struct ProfileCreationBday: View {
                     .frame(height: 20)
                 
                 HStack {
-                    Text("MM")
-                        .frame(alignment: .center)
-                        .foregroundColor(.white)
-                        .font(.custom("Poppins-SemiBold", size: 36))
-                        .opacity(0.5)
-                    
-                    Spacer()
-                        .frame(width: 25)
-                    
-                    Text("DD")
-                        .frame(alignment: .center)
-                        .foregroundColor(.white)
-                        .font(.custom("Poppins-SemiBold", size: 36))
-                        .opacity(0.5)
-                    
-                    Spacer()
-                        .frame(width: 25)
-                    
-                    Text("YYYY")
-                        .frame(alignment: .center)
-                        .foregroundColor(.white)
-                        .font(.custom("Poppins-SemiBold", size: 36))
-                        .opacity(0.5)
+                    Form {
+                        DatePicker("Birthday", selection: $birthdate, in: ...Date(), displayedComponents: .date)
+                            .modifier(PoppinsFont())
+                    }
+                    .listStyle(GroupedListStyle())
+                    .scrollContentBackground(.hidden)
+                    .background(Color("Dark Blue"))
                 }
+
                 
                 Spacer()
                 NavigationLink(destination: ProfileCreationNumber()){
@@ -78,6 +66,12 @@ struct ProfileCreationBday: View {
             }
             
         }
+    }
+}
+
+struct PoppinsFont: ViewModifier {
+    func body(content: Content) -> some View {
+        content.font(.custom("Poppins", size: 16))
     }
 }
 
