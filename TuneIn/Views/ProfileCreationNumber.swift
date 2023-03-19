@@ -4,6 +4,7 @@
 //
 //  Created by Izzy Hood on 1/30/23.
 //
+// Check the phone number function using ChatGTP
 
 import SwiftUI
 
