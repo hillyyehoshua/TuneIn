@@ -1,4 +1,4 @@
-//
+
 //  ContentView.swift
 //  TuneIn
 //
@@ -13,6 +13,9 @@ struct ContentView: View {
         NavigationView {
             UploadSongView()
         }
+//        VStack {
+//            Spotify()
+//        }
 
     }
 }

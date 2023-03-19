@@ -12,6 +12,8 @@
 		7DA10BCC299ECD3900BCDB4F /* ProfileCreationTimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA10BCB299ECD3900BCDB4F /* ProfileCreationTimeZone.swift */; };
 		7DA10BCE299ED5EB00BCDB4F /* FeedEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA10BCD299ED5EB00BCDB4F /* FeedEmpty.swift */; };
 		7DA10BD0299EF65000BCDB4F /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA10BCF299EF65000BCDB4F /* Styles.swift */; };
+		7DAD950B29A6BF8F0045A7A0 /* SpotifyiOS.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DAD950529A6BB940045A7A0 /* SpotifyiOS.xcframework */; };
+		7DAD950C29A6BF8F0045A7A0 /* SpotifyiOS.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7DAD950529A6BB940045A7A0 /* SpotifyiOS.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DBE28B4297F30BF00A6DB06 /* TuneInApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE28B3297F30BF00A6DB06 /* TuneInApp.swift */; };
 		7DBE28B6297F30BF00A6DB06 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE28B5297F30BF00A6DB06 /* ContentView.swift */; };
 		7DBE28B8297F30C000A6DB06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DBE28B7297F30C000A6DB06 /* Assets.xcassets */; };
@@ -19,7 +21,6 @@
 		7DBE28C5297F30C100A6DB06 /* TuneInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE28C4297F30C100A6DB06 /* TuneInTests.swift */; };
 		7DBE28CF297F30C100A6DB06 /* TuneInUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE28CE297F30C100A6DB06 /* TuneInUITests.swift */; };
 		7DBE28D1297F30C100A6DB06 /* TuneInUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE28D0297F30C100A6DB06 /* TuneInUITestsLaunchTests.swift */; };
-		7DBE28E1297F33F500A6DB06 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DBE28E0297F33F500A6DB06 /* GoogleService-Info.plist */; };
 		7DBE28E4297F348800A6DB06 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7DBE28E3297F348800A6DB06 /* FirebaseAnalytics */; };
 		7DBE28E6297F348800A6DB06 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 7DBE28E5297F348800A6DB06 /* FirebaseAnalyticsOnDeviceConversion */; };
 		7DBE28E8297F348800A6DB06 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7DBE28E7297F348800A6DB06 /* FirebaseAnalyticsSwift */; };
@@ -71,6 +72,10 @@
 		7DC31D39298B1C5E00BC43CA /* ProfileCreationBday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC31D38298B1C5E00BC43CA /* ProfileCreationBday.swift */; };
 		7DC31D3B298B1C7300BC43CA /* ProfileCreationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC31D3A298B1C7300BC43CA /* ProfileCreationName.swift */; };
 		7DC31D3D298B1C7800BC43CA /* ProfileCreationNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC31D3C298B1C7800BC43CA /* ProfileCreationNumber.swift */; };
+		7DE0566329C50EC8000CE81E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE0566229C50EC8000CE81E /* DataManager.swift */; };
+		7DE0566529C572DF000CE81E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE0566429C572DF000CE81E /* User.swift */; };
+		7DE0566729C57347000CE81E /* listView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE0566629C57347000CE81E /* listView.swift */; };
+		7DE0566929C5766A000CE81E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DE0566829C5766A000CE81E /* GoogleService-Info.plist */; };
 		B468500429A427F700ED1FF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500329A427F700ED1FF3 /* AppDelegate.swift */; };
 		B468500629A4281900ED1FF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500529A4281900ED1FF3 /* ViewController.swift */; };
 		B468500A29A42D9000ED1FF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500929A42D9000ED1FF3 /* SceneDelegate.swift */; };
@@ -109,7 +114,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B468504829A465A100ED1FF3 /* SpotifyiOS.xcframework in Embed Frameworks */,
+				7DAD950C29A6BF8F0045A7A0 /* SpotifyiOS.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -122,6 +127,7 @@
 		7DA10BCB299ECD3900BCDB4F /* ProfileCreationTimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationTimeZone.swift; sourceTree = "<group>"; };
 		7DA10BCD299ED5EB00BCDB4F /* FeedEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEmpty.swift; sourceTree = "<group>"; };
 		7DA10BCF299EF65000BCDB4F /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		7DAD950529A6BB940045A7A0 /* SpotifyiOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SpotifyiOS.xcframework; sourceTree = "<group>"; };
 		7DBE28B0297F30BF00A6DB06 /* TuneIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuneIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DBE28B3297F30BF00A6DB06 /* TuneInApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneInApp.swift; sourceTree = "<group>"; };
 		7DBE28B5297F30BF00A6DB06 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -132,7 +138,6 @@
 		7DBE28CA297F30C100A6DB06 /* TuneInUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TuneInUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DBE28CE297F30C100A6DB06 /* TuneInUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneInUITests.swift; sourceTree = "<group>"; };
 		7DBE28D0297F30C100A6DB06 /* TuneInUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneInUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		7DBE28E0297F33F500A6DB06 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7DBE2919297F3ABF00A6DB06 /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
 		7DBE291C297F3C2200A6DB06 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		7DBE291D297F3C2200A6DB06 /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -158,6 +163,10 @@
 		7DC31D38298B1C5E00BC43CA /* ProfileCreationBday.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCreationBday.swift; sourceTree = "<group>"; };
 		7DC31D3A298B1C7300BC43CA /* ProfileCreationName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCreationName.swift; sourceTree = "<group>"; };
 		7DC31D3C298B1C7800BC43CA /* ProfileCreationNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCreationNumber.swift; sourceTree = "<group>"; };
+		7DE0566229C50EC8000CE81E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		7DE0566429C572DF000CE81E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7DE0566629C57347000CE81E /* listView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listView.swift; sourceTree = "<group>"; };
+		7DE0566829C5766A000CE81E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B468500329A427F700ED1FF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B468500529A4281900ED1FF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B468500929A42D9000ED1FF3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -182,7 +191,7 @@
 				7DBE28FC297F348800A6DB06 /* FirebaseFirestore in Frameworks */,
 				7DBE28E8297F348800A6DB06 /* FirebaseAnalyticsSwift in Frameworks */,
 				7DBE28E4297F348800A6DB06 /* FirebaseAnalytics in Frameworks */,
-				B468504729A465A000ED1FF3 /* SpotifyiOS.xcframework in Frameworks */,
+				7DAD950B29A6BF8F0045A7A0 /* SpotifyiOS.xcframework in Frameworks */,
 				7DBE28E6297F348800A6DB06 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				7DBE290C297F348800A6DB06 /* FirebaseMLModelDownloader in Frameworks */,
 				7DBE2900297F348800A6DB06 /* FirebaseFirestoreSwift in Frameworks */,
@@ -249,7 +258,7 @@
 		7DBE28B2297F30BF00A6DB06 /* TuneIn */ = {
 			isa = PBXGroup;
 			children = (
-				B468500E29A42FD700ED1FF3 /* Constants.swift */,
+				7DE0566829C5766A000CE81E /* GoogleService-Info.plist */,
 				B468500329A427F700ED1FF3 /* AppDelegate.swift */,
 				B468500929A42D9000ED1FF3 /* SceneDelegate.swift */,
 				B468500529A4281900ED1FF3 /* ViewController.swift */,
@@ -258,7 +267,6 @@
 				7DBE28DD297F32AF00A6DB06 /* Models */,
 				7DBE2940297F3D4200A6DB06 /* Info.plist */,
 				7DBE291B297F3BE100A6DB06 /* Fonts */,
-				7DBE28E0297F33F500A6DB06 /* GoogleService-Info.plist */,
 				7DBE28B7297F30C000A6DB06 /* Assets.xcassets */,
 				7DBE28B9297F30C000A6DB06 /* Preview Content */,
 				B468500B29A42DE000ED1FF3 /* TuneIn-Bridging-Header.h */,
@@ -302,6 +310,9 @@
 		7DBE28DF297F32C500A6DB06 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				7DE0566229C50EC8000CE81E /* DataManager.swift */,
+				7DE0566429C572DF000CE81E /* User.swift */,
+				7DE0566629C57347000CE81E /* listView.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -359,7 +370,7 @@
 		B468503F29A43B8400ED1FF3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B468504029A4630D00ED1FF3 /* SpotifyiOS.xcframework */,
+				7DAD950529A6BB940045A7A0 /* SpotifyiOS.xcframework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -506,6 +517,7 @@
 				7DBE2939297F3C2500A6DB06 /* Poppins-Light.ttf in Resources */,
 				7DBE2936297F3C2500A6DB06 /* Poppins-MediumItalic.ttf in Resources */,
 				7DBE292E297F3C2500A6DB06 /* Poppins-Medium.ttf in Resources */,
+				7DE0566929C5766A000CE81E /* GoogleService-Info.plist in Resources */,
 				7DBE293B297F3C2500A6DB06 /* Poppins-ExtraLightItalic.ttf in Resources */,
 				7DBE293D297F3C2500A6DB06 /* Poppins-Black.ttf in Resources */,
 				7DBE2937297F3C2500A6DB06 /* Poppins-Thin.ttf in Resources */,
@@ -519,7 +531,6 @@
 				7DBE2930297F3C2500A6DB06 /* Poppins-SemiBold.ttf in Resources */,
 				7DBE2935297F3C2500A6DB06 /* Poppins-ExtraLight.ttf in Resources */,
 				7DBE2938297F3C2500A6DB06 /* Poppins-ExtraBold.ttf in Resources */,
-				7DBE28E1297F33F500A6DB06 /* GoogleService-Info.plist in Resources */,
 				7DBE28B8297F30C000A6DB06 /* Assets.xcassets in Resources */,
 				7DBE293E297F3C2500A6DB06 /* Poppins-Italic.ttf in Resources */,
 				7DBE2934297F3C2500A6DB06 /* Poppins-BoldItalic.ttf in Resources */,
@@ -552,7 +563,9 @@
 				7D242A4D2989FD0F00B77902 /* Feed.swift in Sources */,
 				7DBE28B6297F30BF00A6DB06 /* ContentView.swift in Sources */,
 				7DC31D3B298B1C7300BC43CA /* ProfileCreationName.swift in Sources */,
+				7DE0566329C50EC8000CE81E /* DataManager.swift in Sources */,
 				7DBE291A297F3ABF00A6DB06 /* LogIn.swift in Sources */,
+				7DE0566729C57347000CE81E /* listView.swift in Sources */,
 				7DA10BCC299ECD3900BCDB4F /* ProfileCreationTimeZone.swift in Sources */,
 				B4F05CD4298B5AF800977951 /* Notifications.swift in Sources */,
 				B478FCB029C513B000F76B3E /* UploadSongView.swift in Sources */,
@@ -567,6 +580,7 @@
 				B468500A29A42D9000ED1FF3 /* SceneDelegate.swift in Sources */,
 				B4F05CD6298B5F0400977951 /* MyProfile.swift in Sources */,
 				7DA10BCE299ED5EB00BCDB4F /* FeedEmpty.swift in Sources */,
+				7DE0566529C572DF000CE81E /* User.swift in Sources */,
 				7DBE28B4297F30BF00A6DB06 /* TuneInApp.swift in Sources */,
 				B46B427A2981A74A00DFB1D1 /* EditProfile.swift in Sources */,
 				B478FCB429C6A1F000F76B3E /* User.swift in Sources */,
@@ -729,7 +743,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TuneIn/Preview Content\"";
-				DEVELOPMENT_TEAM = NFZVL4434K;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
