@@ -32,10 +32,23 @@ class DataManager: ObservableObject{
                     print (data)
                     let id = data["id"] as? String ?? ""
                     let name = data["name"] as? String ?? ""
+                    let username = data["username"] as? String ?? ""
                     
-                    let user = User(id: id, name: name)
+                    let user = User(id: id, name: name, username: username)
                     self.users.append(user)
                 }
+            }
+        }
+    }
+    
+    
+    func addUser(name: String, username: String) {
+        let db = Firestore.firestore()
+        let ref = db.collection("Users").document(name)
+        ref.setData(["name": name, "username": username, "id": UUID().uuidString]){
+            error in
+            if let error = error {
+                print(error.localizedDescription)
             }
         }
     }

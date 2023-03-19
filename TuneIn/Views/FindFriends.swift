@@ -121,7 +121,7 @@ struct FindFriends: View {
                                 .foregroundColor(.white)
                                 .font(.custom("Poppins-SemiBold", size: 16))
                             
-                            Text("lau4mar")
+                            Text(user.username)
                                 .foregroundColor(.white)
                                 .font(.custom("Poppins-Regular", size: 12))
                         }

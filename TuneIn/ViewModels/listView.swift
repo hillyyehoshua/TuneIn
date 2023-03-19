@@ -9,21 +9,25 @@ import SwiftUI
 
 struct listView: View {
     @EnvironmentObject var dataManager: DataManager
+    @State private var showPopup = false
     
     var body: some View {
         NavigationView{
             List (dataManager.users, id: \.id){ user in
                 Text (user.name)
                     .foregroundColor(.black)
-                Text ("1")
             }
             .navigationTitle("Users")
             .navigationBarItems(trailing: Button(action : {
-                //add
+                showPopup.toggle()
             }, label: {
                 Image(systemName: "plus")
+            }))
+            .sheet(isPresented: $showPopup){
+                NewUserView()
+            
+                
             }
-                                                ))
             
         }
         
