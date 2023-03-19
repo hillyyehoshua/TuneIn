@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FriendCard: View {
+    @EnvironmentObject var dataManager: DataManager
     var body: some View {
         // start friend card
         HStack {
@@ -51,5 +52,6 @@ struct FriendCard: View {
 struct FriendCard_Previews: PreviewProvider {
     static var previews: some View {
         FriendCard()
+            .environmentObject(DataManager())
     }
 }

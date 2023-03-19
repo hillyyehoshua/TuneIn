@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FindFriends: View {
+    @EnvironmentObject var dataManager: DataManager
     var body: some View {
         ZStack {
             Color("Dark Blue")
@@ -33,7 +34,7 @@ struct FindFriends: View {
                             .frame(alignment: .trailing)
                             .padding(.trailing, 20)
                     }
-                        
+                    
                 }
                 // end header
                 
@@ -101,15 +102,64 @@ struct FindFriends: View {
                 Spacer()
                     .frame(height: 35)
                 
-                FriendCard()    
+                //Iterate through all of the users in the database
+                ForEach (dataManager.users, id: \.id) { user in
+                    // start friend card
+                    HStack {
+                        ZStack {
+                            Circle()
+                                .fill(Color("Blue"))
+                                .frame(width: 50, height: 50)
+                            Text("L")
+                                .font(.custom("Poppins-Regular", size: 24))
+                        }
+                        .padding(.leading, 20)
+                        
+                        VStack (alignment: .leading) {
+                            Text (user.name)
+                                .foregroundColor(.white)
+                                .font(.custom("Poppins-SemiBold", size: 16))
+                            
+                            Text("lau4mar")
+                                .foregroundColor(.white)
+                                .font(.custom("Poppins-Regular", size: 12))
+                        }
+                        
+                        Spacer()
+                        
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(.white)
+                                .opacity(0.1)
+                                .frame(width: 60, height: 30)
+                            
+                            Text("Add")
+                                .foregroundColor(.white)
+                                .font(.custom("Poppins-SemiBold", size: 14))
+                        }
+                        .padding(.trailing, 20)
+                    }
+                    // end friend card
+                    
+                }
+                    
+                //}
                 
-                FriendCard()
                 
-                FriendCard()
+                
+                
+                
+                
+                
+//                FriendCard()
+//
+//                FriendCard()
+//
+//                FriendCard()
                 
                 Spacer()
             }
-                
+            
         }//.navigationBarBackButtonHidden(true)
     }
 }
@@ -117,5 +167,6 @@ struct FindFriends: View {
 struct FindFriends_Previews: PreviewProvider {
     static var previews: some View {
         FindFriends()
+            .environmentObject(DataManager())
     }
 }

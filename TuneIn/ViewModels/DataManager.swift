@@ -29,9 +29,9 @@ class DataManager: ObservableObject{
             if let snapshot = snapshot{
                 for document in snapshot.documents{
                     let data = document.data()
-                    
-                    let id = data["id"] as? String ?? "iddefault"
-                    let name = data["name"] as? String ?? "namedefault"
+                    print (data)
+                    let id = data["id"] as? String ?? ""
+                    let name = data["name"] as? String ?? ""
                     
                     let user = User(id: id, name: name)
                     self.users.append(user)

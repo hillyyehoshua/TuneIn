@@ -15,7 +15,7 @@ struct listView: View {
             List (dataManager.users, id: \.id){ user in
                 Text (user.name)
                     .foregroundColor(.black)
-                
+                Text ("1")
             }
             .navigationTitle("Users")
             .navigationBarItems(trailing: Button(action : {
