@@ -51,7 +51,6 @@ struct ProfileCreationName: View {
                 
                 Spacer()
                 
-                //if myString.allSatisfy({ $0.isLetter })
                 if (name.isEmpty){
                     Text("Next")
                         .foregroundColor(.white)
@@ -62,7 +61,7 @@ struct ProfileCreationName: View {
                         .frame(width: 230, height: 50)
                         .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
                 }else{
-                    NavigationLink(destination: ProfileCreationBday()){
+                    NavigationLink(destination: ProfileCreationBday(name: $name)){
                         HStack{
                             Text("Next")
                                 .foregroundColor(.white)
@@ -82,6 +81,9 @@ struct ProfileCreationName: View {
             .frame(alignment: .center)
 
         }
+        
+//        ProfileCreationTimeZone(name: $name)
+        
     }
 }
     

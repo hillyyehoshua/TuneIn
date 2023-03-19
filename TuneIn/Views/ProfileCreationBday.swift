@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileCreationBday: View {
     
     @State private var birthdate = Date()
+    @Binding var name: String
     
     var body: some View {
         ZStack {
@@ -61,7 +62,7 @@ struct ProfileCreationBday: View {
 //                                        .frame(width: 230, height: 50)
 //                                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
 //                                }else{
-                                    NavigationLink(destination: ProfileCreationNumber()){
+                NavigationLink(destination: ProfileCreationNumber(name: $name)){
                                         HStack{
                                             Text("Next")
                                                 .foregroundColor(.white)
@@ -94,6 +95,6 @@ struct PoppinsFont: ViewModifier {
 
 struct ProfileCreationBday_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileCreationBday()
+        ProfileCreationBday(name: .constant("John Doe"))
     }
 }
