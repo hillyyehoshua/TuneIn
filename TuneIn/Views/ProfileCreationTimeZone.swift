@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileCreationTimeZone: View {
-    @State private var selection = 1
+    @State private var selection = 0
     
     var body: some View {
         ZStack {
@@ -55,6 +55,9 @@ struct ProfileCreationTimeZone: View {
                 ZStack (alignment: .top){
                     
                     Picker(selection: $selection, label: Text("Pick a time zone")) {
+                        Text("Select").tag(0)
+                            .font(.custom("Poppins-Regular", size: 20))
+                            .foregroundColor(.white)
                         Text("America").tag(1)
                             .font(.custom("Poppins-Regular", size: 20))
                             .foregroundColor(.white)
@@ -74,18 +77,33 @@ struct ProfileCreationTimeZone: View {
                 }
                     
                 Spacer()
-                NavigationLink(destination: FeedEmpty()){
-                    HStack{
-                        Text("Next")
-                            .foregroundColor(.white)
-                            .font(.custom("Poppins-Regular", size: 16))
-                            .fixedSize(horizontal: false, vertical: true)
-                            .multilineTextAlignment(.center)
-                            .padding()
-                            .frame(width: 230, height: 50)
-                            .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                
+                if !(selection == 0) {
+                    NavigationLink(destination: FeedEmpty()){
+                        HStack{
+                            Text("Next")
+                                .foregroundColor(.white)
+                                .font(.custom("Poppins-Regular", size: 16))
+                                .fixedSize(horizontal: false, vertical: true)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                                .frame(width: 230, height: 50)
+                                .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                        }
                     }
+                }else{
+                    
+                    Text("Next")
+                        .foregroundColor(.white)
+                        .font(.custom("Poppins-Regular", size: 16))
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .frame(width: 230, height: 50)
+                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
+                    
                 }
+                
                 
             }
         }

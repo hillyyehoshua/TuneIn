@@ -63,23 +63,41 @@ struct ProfileCreationNumber: View {
                 
                     
                 Spacer()
-                    
-                NavigationLink(destination: ProfileCreationTimeZone()){
-                    HStack{
-                        Text("Next")
-                            .foregroundColor(.white)
-                            .font(.custom("Poppins-Regular", size: 16))
-                            .fixedSize(horizontal: false, vertical: true)
-                            .multilineTextAlignment(.center)
-                            .padding()
-                            .frame(width: 230, height: 50)
-                            .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                  
+                if !isValidPhoneNumber(phoneNumber){
+                    Text("Next")
+                        .foregroundColor(.white)
+                        .font(.custom("Poppins-Regular", size: 16))
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .frame(width: 230, height: 50)
+                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
+                }else{
+                    NavigationLink(destination: ProfileCreationTimeZone()){
+                        HStack{
+                            Text("Next")
+                                .foregroundColor(.white)
+                                .font(.custom("Poppins-Regular", size: 16))
+                                .fixedSize(horizontal: false, vertical: true)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                                .frame(width: 230, height: 50)
+                                .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                        }
                     }
                 }
+                
                 
             }
         }
     }
+}
+
+func isValidPhoneNumber(_ phoneNumber: String) -> Bool {
+    let numericRegEx = "^[0-9]{10}$"
+    let numericTest = NSPredicate(format: "SELF MATCHES %@", numericRegEx)
+    return numericTest.evaluate(with: phoneNumber)
 }
 
 

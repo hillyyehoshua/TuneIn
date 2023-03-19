@@ -51,19 +51,33 @@ struct ProfileCreationName: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: ProfileCreationBday()){
-                    HStack{
-                        Text("Next")
-                            .foregroundColor(.white)
-                            .font(.custom("Poppins-Regular", size: 16))
-                            .fixedSize(horizontal: false, vertical: true)
-                            .multilineTextAlignment(.center)
-                            .padding()
-                            .frame(width: 230, height: 50)
-                            .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                //if myString.allSatisfy({ $0.isLetter })
+                if (name.isEmpty){
+                    Text("Next")
+                        .foregroundColor(.white)
+                        .font(.custom("Poppins-Regular", size: 16))
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .frame(width: 230, height: 50)
+                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
+                }else{
+                    NavigationLink(destination: ProfileCreationBday()){
+                        HStack{
+                            Text("Next")
+                                .foregroundColor(.white)
+                                .font(.custom("Poppins-Regular", size: 16))
+                                .fixedSize(horizontal: false, vertical: true)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                                .frame(width: 230, height: 50)
+                                .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                        }
                     }
+
                 }
-                
+            
+                                
             }
             .frame(alignment: .center)
 
