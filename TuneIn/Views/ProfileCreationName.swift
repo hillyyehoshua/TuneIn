@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ProfileCreationName: View {
-    @State private var nameuser: String = ""
+    
+    @State private var name = ""
     
     var body: some View {
         ZStack {
@@ -37,15 +38,16 @@ struct ProfileCreationName: View {
                 Spacer()
                     .frame(height: 20)
                 
-                VStack(alignment: .center){
-
-                        TextField("Your name", text: $nameuser)
-                            .frame(alignment: .center)
-                            .foregroundColor(.white)
-                            .font(.custom("Poppins-SemiBold", size: 36))
-                            .opacity(0.5)
-                            .multilineTextAlignment(.center)
+                HStack(alignment: .center) {
+                    TextField("", text: $name)
+                        .modifier(PlaceholderStyle(showPlaceHolder: name.isEmpty, placeholder: "Your Name"))
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.white)
+                        .accentColor(.white)
+                        .font(.custom("Poppins-SemiBold", size: 36))
                 }
+                .frame(alignment: .center)
+                .foregroundColor(.white)
                 
                 Spacer()
                 
@@ -63,13 +65,32 @@ struct ProfileCreationName: View {
                 }
                 
             }
-            
+            .frame(alignment: .center)
+
         }
     }
 }
+    
+public struct PlaceholderStyle: ViewModifier {
+    var showPlaceHolder: Bool
+    var placeholder: String
+
+    public func body(content: Content) -> some View {
+        ZStack(alignment: .center) {
+            if showPlaceHolder {
+                Text(placeholder)
+                    .opacity(0.5)
+            }
+            content
+            .foregroundColor(Color.white)
+        }
+    }
+}
+
 
 struct ProfileCreationName_Previews: PreviewProvider {
     static var previews: some View {
         ProfileCreationName()
     }
 }
+    
