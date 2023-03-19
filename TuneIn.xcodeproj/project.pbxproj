@@ -80,11 +80,8 @@
 		B468500629A4281900ED1FF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500529A4281900ED1FF3 /* ViewController.swift */; };
 		B468500A29A42D9000ED1FF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500929A42D9000ED1FF3 /* SceneDelegate.swift */; };
 		B468500F29A42FD700ED1FF3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500E29A42FD700ED1FF3 /* Constants.swift */; };
-		B468504729A465A000ED1FF3 /* SpotifyiOS.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B468504029A4630D00ED1FF3 /* SpotifyiOS.xcframework */; };
-		B468504829A465A100ED1FF3 /* SpotifyiOS.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B468504029A4630D00ED1FF3 /* SpotifyiOS.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B46B427A2981A74A00DFB1D1 /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46B42792981A74A00DFB1D1 /* EditProfile.swift */; };
 		B478FCB029C513B000F76B3E /* UploadSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCAF29C513B000F76B3E /* UploadSongView.swift */; };
-		B478FCB429C6A1F000F76B3E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCB329C6A1F000F76B3E /* User.swift */; };
 		B4F05CD2298B58F900977951 /* FriendCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD1298B58F900977951 /* FriendCard.swift */; };
 		B4F05CD4298B5AF800977951 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD3298B5AF800977951 /* Notifications.swift */; };
 		B4F05CD6298B5F0400977951 /* MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD5298B5F0400977951 /* MyProfile.swift */; };
@@ -172,10 +169,8 @@
 		B468500929A42D9000ED1FF3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B468500B29A42DE000ED1FF3 /* TuneIn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TuneIn-Bridging-Header.h"; sourceTree = "<group>"; };
 		B468500E29A42FD700ED1FF3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		B468504029A4630D00ED1FF3 /* SpotifyiOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SpotifyiOS.xcframework; path = "../../../../../../Downloads/ios-sdk-1.2.3/SpotifyiOS.xcframework"; sourceTree = "<group>"; };
 		B46B42792981A74A00DFB1D1 /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
 		B478FCAF29C513B000F76B3E /* UploadSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSongView.swift; sourceTree = "<group>"; };
-		B478FCB329C6A1F000F76B3E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = TuneIn/Views/User.swift; sourceTree = SOURCE_ROOT; };
 		B4F05CD1298B58F900977951 /* FriendCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCard.swift; sourceTree = "<group>"; };
 		B4F05CD3298B5AF800977951 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		B4F05CD5298B5F0400977951 /* MyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfile.swift; sourceTree = "<group>"; };
@@ -242,6 +237,7 @@
 				7DBE28C3297F30C100A6DB06 /* TuneInTests */,
 				7DBE28CD297F30C100A6DB06 /* TuneInUITests */,
 				7DBE28B1297F30BF00A6DB06 /* Products */,
+				7DD6726C29C7AD200072809D /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -302,7 +298,7 @@
 		7DBE28DD297F32AF00A6DB06 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B478FCB329C6A1F000F76B3E /* User.swift */,
+				7DE0566429C572DF000CE81E /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -311,7 +307,6 @@
 			isa = PBXGroup;
 			children = (
 				7DE0566229C50EC8000CE81E /* DataManager.swift */,
-				7DE0566429C572DF000CE81E /* User.swift */,
 				7DE0566629C57347000CE81E /* listView.swift */,
 			);
 			path = ViewModels;
@@ -365,6 +360,14 @@
 				7DA10BCF299EF65000BCDB4F /* Styles.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		7DD6726C29C7AD200072809D /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				B468500E29A42FD700ED1FF3 /* Constants.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		B468503F29A43B8400ED1FF3 /* Frameworks */ = {
@@ -583,7 +586,6 @@
 				7DE0566529C572DF000CE81E /* User.swift in Sources */,
 				7DBE28B4297F30BF00A6DB06 /* TuneInApp.swift in Sources */,
 				B46B427A2981A74A00DFB1D1 /* EditProfile.swift in Sources */,
-				B478FCB429C6A1F000F76B3E /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
