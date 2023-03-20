@@ -46,6 +46,7 @@ struct ProfileCreationBday: View {
                     }
                     .listStyle(GroupedListStyle())
                     .background(Color("Dark Blue"))
+                    .scrollContentBackground(.hidden)
                 }
                 
 
