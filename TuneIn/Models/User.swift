@@ -2,10 +2,10 @@
 //  User.swift
 //  TuneIn
 //
-//  Created by Hilly Yehoshua on 3/18/23.
+//  Created by Hilly Yehoshua on 3/20/23.
 //
 
- import SwiftUI
+import SwiftUI
 
 struct User: Identifiable{
     var id: String
@@ -14,4 +14,3 @@ struct User: Identifiable{
     var phone: String
     var timezone: String
 }
-

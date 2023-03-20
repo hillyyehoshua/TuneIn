@@ -29,16 +29,12 @@ class DataManager: ObservableObject{
             if let snapshot = snapshot{
                 for document in snapshot.documents{
                     let data = document.data()
-                    print (data)
+//                    print (data)
                     let id = data["id"] as? String ?? ""
                     let name = data["name"] as? String ?? ""
                     let username = data["username"] as? String ?? ""
                     let phone = data["phone"] as? String ?? ""
                     let timezone = data["timezone"] as? String ?? ""
-                    /*
-                     var phone: Int
-                     var timezone: String
-                     */
                     
                     let user = User(id: id, name: name, username: username, phone: phone, timezone: timezone)
                     self.users.append(user)
