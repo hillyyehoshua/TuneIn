@@ -105,65 +105,54 @@ struct FindFriends: View {
                     .frame(height: 35)
                 
                 //Iterate through all of the users in the database
-                ForEach (dataManager.users, id: \.id) { user in
-                    // start friend card
-                    HStack {
-                        
-                        // start profile pic
-                        ZStack {
-                            Circle()
-                                .fill(Color("Blue"))
-                                .frame(width: 50, height: 50)
-                            Text("L")
-                                .font(.custom("Poppins-Regular", size: 24))
-                        }
-                        // end profile pic
-                        
-                        //add space
-                        .padding(.leading, 20)
-                        
-                        
-                        VStack (alignment: .leading) {
-                            Text (user.name)
-                                .foregroundColor(.white)
-                                .font(.custom("Poppins-SemiBold", size: 16))
+                ScrollView {
+                    ForEach (dataManager.users, id: \.id) { user in
+                        // start friend card
+                        HStack {
                             
-                            Text(user.username)
-                                .foregroundColor(.white)
-                                .font(.custom("Poppins-Regular", size: 12))
-                        }
-                        
-                        Spacer()
-                        
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(.white)
-                                .opacity(0.1)
-                                .frame(width: 60, height: 30)
+                            // start profile pic
+                            ZStack {
+                                Circle()
+                                    .fill(Color("Blue"))
+                                    .frame(width: 50, height: 50)
+                                Text("L")
+                                    .font(.custom("Poppins-Regular", size: 24))
+                            }
+                            // end profile pic
                             
-                            Text("Add")
-                                .foregroundColor(.white)
-                                .font(.custom("Poppins-SemiBold", size: 14))
+                            //add space
+                            .padding(.leading, 20)
+                            
+                            
+                            VStack (alignment: .leading) {
+                                Text (user.name)
+                                    .foregroundColor(.white)
+                                    .font(.custom("Poppins-SemiBold", size: 16))
+                                
+                                Text(user.username)
+                                    .foregroundColor(.white)
+                                    .font(.custom("Poppins-Regular", size: 12))
+                            }
+                            
+                            Spacer()
+                            
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 15)
+                                    .fill(.white)
+                                    .opacity(0.1)
+                                    .frame(width: 60, height: 30)
+                                
+                                Text("Add")
+                                    .foregroundColor(.white)
+                                    .font(.custom("Poppins-SemiBold", size: 14))
+                            }
+                            .padding(.trailing, 20)
                         }
-                        .padding(.trailing, 20)
+                        // end friend card
+                        
                     }
-                    // end friend card
-                    
                 }
                 
-                //}
-                
-                
-                
-                
-                
-                
-                
-                //                FriendCard()
-                //
-                //                FriendCard()
-                //
-                //                FriendCard()
                 
                 Spacer()
             }

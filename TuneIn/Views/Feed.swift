@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct Feed: View {
+    
+    @Binding var name: String
+    @Binding var usernm: String
+    
     var body: some View {
         ZStack{
             //App background color
@@ -37,7 +41,7 @@ struct Feed: View {
                     //note - maybe we can add the play circle here
                     
                     //Add user's profile picture / image
-                    NavigationLink(destination: Settings()){
+                    NavigationLink(destination: Settings(name: $name, usernm: $usernm)){
                         Image("HProfile")
                             .resizable()
                             .clipShape(Circle())
@@ -109,7 +113,7 @@ struct TodayTune: View {
 
 struct Feed_Previews: PreviewProvider {
     static var previews: some View {
-        Feed()
+        Feed(name: .constant("John Doe"), usernm: .constant("username"))
     }
 }
 

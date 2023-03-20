@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct Settings: View {
+    
+    @Binding var name: String
+    @Binding var usernm: String
+    
     var body: some View {
         ZStack{
             Color("Dark Blue")
@@ -45,11 +49,11 @@ struct Settings: View {
                         }
                         .padding(.leading, 35)
                         VStack (alignment: .leading){
-                            Text("Hilly Yehoshua")
+                            Text(name)
                                 .foregroundColor(.white)
                                 .font(.custom("Poppins-SemiBold", size: 16))
                                 .padding(.leading, 5)
-                            Text("hilly_y29")
+                            Text(usernm)
                                 .foregroundColor(.white)
                                 .font(.custom("Poppins-Regular", size: 14))
                                 .padding(.leading, 5)
@@ -104,7 +108,7 @@ struct Settings: View {
                         Spacer()
                             .frame(height: 10)
                         
-                        // "Notifcations" Card
+                        // "Notifications" Card
                         ZStack {
                             RoundedRectangle(cornerRadius: 5)
                                 .fill(.white)
@@ -213,6 +217,6 @@ struct Settings: View {
 
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
-        Settings()
+        Settings(name: .constant("John Doe"), usernm: .constant("username"))
     }
 }
