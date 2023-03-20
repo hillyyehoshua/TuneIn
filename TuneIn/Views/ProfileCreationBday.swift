@@ -11,6 +11,7 @@ struct ProfileCreationBday: View {
     
     @State private var birthdate = Date()
     @Binding var name: String
+    @Binding var usernm: String
     
     var body: some View {
         ZStack {
@@ -62,7 +63,7 @@ struct ProfileCreationBday: View {
 //                                        .frame(width: 230, height: 50)
 //                                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
 //                                }else{
-                NavigationLink(destination: ProfileCreationNumber(name: $name)){
+                NavigationLink(destination: ProfileCreationNumber(name: $name, usernm: $usernm)){
                                         HStack{
                                             Text("Next")
                                                 .foregroundColor(.white)
@@ -95,6 +96,6 @@ struct PoppinsFont: ViewModifier {
 
 struct ProfileCreationBday_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileCreationBday(name: .constant("John Doe"))
+        ProfileCreationBday(name: .constant("John Doe"),   usernm: .constant("username"))
     }
 }

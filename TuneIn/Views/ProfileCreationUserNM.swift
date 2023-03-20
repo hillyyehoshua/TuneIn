@@ -1,16 +1,15 @@
 //
-//  ProfileCreationName.swift
+//  ProfileCreationUserNM.swift
 //  TuneIn
 //
-//  Created by Izzy Hood on 1/27/23.
+//  Created by Hilly Yehoshua on 3/19/23.
 //
 
 import SwiftUI
 
-struct ProfileCreationName: View {
-    
-    @State private var name = ""
-    
+struct ProfileCreationUserNM: View {
+    @Binding var name: String
+    @State private var usernm = ""
     var body: some View {
         ZStack {
             Color("Dark Blue")
@@ -28,7 +27,7 @@ struct ProfileCreationName: View {
                     .frame(height: 50)
                 
                 HStack {
-                    Text("Welcome! What's your name?")
+                    Text("Please create a username!")
                         .frame(alignment: .center)
                         .foregroundColor(.white)
                         .font(.custom("Poppins-Regular", size: 16))
@@ -39,8 +38,10 @@ struct ProfileCreationName: View {
                     .frame(height: 20)
                 
                 HStack(alignment: .center) {
-                    TextField("", text: $name)
-                        .modifier(PlaceholderStyle(showPlaceHolder: name.isEmpty, placeholder: "Your Name"))
+//                    TextField("", text: $usernm)
+//                        .modifier(PlaceholderStyle(showPlaceHolder: name.isEmpty, placeholder: "Username"))
+                    TextField("", text: $usernm)
+                        .modifier(PlaceholderStyle(showPlaceHolder: usernm.isEmpty, placeholder: "Username"))
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
                         .accentColor(.white)
@@ -51,7 +52,7 @@ struct ProfileCreationName: View {
                 
                 Spacer()
                 
-                if (name.isEmpty){
+                if (usernm.isEmpty){
                     Text("Next")
                         .foregroundColor(.white)
                         .font(.custom("Poppins-Regular", size: 16))
@@ -61,7 +62,7 @@ struct ProfileCreationName: View {
                         .frame(width: 230, height: 50)
                         .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
                 }else{
-                    NavigationLink(destination: ProfileCreationUserNM(name: $name)){
+                    NavigationLink(destination: ProfileCreationBday(name: $name, usernm: $usernm)){
                         HStack{
                             Text("Next")
                                 .foregroundColor(.white)
@@ -86,27 +87,9 @@ struct ProfileCreationName: View {
         
     }
 }
-    
-public struct PlaceholderStyle: ViewModifier {
-    var showPlaceHolder: Bool
-    var placeholder: String
 
-    public func body(content: Content) -> some View {
-        ZStack(alignment: .center) {
-            if showPlaceHolder {
-                Text(placeholder)
-                    .opacity(0.5)
-            }
-            content
-            .foregroundColor(Color.white)
-        }
-    }
-}
-
-
-struct ProfileCreationName_Previews: PreviewProvider {
+struct ProfileCreationUserNM_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileCreationName()
+        ProfileCreationUserNM(name: .constant("John Doe"))
     }
 }
-    

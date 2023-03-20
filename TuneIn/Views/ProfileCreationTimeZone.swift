@@ -12,6 +12,7 @@ struct ProfileCreationTimeZone: View {
     @EnvironmentObject var dataManager: DataManager
     @State private var selection = 0
     @Binding var name: String
+    @Binding var usernm: String
     
     var body: some View {
         ZStack {
@@ -110,13 +111,13 @@ struct ProfileCreationTimeZone: View {
                 
             }
         }.onDisappear {
-            dataManager.addUser(name: name, username: "hello")
+            dataManager.addUser(name: name, username: usernm)
         }
     }
 }
 
 struct ProfileCreationTimeZone_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileCreationTimeZone(name: .constant("John Doe")) // Pass in a default value for `name`
+        ProfileCreationTimeZone(name: .constant("John Doe"), usernm: .constant("username")) // Pass in a default value for `name`
     }
 }

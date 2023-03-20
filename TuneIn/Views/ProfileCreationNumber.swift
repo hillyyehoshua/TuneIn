@@ -12,6 +12,7 @@ struct ProfileCreationNumber: View {
     
     @State private var phoneNumber = ""
     @Binding var name: String
+    @Binding var usernm: String
     
     var body: some View {
         ZStack {
@@ -76,7 +77,7 @@ struct ProfileCreationNumber: View {
                         .frame(width: 230, height: 50)
                         .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
                 }else{
-                    NavigationLink(destination: ProfileCreationTimeZone(name: $name)){
+                    NavigationLink(destination: ProfileCreationTimeZone(name: $name, usernm: $usernm)){
                         HStack{
                             Text("Next")
                                 .foregroundColor(.white)
@@ -105,6 +106,6 @@ func isValidPhoneNumber(_ phoneNumber: String) -> Bool {
 
 struct ProfileCreationNumber_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileCreationNumber(name: .constant("John Doe"))
+        ProfileCreationNumber(name: .constant("John Doe"), usernm: .constant("username"))
     }
 }
