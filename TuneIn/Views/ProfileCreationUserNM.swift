@@ -38,8 +38,7 @@ struct ProfileCreationUserNM: View {
                     .frame(height: 20)
                 
                 HStack(alignment: .center) {
-//                    TextField("", text: $usernm)
-//                        .modifier(PlaceholderStyle(showPlaceHolder: name.isEmpty, placeholder: "Username"))
+
                     TextField("", text: $usernm)
                         .modifier(PlaceholderStyle(showPlaceHolder: usernm.isEmpty, placeholder: "Username"))
                         .multilineTextAlignment(.center)

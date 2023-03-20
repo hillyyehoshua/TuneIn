@@ -12,13 +12,18 @@ struct NewUserView: View {
     @EnvironmentObject var dataManager: DataManager
     @State private var newUser = ""
     @State private var newUserName = ""
+    @State private var newPhone = ""
+    @State private var newTimeZone = ""
     
     var body: some View {
         VStack {
             TextField("name", text: $newUser)
             TextField("username", text: $newUserName)
+            TextField("Phone", value: $newPhone, formatter: NumberFormatter())
+
+            TextField("timezone", text: $newTimeZone)
             Button {
-                dataManager.addUser(name: newUser, username: newUserName)
+                dataManager.addUser(name: newUser, username: newUserName, phone: newPhone, timezone: newTimeZone)
                 
             }label: {
                 Text("save")

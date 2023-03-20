@@ -1,9 +1,145 @@
 //
-//  ProfileCreationTimeZone.swift
-//  TuneIn
+//import SwiftUI
 //
-//  Created by Hilly Yehoshua on 2/16/23.
+//struct ProfileCreationTimeZone: View {
 //
+//    @EnvironmentObject var dataManager: DataManager
+//    @State private var selection = 0
+//    @State private var timeZoneUs = "Not Selected"
+//    @Binding var name: String
+//    @Binding var usernm: String
+//    @Binding var phoneNumber: String
+//
+//
+//    var body: some View {
+//        ZStack {
+//            Color("Dark Blue")
+//                .edgesIgnoringSafeArea(.all)
+//
+//            VStack {
+//                HStack {
+//                    Text("TuneIn")
+//                        .frame(alignment: .center)
+//                        .foregroundColor(.white)
+//                        .font(.custom("Poppins-SemiBold", size: 30))
+//                }
+//
+//                Spacer ()
+//                    .frame(height: 45)
+//
+//                HStack {
+//                    Text("Where do you live?")
+//                        .frame(alignment: .center)
+//                        .foregroundColor(.white)
+//                        .font(.custom("Poppins-Regular", size: 16))
+//
+//                }
+//
+//                Spacer()
+//                    .frame(height: 5)
+//
+//                HStack (spacing: 30) {
+//                    Spacer()
+//                    Text("Knowing your time zone allows us to send you notifications at the right time!")
+//                        .multilineTextAlignment(.center)
+//                        .foregroundColor(.white)
+//                        .font(.custom("Poppins-Regular", size: 16))
+//                        .opacity(0.8)
+//                    Spacer()
+//                }
+//
+//                Spacer()
+//                    .frame(height: 20)
+//
+//                ZStack (alignment: .top){
+//
+//                    Picker(selection: $selection, label: Text("Pick a time zone")) {
+//                        Text("Select")
+//                            .font(.custom("Poppins-Regular", size: 20))
+//                            .foregroundColor(.white)
+//                            .tag(0)
+//
+//                        Text("America")
+//                            .font(.custom("Poppins-Regular", size: 20))
+//                            .foregroundColor(.white)
+//                            .tag(1)
+//
+//
+//                        Text("Europe")
+//                            .font(.custom("Poppins-Regular", size: 20))
+//                            .foregroundColor(.white)
+//                            .tag(2)
+//
+//
+//                        Text("East Asia")
+//                            .font(.custom("Poppins-Regular", size: 20))
+//                            .foregroundColor(.white)
+//                            .tag(3)
+//
+//
+//                        Text("West Asia")
+//                            .font(.custom("Poppins-Regular", size: 20))
+//                            .foregroundColor(.white)
+//                            .tag(4)
+//
+//
+//                    }
+//                    .pickerStyle(WheelPickerStyle())
+//                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+//
+//
+//                }
+//
+//                Spacer()
+//
+//                if (select == 1){
+//                    timeZoneUs = "America"
+//                }else if (select == 2){
+//                    timeZoneUs = "Europe"
+//                }else if (select == 3){
+//                    timeZoneUs = "East Asia"
+//                }else if (select == 4){
+//                    timeZoneUs = "West Asia"
+//                }
+//
+//                if selection != 0 {
+//                    NavigationLink(destination: FeedEmpty()){
+//                        HStack{
+//                            Text("Next")
+//                                .foregroundColor(.white)
+//                                .font(.custom("Poppins-Regular", size: 16))
+//                                .fixedSize(horizontal: false, vertical: true)
+//                                .multilineTextAlignment(.center)
+//                                .padding()
+//                                .frame(width: 230, height: 50)
+//                                .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+//                        }
+//                    }
+//                }else{
+//                    VStack {
+//                        Text("Next")
+//                            .foregroundColor(.white)
+//                            .font(.custom("Poppins-Regular", size: 16))
+//                            .fixedSize(horizontal: false, vertical: true)
+//                            .multilineTextAlignment(.center)
+//                            .padding()
+//                            .frame(width: 230, height: 50)
+//                            .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
+//                    }
+//                }
+//            }
+//        }.onDisappear {
+//            dataManager.addUser(name: name, username: usernm, phone: phoneNumber, timezone: timeZoneUs)
+//        }
+//    }
+//}
+//
+//struct ProfileCreationTimeZone_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProfileCreationTimeZone(name: .constant("John Doe"), usernm: .constant("username"), phoneNumber: .constant("1234567890"))
+//    }
+//}
+
 
 import SwiftUI
 
@@ -11,8 +147,11 @@ struct ProfileCreationTimeZone: View {
     
     @EnvironmentObject var dataManager: DataManager
     @State private var selection = 0
+    @State private var timeZoneUs = "Not Selected"
     @Binding var name: String
     @Binding var usernm: String
+    @Binding var phoneNumber: String
+    
     
     var body: some View {
         ZStack {
@@ -41,48 +180,68 @@ struct ProfileCreationTimeZone: View {
                 Spacer()
                     .frame(height: 5)
                 
-                    HStack (spacing: 30) {
-                        Spacer()
-                        Text("Knowing your time zone allows us to send you notifications at the right time!")
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.white)
-                            .font(.custom("Poppins-Regular", size: 16))
-                            .opacity(0.8)
-                        Spacer()
-                    }
+                HStack (spacing: 30) {
+                    Spacer()
+                    Text("Knowing your time zone allows us to send you notifications at the right time!")
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.white)
+                        .font(.custom("Poppins-Regular", size: 16))
+                        .opacity(0.8)
+                    Spacer()
+                }
                 
-                
-                    
                 Spacer()
-                        .frame(height: 20)
-                    
+                    .frame(height: 20)
+                
                 ZStack (alignment: .top){
                     
                     Picker(selection: $selection, label: Text("Pick a time zone")) {
-                        Text("Select").tag(0)
+                        Text("Select")
                             .font(.custom("Poppins-Regular", size: 20))
                             .foregroundColor(.white)
-                        Text("America").tag(1)
+                            .tag(0)
+                        
+                        Text("America")
                             .font(.custom("Poppins-Regular", size: 20))
                             .foregroundColor(.white)
-                        Text("Europe").tag(2)
+                            .tag(1)
+                        
+                        
+                        Text("Europe")
                             .font(.custom("Poppins-Regular", size: 20))
                             .foregroundColor(.white)
-                        Text("East Asia").tag(3)
+                            .tag(2)
+                        
+                        
+                        Text("East Asia")
                             .font(.custom("Poppins-Regular", size: 20))
                             .foregroundColor(.white)
-                        Text("West Asia").tag(4)
+                            .tag(3)
+                        
+                        
+                        Text("West Asia")
                             .font(.custom("Poppins-Regular", size: 20))
                             .foregroundColor(.white)
+                            .tag(4)
+                        
                     }
                     .pickerStyle(WheelPickerStyle())
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-
                 }
-                    
+                
                 Spacer()
                 
-                if !(selection == 0) {
+//                if (selection == 1){
+//                    timeZoneUs = "America"
+//                } else if (selection == 2){
+//                    timeZoneUs = "Europe"
+//                } else if (selection == 3){
+//                    timeZoneUs = "East Asia"
+//                } else if (selection == 4){
+//                    timeZoneUs = "West Asia"
+//                }
+                
+                if selection != 0 {
                     NavigationLink(destination: FeedEmpty()){
                         HStack{
                             Text("Next")
@@ -95,29 +254,27 @@ struct ProfileCreationTimeZone: View {
                                 .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
                         }
                     }
-                }else{
-                    
-                    Text("Next")
-                        .foregroundColor(.white)
-                        .font(.custom("Poppins-Regular", size: 16))
-                        .fixedSize(horizontal: false, vertical: true)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                        .frame(width: 230, height: 50)
-                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
-                    
+                } else {
+                    VStack {
+                        Text("Next")
+                            .foregroundColor(.white)
+                            .font(.custom("Poppins-Regular", size: 16))
+                            .fixedSize(horizontal: false, vertical: true)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                            .frame(width: 230, height: 50)
+                            .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
+                    }
                 }
-                
-                
             }
         }.onDisappear {
-            dataManager.addUser(name: name, username: usernm)
+            dataManager.addUser(name: name, username: usernm, phone: phoneNumber, timezone: String(selection))
         }
     }
 }
 
 struct ProfileCreationTimeZone_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileCreationTimeZone(name: .constant("John Doe"), usernm: .constant("username")) // Pass in a default value for `name`
+        ProfileCreationTimeZone(name: .constant("John Doe"), usernm: .constant("username"), phoneNumber: .constant("1234567890"))
     }
 }

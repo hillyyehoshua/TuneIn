@@ -10,9 +10,15 @@ import SwiftUI
 
 struct ProfileCreationNumber: View {
     
-    @State private var phoneNumber = ""
+    @State private var phoneNumber: String = ""
     @Binding var name: String
     @Binding var usernm: String
+    
+//    init(phoneNumber: Binding<String>, name: Binding<String>, usernm: Binding<String>) {
+//            _phoneNumber = State(initialValue: phoneNumber.wrappedValue)
+//            _name = name
+//            _usernm = usernm
+//        }
     
     var body: some View {
         ZStack {
@@ -77,7 +83,7 @@ struct ProfileCreationNumber: View {
                         .frame(width: 230, height: 50)
                         .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
                 }else{
-                    NavigationLink(destination: ProfileCreationTimeZone(name: $name, usernm: $usernm)){
+                    NavigationLink(destination: ProfileCreationTimeZone(name: $name, usernm: $usernm, phoneNumber : $phoneNumber)){
                         HStack{
                             Text("Next")
                                 .foregroundColor(.white)
