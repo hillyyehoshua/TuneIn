@@ -8,6 +8,22 @@
 import SwiftUI
 
 struct MyProfile: View {
+    
+    // MARK: Custom back button code
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    var btnBack : some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+        }) {
+            HStack {
+            Image("left") // set image here
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.white)
+            }
+        }
+    }
+    // END: Custom back button code
+    
     var body: some View {
         ZStack {
             Color("Dark Blue")
@@ -113,6 +129,9 @@ struct MyProfile: View {
                 Spacer()
             }
         }
+        // Enables Custom back button
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
     }
 }
 

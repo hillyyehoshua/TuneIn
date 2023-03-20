@@ -12,20 +12,29 @@ struct Settings: View {
     @Binding var name: String
     @Binding var usernm: String
     
+    // MARK: Custom back button code
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    var btnBack : some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+        }) {
+            HStack {
+            Image("left") // set image here
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.white)
+            }
+        }
+    }
+    // END: Custom back button code
+    
     var body: some View {
         ZStack{
             Color("Dark Blue")
                 .edgesIgnoringSafeArea(.all)
+            
+            // MARK: Header
             VStack {
                 ZStack{
-                    HStack {
-                        Image("left")
-                            .frame(alignment: .leading)
-                            .padding(.leading,  20)
-                        Spacer()
-                    }
-                    
-                    
                     HStack {
                         Text("Settings")
                             .frame(alignment: .center)
@@ -44,7 +53,7 @@ struct Settings: View {
                             Circle()
                                 .fill(Color("Blue"))
                                 .frame(width: 52, height: 52)
-                            Text("H")
+                            Text(String(name.first!))
                                 .font(.custom("Poppins-Regular", size: 25))
                         }
                         .padding(.leading, 35)
@@ -210,8 +219,10 @@ struct Settings: View {
                 }
             }
         }
-//        }            .navigationBarBackButtonHidden(true)
 
+        // Enables Custom back button
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
     }
 }
 

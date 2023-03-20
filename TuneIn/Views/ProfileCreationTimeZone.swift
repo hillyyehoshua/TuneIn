@@ -9,6 +9,19 @@ struct ProfileCreationTimeZone: View {
     @Binding var usernm: String
     @Binding var phoneNumber: String
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    var btnBack : some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+        }) {
+            HStack {
+            Image("left") // set image here
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.white)
+            }
+        }
+    }
+    
     
     var body: some View {
         ZStack {
@@ -117,6 +130,8 @@ struct ProfileCreationTimeZone: View {
         }.onDisappear {
             dataManager.addUser(name: name, username: usernm, phone: phoneNumber, timezone: String(selection))
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
     }
 }
 

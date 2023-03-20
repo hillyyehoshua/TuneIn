@@ -12,6 +12,24 @@ struct FindFriends: View {
     @Binding var name: String
     @Binding var usernm: String
     
+    // MARK: Custom back button code
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    var btnBack : some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+        }) {
+            
+            HStack {
+            Image("right") // set image here
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.white)
+            }
+            
+            
+        }
+    }
+    // END: Custom back button code
+
     var body: some View {
         ZStack {
             
@@ -19,23 +37,17 @@ struct FindFriends: View {
             Color("Dark Blue")
                 .edgesIgnoringSafeArea(.all)
             
+            
+            // MARK: Header and search bar
             VStack {
                 // start header
                 ZStack {
                     HStack {
+                        
                         Text("TuneIn")
                             .frame(alignment: .center)
                             .foregroundColor(.white)
                             .font(.custom("Poppins-SemiBold", size: 30))
-                    }
-                    
-                    Spacer()
-                    
-                    HStack {
-                        Spacer()
-                        Image("right")
-                            .frame(alignment: .trailing)
-                            .padding(.trailing, 20)
                     }
                     
                 }
@@ -80,7 +92,7 @@ struct FindFriends: View {
                             Circle()
                                 .fill(Color("Blue"))
                                 .frame(width: 30, height: 30)
-                            Text("H")
+                            Text(String(name.first!))
                                 .font(.custom("Poppins-Regular", size: 16))
                         }
                         .padding(.leading, 35)
@@ -106,6 +118,7 @@ struct FindFriends: View {
                 Spacer()
                     .frame(height: 35)
                 
+                // MARK: Friend section
                 //Iterate through all of the users in the database
                 ScrollView {
                     ForEach (dataManager.users, id: \.id) { user in
@@ -117,7 +130,7 @@ struct FindFriends: View {
                                 Circle()
                                     .fill(Color("Blue"))
                                     .frame(width: 50, height: 50)
-                                Text("L")
+                                Text(String(user.name.first!))
                                     .font(.custom("Poppins-Regular", size: 24))
                             }
                             // end profile pic
@@ -162,7 +175,11 @@ struct FindFriends: View {
                 Spacer()
             }
             
-        }//.navigationBarBackButtonHidden(true)
+        }
+        
+        // Enables Custom back button
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(trailing: btnBack)
     }
 }
 

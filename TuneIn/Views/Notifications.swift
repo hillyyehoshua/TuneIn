@@ -8,6 +8,22 @@
 import SwiftUI
 
 struct Notifications: View {
+    
+    // MARK: Custom back button code
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    var btnBack : some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+        }) {
+            HStack {
+            Image("left") // set image here
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.white)
+            }
+        }
+    }
+    // END: Custom back button code
+    
     var body: some View {
         ZStack {
             Color("Dark Blue")
@@ -17,12 +33,6 @@ struct Notifications: View {
                 
                 // heading
                 ZStack{
-                    HStack {
-                        Image("left")
-                            .frame(alignment: .leading)
-                            .padding(.leading,  20)
-                        Spacer()
-                    }
                     HStack {
                         Text("Notifications")
                             .frame(alignment: .center)
@@ -145,6 +155,9 @@ struct Notifications: View {
             }
             
         }
+        // Enables Custom back button
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
     }
 }
 
