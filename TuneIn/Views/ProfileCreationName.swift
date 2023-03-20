@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ProfileCreationName: View {
+    
+    @State private var name = ""
+    
     var body: some View {
         ZStack {
             Color("Dark Blue")
@@ -35,17 +38,20 @@ struct ProfileCreationName: View {
                 Spacer()
                     .frame(height: 20)
                 
-                HStack {
-                    Text("Your name")
-                        .frame(alignment: .center)
+                HStack(alignment: .center) {
+                    TextField("", text: $name)
+                        .modifier(PlaceholderStyle(showPlaceHolder: name.isEmpty, placeholder: "Your Name"))
+                        .multilineTextAlignment(.center)
                         .foregroundColor(.white)
+                        .accentColor(.white)
                         .font(.custom("Poppins-SemiBold", size: 36))
-                        .opacity(0.5)
                 }
+                .frame(alignment: .center)
+                .foregroundColor(.white)
                 
                 Spacer()
                 
-                HStack{
+                if (name.isEmpty){
                     Text("Next")
                         .foregroundColor(.white)
                         .font(.custom("Poppins-Regular", size: 16))
@@ -53,16 +59,54 @@ struct ProfileCreationName: View {
                         .multilineTextAlignment(.center)
                         .padding()
                         .frame(width: 230, height: 50)
-                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
+                }else{
+                    NavigationLink(destination: ProfileCreationUserNM(name: $name)){
+                        HStack{
+                            Text("Next")
+                                .foregroundColor(.white)
+                                .font(.custom("Poppins-Regular", size: 16))
+                                .fixedSize(horizontal: false, vertical: true)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                                .frame(width: 230, height: 50)
+                                .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                        }
+                    }
+
                 }
-            }
             
+                                
+            }
+            .frame(alignment: .center)
+
+        }
+        
+//        ProfileCreationTimeZone(name: $name)
+        
+    }
+}
+    
+public struct PlaceholderStyle: ViewModifier {
+    var showPlaceHolder: Bool
+    var placeholder: String
+
+    public func body(content: Content) -> some View {
+        ZStack(alignment: .center) {
+            if showPlaceHolder {
+                Text(placeholder)
+                    .opacity(0.5)
+            }
+            content
+            .foregroundColor(Color.white)
         }
     }
 }
+
 
 struct ProfileCreationName_Previews: PreviewProvider {
     static var previews: some View {
         ProfileCreationName()
     }
 }
+    

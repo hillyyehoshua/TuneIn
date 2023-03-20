@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct Settings: View {
+    
+    @Binding var name: String
+    @Binding var usernm: String
+    
     var body: some View {
         ZStack{
             Color("Dark Blue")
@@ -20,6 +24,8 @@ struct Settings: View {
                             .padding(.leading,  20)
                         Spacer()
                     }
+                    
+                    
                     HStack {
                         Text("Settings")
                             .frame(alignment: .center)
@@ -27,6 +33,7 @@ struct Settings: View {
                             .font(.custom("Poppins-SemiBold", size: 30))
                     }
                 }
+                
                 ZStack{
                     RoundedRectangle(cornerRadius: 5)
                         .fill(.white)
@@ -42,11 +49,11 @@ struct Settings: View {
                         }
                         .padding(.leading, 35)
                         VStack (alignment: .leading){
-                            Text("Hilly Yehoshua")
+                            Text(name)
                                 .foregroundColor(.white)
                                 .font(.custom("Poppins-SemiBold", size: 16))
                                 .padding(.leading, 5)
-                            Text("hilly_y29")
+                            Text(usernm)
                                 .foregroundColor(.white)
                                 .font(.custom("Poppins-Regular", size: 14))
                                 .padding(.leading, 5)
@@ -60,123 +67,136 @@ struct Settings: View {
                     }
                 }
                 
+                
+                
                 Spacer()
                     .frame(height: 35)
                 
-                Group{
-                    // "Your Library" card
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(.white)
-                            .opacity(0.1)
-                            .frame(width: 348, height: 43)
-                        HStack{
-                            Image("Library")
-                                .frame(width: 25, height: 25, alignment: .leading)
-                                .padding(.leading, 35)
-                            
-                            Text("Your Library")
-                                .foregroundColor(.white)
-                                .font(.custom("Poppins-Regular", size: 16))
-                                .padding(.leading, 5)
-                            
-                            Spacer()
-                            
+                    Group{
+                        // "Your Library" card
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(.white)
+                                .opacity(0.1)
+                                .frame(width: 348, height: 43)
                             HStack{
-                                Image("right")
-                                    .frame(alignment: .trailing)
+                                Image("Library")
+                                    .frame(width: 25, height: 25, alignment: .leading)
+                                    .padding(.leading, 35)
+                                
+                                
+                                NavigationLink(destination: MyProfile()){
+                                    Text("Your Library")
+                                        .foregroundColor(.white)
+                                        .font(.custom("Poppins-Regular", size: 16))
+                                        .padding(.leading, 5)
+                                }
+                                
+                                
+                                
+                                
+                                Spacer()
+                                
+                                HStack{
+                                    Image("right")
+                                        .frame(alignment: .trailing)
+                                }
+                                .padding(.trailing, 35)
                             }
-                            .padding(.trailing, 35)
+                        }
+                        
+                        Spacer()
+                            .frame(height: 10)
+                        
+                        // "Notifications" Card
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(.white)
+                                .opacity(0.1)
+                                .frame(width: 348, height: 43)
+                            HStack{
+                                Image("Alarm")
+                                    .frame(width: 25, height: 25, alignment: .leading)
+                                    .padding(.leading, 35)
+                                
+                                
+                                NavigationLink(destination: Notifications()){
+                                    Text("Notifications")
+                                        .foregroundColor(.white)
+                                        .font(.custom("Poppins-Regular", size: 16))
+                                        .padding(.leading, 5)
+                                    
+                                }
+                                
+                                Spacer()
+                                
+                                HStack{
+                                    Image("right")
+                                        .frame(alignment: .trailing)
+                                }
+                                .padding(.trailing, 35)
+                            }
+                        }
+                        
+                        Spacer()
+                            .frame(height: 10)
+                        
+                        // "Time Zone" Card
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(.white)
+                                .opacity(0.1)
+                                .frame(width: 348, height: 43)
+                            HStack{
+                                Image("Globe")
+                                    .frame(width: 25, height: 25, alignment: .leading)
+                                    .padding(.leading, 35)
+                                
+                                Text("Time Zone")
+                                    .foregroundColor(.white)
+                                    .font(.custom("Poppins-Regular", size: 16))
+                                    .padding(.leading, 5)
+                                
+                                Spacer()
+                                
+                                HStack{
+                                    Image("right")
+                                        .frame(alignment: .trailing)
+                                }
+                                .padding(.trailing, 35)
+                            }
+                        }
+                        
+                        Spacer()
+                            .frame(height: 10)
+                        
+                        // "Contact Us" Card
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(.white)
+                                .opacity(0.1)
+                                .frame(width: 348, height: 43)
+                            HStack{
+                                Image("Envelope")
+                                    .frame(width: 25, height: 25, alignment: .leading)
+                                    .padding(.leading, 35)
+                                
+                                Text("Contact Us")
+                                    .foregroundColor(.white)
+                                    .font(.custom("Poppins-Regular", size: 16))
+                                    .padding(.leading, 5)
+                                
+                                Spacer()
+                                
+                                HStack{
+                                    Image("right")
+                                        .frame(alignment: .trailing)
+                                }
+                                .padding(.trailing, 35)
+                            }
                         }
                     }
-                    
-                    Spacer()
-                        .frame(height: 10)
-                    
-                    // "Notifcations" Card
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(.white)
-                            .opacity(0.1)
-                            .frame(width: 348, height: 43)
-                        HStack{
-                            Image("Alarm")
-                                .frame(width: 25, height: 25, alignment: .leading)
-                                .padding(.leading, 35)
-                            
-                            Text("Notifications")
-                                .foregroundColor(.white)
-                                .font(.custom("Poppins-Regular", size: 16))
-                                .padding(.leading, 5)
-                            
-                            Spacer()
-                            
-                            HStack{
-                                Image("right")
-                                    .frame(alignment: .trailing)
-                            }
-                            .padding(.trailing, 35)
-                        }
-                    }
-                    
-                    Spacer()
-                        .frame(height: 10)
-                    
-                    // "Time Zone" Card
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(.white)
-                            .opacity(0.1)
-                            .frame(width: 348, height: 43)
-                        HStack{
-                            Image("Globe")
-                                .frame(width: 25, height: 25, alignment: .leading)
-                                .padding(.leading, 35)
-                            
-                            Text("Time Zone")
-                                .foregroundColor(.white)
-                                .font(.custom("Poppins-Regular", size: 16))
-                                .padding(.leading, 5)
-                            
-                            Spacer()
-                            
-                            HStack{
-                                Image("right")
-                                    .frame(alignment: .trailing)
-                            }
-                            .padding(.trailing, 35)
-                        }
-                    }
-                    
-                    Spacer()
-                        .frame(height: 10)
-                    
-                    // "Contact Us" Card
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(.white)
-                            .opacity(0.1)
-                            .frame(width: 348, height: 43)
-                        HStack{
-                            Image("Envelope")
-                                .frame(width: 25, height: 25, alignment: .leading)
-                                .padding(.leading, 35)
-                            
-                            Text("Contact Us")
-                                .foregroundColor(.white)
-                                .font(.custom("Poppins-Regular", size: 16))
-                                .padding(.leading, 5)
-                            
-                            Spacer()
-                            
-                            HStack{
-                                Image("right")
-                                    .frame(alignment: .trailing)
-                            }
-                            .padding(.trailing, 35)
-                        }
-                    }
-                }
+                
                 Spacer()
                 
                 ZStack {
@@ -190,11 +210,13 @@ struct Settings: View {
                 }
             }
         }
+//        }            .navigationBarBackButtonHidden(true)
+
     }
 }
 
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
-        Settings()
+        Settings(name: .constant("John Doe"), usernm: .constant("username"))
     }
 }

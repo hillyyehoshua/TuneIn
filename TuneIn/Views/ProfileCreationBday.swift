@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct ProfileCreationBday: View {
+    
+    @State private var birthdate = Date()
+    @Binding var name: String
+    @Binding var usernm: String
+    
     var body: some View {
         ZStack {
             Color("Dark Blue")
@@ -21,66 +26,60 @@ struct ProfileCreationBday: View {
                         .font(.custom("Poppins-SemiBold", size: 30))
                 }
                 
-                Spacer ()
+                Spacer()
                     .frame(height: 50)
                 
                 HStack {
-                    Text("Hi Isabella! When's your birthday?")
+                    Text("Hi \(name)! When's your birthday?")
                         .frame(alignment: .center)
                         .foregroundColor(.white)
                         .font(.custom("Poppins-Regular", size: 16))
-                    
                 }
                 
                 Spacer()
                     .frame(height: 20)
                 
                 HStack {
-                    Text("MM")
-                        .frame(alignment: .center)
-                        .foregroundColor(.white)
-                        .font(.custom("Poppins-SemiBold", size: 36))
-                        .opacity(0.5)
-                    
-                    Spacer()
-                        .frame(width: 25)
-                    
-                    Text("DD")
-                        .frame(alignment: .center)
-                        .foregroundColor(.white)
-                        .font(.custom("Poppins-SemiBold", size: 36))
-                        .opacity(0.5)
-                    
-                    Spacer()
-                        .frame(width: 25)
-                    
-                    Text("YYYY")
-                        .frame(alignment: .center)
-                        .foregroundColor(.white)
-                        .font(.custom("Poppins-SemiBold", size: 36))
-                        .opacity(0.5)
+                    Form {
+                        DatePicker("Birthday", selection: $birthdate, in: ...Date(), displayedComponents: .date)
+                            .modifier(PoppinsFont())
+                    }
+                    .listStyle(GroupedListStyle())
+                    .background(Color("Dark Blue"))
                 }
+                
+
                 
                 Spacer()
                 
-                HStack{
-                    Text("Next")
-                        .foregroundColor(.white)
-                        .font(.custom("Poppins-Regular", size: 16))
-                        .fixedSize(horizontal: false, vertical: true)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                        .frame(width: 230, height: 50)
-                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                NavigationLink(
+                    destination: ProfileCreationNumber(name: $name, usernm: $usernm)) {
+                    HStack{
+                        Text("Next")
+                            .foregroundColor(.white)
+                            .font(.custom("Poppins-Regular", size: 16))
+                            .fixedSize(horizontal: false, vertical: true)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                            .frame(width: 230, height: 50)
+                            .background(RoundedRectangle(cornerRadius: 30).fill(Color("Blue")).shadow(radius: 3))
+                    }
                 }
+                
             }
-            
         }
+    }
+}
+
+
+struct PoppinsFont: ViewModifier {
+    func body(content: Content) -> some View {
+        content.font(.custom("Poppins", size: 16))
     }
 }
 
 struct ProfileCreationBday_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileCreationBday()
+        ProfileCreationBday(name: .constant("John Doe"), usernm: .constant("username"))
     }
 }

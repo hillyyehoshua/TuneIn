@@ -4,10 +4,22 @@
 //
 //  Created by Izzy Hood on 1/30/23.
 //
+// Check the phone number function using ChatGTP
 
 import SwiftUI
 
 struct ProfileCreationNumber: View {
+    
+    @State private var phoneNumber: String = ""
+    @Binding var name: String
+    @Binding var usernm: String
+    
+//    init(phoneNumber: Binding<String>, name: Binding<String>, usernm: Binding<String>) {
+//            _phoneNumber = State(initialValue: phoneNumber.wrappedValue)
+//            _name = name
+//            _usernm = usernm
+//        }
+    
     var body: some View {
         ZStack {
             Color("Dark Blue")
@@ -46,36 +58,22 @@ struct ProfileCreationNumber: View {
                     
                 Spacer()
                         .frame(height: 20)
-                    
-                HStack {
-                    Text("XXX")
-                        .frame(alignment: .center)
+                
+                HStack(alignment: .center) {
+                    TextField("", text: $phoneNumber)
+                        .modifier(PlaceholderStyle(showPlaceHolder: phoneNumber.isEmpty, placeholder: "XXX  XXX  XXXX"))
+                        .multilineTextAlignment(.center)
                         .foregroundColor(.white)
+                        .accentColor(.white)
                         .font(.custom("Poppins-SemiBold", size: 36))
-                        .opacity(0.5)
-                    
-                    Spacer()
-                        .frame(width: 25)
-                    
-                    Text("XXX")
-                        .frame(alignment: .center)
-                        .foregroundColor(.white)
-                        .font(.custom("Poppins-SemiBold", size: 36))
-                        .opacity(0.5)
-                    
-                    Spacer()
-                        .frame(width: 25)
-                    
-                    Text("XXXX")
-                        .frame(alignment: .center)
-                        .foregroundColor(.white)
-                        .font(.custom("Poppins-SemiBold", size: 36))
-                        .opacity(0.5)
                 }
+                .frame(alignment: .center)
+                .foregroundColor(.white)
+                
                     
                 Spacer()
-                    
-                HStack{
+                  
+                if !isValidPhoneNumber(phoneNumber){
                     Text("Next")
                         .foregroundColor(.white)
                         .font(.custom("Poppins-Regular", size: 16))
@@ -83,16 +81,37 @@ struct ProfileCreationNumber: View {
                         .multilineTextAlignment(.center)
                         .padding()
                         .frame(width: 230, height: 50)
-                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
+                }else{
+                    NavigationLink(destination: ProfileCreationTimeZone(name: $name, usernm: $usernm, phoneNumber : $phoneNumber)){
+                        HStack{
+                            Text("Next")
+                                .foregroundColor(.white)
+                                .font(.custom("Poppins-Regular", size: 16))
+                                .fixedSize(horizontal: false, vertical: true)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                                .frame(width: 230, height: 50)
+                                .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                        }
+                    }
                 }
+                
+                
             }
         }
     }
 }
 
+func isValidPhoneNumber(_ phoneNumber: String) -> Bool {
+    let numericRegEx = "^[0-9]{10}$"
+    let numericTest = NSPredicate(format: "SELF MATCHES %@", numericRegEx)
+    return numericTest.evaluate(with: phoneNumber)
+}
+
 
 struct ProfileCreationNumber_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileCreationNumber()
+        ProfileCreationNumber(name: .constant("John Doe"), usernm: .constant("username"))
     }
 }

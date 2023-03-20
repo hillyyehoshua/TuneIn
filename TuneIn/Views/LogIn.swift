@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LogIn: View {
+    
     var body: some View {
         ZStack{
             //set background
@@ -30,41 +31,51 @@ struct LogIn: View {
                 }
                 
                 Spacer()
-                    .frame(height: 40)
                 
                 // Sign in request
                 HStack{
                     Spacer()
                     //ask user to sign into their spotify
-                    Text("Get Started by signing into your Spotify Account")
+                    Text("Create an account to get started")
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                         .padding([.leading, .trailing], 10)
-                        .font(.custom("Poppins-Regular", size: 19))
+                        .font(.custom("Poppins-Regular", size: 18))
                     Spacer()
                 }
                 
                 Spacer()
-                    .frame(height: 26)
+                    .frame(height: 20)
                 
-                
-                                    // Ask to log in with Spotify
-                                    Text("Log In with Spotify")
-                                        .foregroundColor(.white)
-                                        .font(.custom("Poppins-Regular", size: 19))
-                                        .fixedSize(horizontal: false, vertical: true)
-                                        .multilineTextAlignment(.center)
-                                        .padding()
-                                        .frame(width: 230, height: 50)
-                                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
-                    
-                    
+                NavigationLink(destination: ProfileCreationName()) {
+                    // Ask to log in with Spotify
+                    Text("Sign up")
+                        .foregroundColor(.white)
+                        .font(.custom("Poppins-Regular", size: 19))
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .frame(width: 230, height: 50)
+                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
                     
                 }
-                .padding()
+                
+                Spacer()
+                    .frame(height: 20)
+                                                
+                HStack {
+                    Text("Already have an account?")
+                        .font(.custom("Poppins-Regular", size: 14))
+                    Text("Log In")
+                        .font(.custom("Poppins-SemiBold", size: 14))
+                }
+                .foregroundColor(.white)
+                
             }
+            .padding()
         }
     }
+}
 
 
 struct LogIn_Previews: PreviewProvider {

@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct Feed: View {
+    
+    @Binding var name: String
+    @Binding var usernm: String
+    
     var body: some View {
         ZStack{
             //App background color
@@ -18,10 +22,13 @@ struct Feed: View {
                 //Header that does not move
                 HStack{
                     //Add friends
-                    Image(systemName: "person.2.fill")
-                        .foregroundColor(Color(.white))
-                        .font(.system(size: 25))
-                        .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
+                    NavigationLink(destination: FindFriends(name: $name, usernm: $usernm)){
+                        Image(systemName: "person.2.fill")
+                            .foregroundColor(Color(.white))
+                            .font(.system(size: 25))
+                            .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
+                    }
+                    
                     
                     //App logo
                     Text("TuneIn")
@@ -34,11 +41,14 @@ struct Feed: View {
                     //note - maybe we can add the play circle here
                     
                     //Add user's profile picture / image
-                    Image("HProfile")
-                        .resizable()
-                        .clipShape(Circle())
-                        .frame(width: 40, height: 40)
-                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                    NavigationLink(destination: Settings(name: $name, usernm: $usernm)){
+                        Image("HProfile")
+                            .resizable()
+                            .clipShape(Circle())
+                            .frame(width: 40, height: 40)
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                    }
+                    
                         
                 }
                 
@@ -61,6 +71,7 @@ struct Feed: View {
             .scrollDismissesKeyboard(.immediately)
             
         }
+        .navigationBarBackButtonHidden(true)
        
     }
 }
@@ -102,7 +113,7 @@ struct TodayTune: View {
 
 struct Feed_Previews: PreviewProvider {
     static var previews: some View {
-        Feed()
+        Feed(name: .constant("John Doe"), usernm: .constant("username"))
     }
 }
 
