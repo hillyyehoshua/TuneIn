@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct FeedEmpty: View {
+    @Binding var name: String
+    @Binding var usernm: String
+    
     var body: some View {
         ZStack{
             //App background color
@@ -18,7 +21,7 @@ struct FeedEmpty: View {
                 //Header that does not move
                 HStack{
                     //Add friends
-                    NavigationLink(destination: FindFriends()){
+                    NavigationLink(destination: FindFriends(name: $name, usernm: $usernm)){
                         Image(systemName: "person.2.fill")
                             .foregroundColor(Color(.white))
                             .font(.system(size: 25))
@@ -36,7 +39,7 @@ struct FeedEmpty: View {
                     //note - maybe we can add the play circle here
                     
                     //Add user's profile picture / image
-                    NavigationLink(destination: Settings()){
+                    NavigationLink(destination: Settings(name: $name, usernm: $usernm)){
                         Image("HProfile")
                             .resizable()
                             .clipShape(Circle())
@@ -49,7 +52,8 @@ struct FeedEmpty: View {
                 ScrollView {
                     
                     //playlist with all of your friends tunes; if you haven't uploaded a song its your add song button
-                    Empty()
+                    
+                    Empty(name: $name, usernm: $usernm)
                     
                     //ideally would have parameters for this instead of isabella hood each time but we can fix later
                     
@@ -70,12 +74,14 @@ struct FeedEmpty: View {
 
 //Playlist with today's songs
 struct Empty: View {
+    @Binding var name: String
+    @Binding var usernm: String
     var body: some View {
         VStack (spacing: 1){
             Image("plus")
                 .resizable()
                 .frame(width: 172, height: 172)
-            NavigationLink(destination: Feed()){
+            NavigationLink(destination: Feed(name: $name, usernm: $usernm)){
                 Text("Add Monday's Song")
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
@@ -102,7 +108,7 @@ struct Empty: View {
 //            }
             Spacer()
                 .frame(height: 100)
-            NavigationLink(destination: FindFriends()){
+            NavigationLink(destination: FindFriends(name: $name, usernm: $usernm)){
                 HStack{
                     Text("Find Friends")
                         .foregroundColor(.white)
@@ -125,6 +131,6 @@ struct Empty: View {
 
 struct FeedEmpty_Previews: PreviewProvider {
     static var previews: some View {
-        FeedEmpty()
+        FeedEmpty(name: .constant("John Doe"), usernm: .constant("username"))
     }
 }

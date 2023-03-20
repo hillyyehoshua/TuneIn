@@ -10,6 +10,8 @@ import SwiftUI
 struct ProfileCreationBday: View {
     
     @State private var birthdate = Date()
+    @Binding var name: String
+    @Binding var usernm: String
     
     var body: some View {
         ZStack {
@@ -24,15 +26,14 @@ struct ProfileCreationBday: View {
                         .font(.custom("Poppins-SemiBold", size: 30))
                 }
                 
-                Spacer ()
+                Spacer()
                     .frame(height: 50)
                 
                 HStack {
-                    Text("Hi Isabella! When's your birthday?")
+                    Text("Hi \(name)! When's your birthday?")
                         .frame(alignment: .center)
                         .foregroundColor(.white)
                         .font(.custom("Poppins-Regular", size: 16))
-                    
                 }
                 
                 Spacer()
@@ -44,13 +45,15 @@ struct ProfileCreationBday: View {
                             .modifier(PoppinsFont())
                     }
                     .listStyle(GroupedListStyle())
-                    .scrollContentBackground(.hidden)
                     .background(Color("Dark Blue"))
                 }
+                
 
                 
                 Spacer()
-                NavigationLink(destination: ProfileCreationNumber()){
+                
+                NavigationLink(
+                    destination: ProfileCreationNumber(name: $name, usernm: $usernm)) {
                     HStack{
                         Text("Next")
                             .foregroundColor(.white)
@@ -59,15 +62,15 @@ struct ProfileCreationBday: View {
                             .multilineTextAlignment(.center)
                             .padding()
                             .frame(width: 230, height: 50)
-                            .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                            .background(RoundedRectangle(cornerRadius: 30).fill(Color("Blue")).shadow(radius: 3))
                     }
                 }
                 
             }
-            
         }
     }
 }
+
 
 struct PoppinsFont: ViewModifier {
     func body(content: Content) -> some View {
@@ -77,6 +80,6 @@ struct PoppinsFont: ViewModifier {
 
 struct ProfileCreationBday_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileCreationBday()
+        ProfileCreationBday(name: .constant("John Doe"), usernm: .constant("username"))
     }
 }

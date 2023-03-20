@@ -8,32 +8,36 @@
 import SwiftUI
 
 struct FindFriends: View {
+    @EnvironmentObject var dataManager: DataManager
+    @Binding var name: String
+    @Binding var usernm: String
+    
     var body: some View {
         ZStack {
+            
+            //set the background
             Color("Dark Blue")
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
-                
                 // start header
                 ZStack {
-                    
                     HStack {
                         Text("TuneIn")
                             .frame(alignment: .center)
                             .foregroundColor(.white)
                             .font(.custom("Poppins-SemiBold", size: 30))
                     }
+                    
                     Spacer()
                     
                     HStack {
                         Spacer()
-                        
                         Image("right")
                             .frame(alignment: .trailing)
                             .padding(.trailing, 20)
                     }
-                        
+                    
                 }
                 // end header
                 
@@ -97,25 +101,74 @@ struct FindFriends: View {
                         
                     }
                 }
+                //end invite your friends
                 
                 Spacer()
                     .frame(height: 35)
                 
-                FriendCard()    
+                //Iterate through all of the users in the database
+                ScrollView {
+                    ForEach (dataManager.users, id: \.id) { user in
+                        // start friend card
+                        HStack {
+                            
+                            // start profile pic
+                            ZStack {
+                                Circle()
+                                    .fill(Color("Blue"))
+                                    .frame(width: 50, height: 50)
+                                Text("L")
+                                    .font(.custom("Poppins-Regular", size: 24))
+                            }
+                            // end profile pic
+                            
+                            //add space
+                            .padding(.leading, 20)
+                            
+                            
+                            VStack (alignment: .leading) {
+                                if (user.name != name){
+                                    Text (user.name)
+                                        .foregroundColor(.white)
+                                        .font(.custom("Poppins-SemiBold", size: 16))
+                                    
+                                    Text(user.username)
+                                        .foregroundColor(.white)
+                                        .font(.custom("Poppins-Regular", size: 12))
+                                }
+                                
+                            }
+                            
+                            Spacer()
+                            
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 15)
+                                    .fill(.white)
+                                    .opacity(0.1)
+                                    .frame(width: 60, height: 30)
+                                
+                                Text("Add")
+                                    .foregroundColor(.white)
+                                    .font(.custom("Poppins-SemiBold", size: 14))
+                            }
+                            .padding(.trailing, 20)
+                        }
+                        // end friend card
+                        
+                    }
+                }
                 
-                FriendCard()
-                
-                FriendCard()
                 
                 Spacer()
             }
-                
+            
         }//.navigationBarBackButtonHidden(true)
     }
 }
 
 struct FindFriends_Previews: PreviewProvider {
     static var previews: some View {
-        FindFriends()
+        FindFriends(name: .constant("John Doe"), usernm: .constant("username"))
+            .environmentObject(DataManager())
     }
 }

@@ -21,6 +21,7 @@ struct TuneInApp: App {
 //            listView()
 //                .environmentObject(dataManager)
             ContentView()
+                .environmentObject(dataManager)
         }
     }
 }
