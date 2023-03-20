@@ -134,7 +134,7 @@ struct ProfileCreationBday: View {
                     .frame(height: 50)
                 
                 HStack {
-                    Text("Hi Isabella! When's your birthday?")
+                    Text("Hi \(name)! When's your birthday?")
                         .frame(alignment: .center)
                         .foregroundColor(.white)
                         .font(.custom("Poppins-Regular", size: 16))
