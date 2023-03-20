@@ -18,6 +18,9 @@ struct LogIn: View {
             
             VStack (alignment: .center){
                 
+                Spacer()
+                    .frame(height: 250)
+                
                 // Logo
                 HStack{
                     Text("TuneIn")

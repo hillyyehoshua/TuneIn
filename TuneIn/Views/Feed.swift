@@ -40,6 +40,7 @@ struct Feed: View {
                     
                     //note - maybe we can add the play circle here
                     
+                    //TODO: Add logic of if photo then display, if not show first letter of name
                     //Add user's profile picture / image
                     NavigationLink(destination: Settings(name: $name, usernm: $usernm)){
                         Image("HProfile")
