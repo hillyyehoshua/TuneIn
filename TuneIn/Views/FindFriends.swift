@@ -9,6 +9,8 @@ import SwiftUI
 
 struct FindFriends: View {
     @EnvironmentObject var dataManager: DataManager
+    @Binding var name: String
+    @Binding var usernm: String
     
     var body: some View {
         ZStack {
@@ -125,13 +127,16 @@ struct FindFriends: View {
                             
                             
                             VStack (alignment: .leading) {
-                                Text (user.name)
-                                    .foregroundColor(.white)
-                                    .font(.custom("Poppins-SemiBold", size: 16))
+                                if (user.name != name){
+                                    Text (user.name)
+                                        .foregroundColor(.white)
+                                        .font(.custom("Poppins-SemiBold", size: 16))
+                                    
+                                    Text(user.username)
+                                        .foregroundColor(.white)
+                                        .font(.custom("Poppins-Regular", size: 12))
+                                }
                                 
-                                Text(user.username)
-                                    .foregroundColor(.white)
-                                    .font(.custom("Poppins-Regular", size: 12))
                             }
                             
                             Spacer()
@@ -163,7 +168,7 @@ struct FindFriends: View {
 
 struct FindFriends_Previews: PreviewProvider {
     static var previews: some View {
-        FindFriends()
+        FindFriends(name: .constant("John Doe"), usernm: .constant("username"))
             .environmentObject(DataManager())
     }
 }

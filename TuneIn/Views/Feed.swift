@@ -22,7 +22,7 @@ struct Feed: View {
                 //Header that does not move
                 HStack{
                     //Add friends
-                    NavigationLink(destination: FindFriends()){
+                    NavigationLink(destination: FindFriends(name: $name, usernm: $usernm)){
                         Image(systemName: "person.2.fill")
                             .foregroundColor(Color(.white))
                             .font(.system(size: 25))

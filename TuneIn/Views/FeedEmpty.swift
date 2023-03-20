@@ -21,7 +21,7 @@ struct FeedEmpty: View {
                 //Header that does not move
                 HStack{
                     //Add friends
-                    NavigationLink(destination: FindFriends()){
+                    NavigationLink(destination: FindFriends(name: $name, usernm: $usernm)){
                         Image(systemName: "person.2.fill")
                             .foregroundColor(Color(.white))
                             .font(.system(size: 25))
@@ -108,7 +108,7 @@ struct Empty: View {
 //            }
             Spacer()
                 .frame(height: 100)
-            NavigationLink(destination: FindFriends()){
+            NavigationLink(destination: FindFriends(name: $name, usernm: $usernm)){
                 HStack{
                     Text("Find Friends")
                         .foregroundColor(.white)
