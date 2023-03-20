@@ -10,6 +10,20 @@ import SwiftUI
 struct ProfileCreationUserNM: View {
     @Binding var name: String
     @State private var usernm = ""
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    var btnBack : some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+        }) {
+            HStack {
+            Image("left") // set image here
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.white)
+            }
+        }
+    }
+    
     var body: some View {
         ZStack {
             Color("Dark Blue")
@@ -83,6 +97,8 @@ struct ProfileCreationUserNM: View {
         }
         
 //        ProfileCreationTimeZone(name: $name)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
         
     }
 }

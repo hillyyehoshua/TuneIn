@@ -13,6 +13,19 @@ struct ProfileCreationBday: View {
     @Binding var name: String
     @Binding var usernm: String
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    var btnBack : some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+        }) {
+            HStack {
+            Image("left") // set image here
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.white)
+            }
+        }
+    }
+    
     var body: some View {
         ZStack {
             Color("Dark Blue")
@@ -69,6 +82,8 @@ struct ProfileCreationBday: View {
                 
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
     }
 }
 
