@@ -83,7 +83,6 @@
 		B468500A29A42D9000ED1FF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500929A42D9000ED1FF3 /* SceneDelegate.swift */; };
 		B46B427A2981A74A00DFB1D1 /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46B42792981A74A00DFB1D1 /* EditProfile.swift */; };
 		B478FCB029C513B000F76B3E /* UploadSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCAF29C513B000F76B3E /* UploadSongView.swift */; };
-		B478FCB929C8F36F00F76B3E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE0566429C572DF000CE81E /* User.swift */; };
 		B4F05CD4298B5AF800977951 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD3298B5AF800977951 /* Notifications.swift */; };
 		B4F05CD6298B5F0400977951 /* MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD5298B5F0400977951 /* MyProfile.swift */; };
 /* End PBXBuildFile section */
@@ -353,11 +352,11 @@
 				B478FCAF29C513B000F76B3E /* UploadSongView.swift */,
 				7DBE2919297F3ABF00A6DB06 /* LogIn.swift */,
 				B46B42792981A74A00DFB1D1 /* EditProfile.swift */,
+				7DA10BCB299ECD3900BCDB4F /* ProfileCreationTimeZone.swift */,
 				7DC31D3A298B1C7300BC43CA /* ProfileCreationName.swift */,
 				7DD6727329C7D5B90072809D /* ProfileCreationUserNM.swift */,
 				7DC31D38298B1C5E00BC43CA /* ProfileCreationBday.swift */,
 				7DC31D3C298B1C7800BC43CA /* ProfileCreationNumber.swift */,
-				7DA10BCB299ECD3900BCDB4F /* ProfileCreationTimeZone.swift */,
 				7DBE2945297F50E100A6DB06 /* FindFriends.swift */,
 				7D242A4A2989F0E200B77902 /* SongCard.swift */,
 				7DA10BCF299EF65000BCDB4F /* Styles.swift */,

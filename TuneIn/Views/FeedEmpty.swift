@@ -40,11 +40,20 @@ struct FeedEmpty: View {
                     
                     //Add user's profile picture / image
                     NavigationLink(destination: Settings(name: $name, usernm: $usernm)){
-                        Image("HProfile")
-                            .resizable()
-                            .clipShape(Circle())
-                            .frame(width: 40, height: 40)
-                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+//                        Image("HProfile")
+//                            .resizable()
+//                            .clipShape(Circle())
+//                            .frame(width: 40, height: 40)
+//                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                        ZStack {
+                            Circle()
+                                .fill(Color("Blue"))
+                                .frame(width: 40, height: 40)
+                            Text(String(name.first!))
+                                .font(.custom("Poppins-Regular", size: 16))
+                                .foregroundColor(.black)
+                        }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                        
                     }
                 }
                 

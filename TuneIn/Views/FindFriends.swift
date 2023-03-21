@@ -11,6 +11,7 @@ struct FindFriends: View {
     @EnvironmentObject var dataManager: DataManager
     @Binding var name: String
     @Binding var usernm: String
+    @State private var searchreq = ""
     
     // MARK: Custom back button code
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -63,13 +64,23 @@ struct FindFriends: View {
                         Image("search")
                             .frame(width: 25, height: 25, alignment: .leading)
                             .padding(.leading, 35)
-                        
-                        Text("Find friends with good taste")
+//                        TextField("Find friends with good taste     ", text: $searchreq)
+//                            .foregroundColor(.white)
+//                            .accentColor(.white)
+//                            .font(.custom("Poppins-Regular", size: 16))
+//                            .padding(.leading, 5)
+//                            .opacity(0.7)
+                        TextField("", text: $searchreq)
+                            .modifier(PlaceholderStyle(showPlaceHolder: searchreq.isEmpty, placeholder: "Find friends with good taste          "))
+                            .multilineTextAlignment(.leading)
                             .foregroundColor(.white)
+                            .accentColor(.white)
                             .font(.custom("Poppins-Regular", size: 16))
-                            .padding(.leading, 5)
+                            //.padding(.leading, 5)
+                            //.padding(.leading, -70)
                             .opacity(0.7)
-                        
+                            
+
                         Spacer()
                         
                     }
