@@ -11,6 +11,7 @@ struct Settings: View {
     
     @Binding var name: String
     @Binding var usernm: String
+    @Binding var userID: String
     
     // MARK: Custom back button code
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -228,6 +229,6 @@ struct Settings: View {
 
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
-        Settings(name: .constant("John Doe"), usernm: .constant("username"))
+        Settings(name: .constant("John Doe"), usernm: .constant("username"), userID: .constant("UniqueID"))
     }
 }

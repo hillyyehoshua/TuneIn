@@ -13,4 +13,5 @@ struct User: Identifiable{
     var username: String
     var phone: String
     var timezone: String
+    var friends: [String] = []
 }

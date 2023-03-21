@@ -96,7 +96,7 @@ struct ProfileCreationNumber: View {
                         .frame(width: 230, height: 50)
                         .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
                 }else{
-                    NavigationLink(destination: ProfileCreationTimeZone(name: $name, usernm: $usernm, phoneNumber : $phoneNumber)){
+                    NavigationLink(destination: ProfileCreationTimeZone(name: $name, usernm: $usernm, phoneNumber : $phoneNumber, userID: "")){
                         HStack{
                             Text("Next")
                                 .foregroundColor(.white)

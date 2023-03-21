@@ -9,8 +9,13 @@ import SwiftUI
 
 struct UploadSongView: View {
     
+    @EnvironmentObject var dataManager: DataManager
+    @Binding var name: String
+    @State private var songUploaded = false
+    @Binding var usernm: String
     @State private var songTitle = ""
     @State private var artistName = ""
+    @Binding var userID: String
     
     var body: some View {
         
@@ -19,6 +24,10 @@ struct UploadSongView: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
+                
+//                ForEach(dataManager.songs, id: \.id) { song in
+//                    Text(song.song_name)
+//                }
                 
                 ZStack {
                     HStack {
@@ -71,14 +80,28 @@ struct UploadSongView: View {
                 Spacer()
                 
                 HStack{
-                    Text("Upload song")
-                        .foregroundColor(.white)
-                        .font(.custom("Poppins-Regular", size: 16))
-                        .fixedSize(horizontal: false, vertical: true)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                        .frame(width: 230, height: 50)
-                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                    Button(action: {
+                                self.songUploaded = true
+                        dataManager.addSong(artist: artistName, song_name: songTitle)
+                            }) {
+                                Text(songUploaded ? "Song Uploaded" : "Upload song")
+                                    .foregroundColor(.white)
+                                    .font(.custom("Poppins-Regular", size: 16))
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .multilineTextAlignment(.center)
+                                    .padding()
+                                    .frame(width: 230, height: 50)
+                                    .background(RoundedRectangle(cornerRadius: 30).fill(songUploaded ? Color.green : Color.blue).shadow(radius: 3))
+                            }
+                    
+//                    Text("Upload song")
+//                        .foregroundColor(.white)
+//                        .font(.custom("Poppins-Regular", size: 16))
+//                        .fixedSize(horizontal: false, vertical: true)
+//                        .multilineTextAlignment(.center)
+//                        .padding()
+//                        .frame(width: 230, height: 50)
+//                        .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
                 }
             }
         }
@@ -87,7 +110,7 @@ struct UploadSongView: View {
 
 struct UploadSongView_Previews: PreviewProvider {
     static var previews: some View {
-        UploadSongView()
+        UploadSongView(name: .constant("John Doe"), usernm: .constant("username"),userID: .constant("UniqueID"))
     }
 }
 

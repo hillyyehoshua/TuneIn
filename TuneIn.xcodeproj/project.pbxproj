@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7D242A4B2989F0E200B77902 /* SongCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D242A4A2989F0E200B77902 /* SongCard.swift */; };
 		7D242A4D2989FD0F00B77902 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D242A4C2989FD0F00B77902 /* Feed.swift */; };
+		7D2B562329CA4E44004B2920 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B562229CA4E44004B2920 /* Song.swift */; };
 		7DA10BCC299ECD3900BCDB4F /* ProfileCreationTimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA10BCB299ECD3900BCDB4F /* ProfileCreationTimeZone.swift */; };
 		7DA10BCE299ED5EB00BCDB4F /* FeedEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA10BCD299ED5EB00BCDB4F /* FeedEmpty.swift */; };
 		7DA10BD0299EF65000BCDB4F /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA10BCF299EF65000BCDB4F /* Styles.swift */; };
@@ -121,6 +122,7 @@
 /* Begin PBXFileReference section */
 		7D242A4A2989F0E200B77902 /* SongCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCard.swift; sourceTree = "<group>"; };
 		7D242A4C2989FD0F00B77902 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		7D2B562229CA4E44004B2920 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		7DA10BCB299ECD3900BCDB4F /* ProfileCreationTimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationTimeZone.swift; sourceTree = "<group>"; };
 		7DA10BCD299ED5EB00BCDB4F /* FeedEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEmpty.swift; sourceTree = "<group>"; };
 		7DA10BCF299EF65000BCDB4F /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				7DD6727529C8D1CA0072809D /* User.swift */,
+				7D2B562229CA4E44004B2920 /* Song.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 				7DD6727429C7D5B90072809D /* ProfileCreationUserNM.swift in Sources */,
 				7DA10BCE299ED5EB00BCDB4F /* FeedEmpty.swift in Sources */,
 				7DBE28B4297F30BF00A6DB06 /* TuneInApp.swift in Sources */,
+				7D2B562329CA4E44004B2920 /* Song.swift in Sources */,
 				B46B427A2981A74A00DFB1D1 /* EditProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
