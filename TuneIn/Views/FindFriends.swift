@@ -12,6 +12,8 @@ struct FindFriends: View {
     @Binding var name: String
     @Binding var usernm: String
     @State private var searchreq = ""
+    @State private var isAddedDict: [String: Bool] = [:]
+
     
     // MARK: Custom back button code
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -64,20 +66,13 @@ struct FindFriends: View {
                         Image("search")
                             .frame(width: 25, height: 25, alignment: .leading)
                             .padding(.leading, 35)
-//                        TextField("Find friends with good taste     ", text: $searchreq)
-//                            .foregroundColor(.white)
-//                            .accentColor(.white)
-//                            .font(.custom("Poppins-Regular", size: 16))
-//                            .padding(.leading, 5)
-//                            .opacity(0.7)
+
                         TextField("", text: $searchreq)
                             .modifier(PlaceholderStyle(showPlaceHolder: searchreq.isEmpty, placeholder: "Find friends with good taste          "))
                             .multilineTextAlignment(.leading)
                             .foregroundColor(.white)
                             .accentColor(.white)
                             .font(.custom("Poppins-Regular", size: 16))
-                            //.padding(.leading, 5)
-                            //.padding(.leading, -70)
                             .opacity(0.7)
                             
 
@@ -131,56 +126,64 @@ struct FindFriends: View {
                 
                 // MARK: Friend section
                 //Iterate through all of the users in the database
+
                 ScrollView {
-                    ForEach (dataManager.users, id: \.id) { user in
-                        // start friend card
-                        HStack {
-                            
-                            // start profile pic
-                            ZStack {
-                                Circle()
-                                    .fill(Color("Blue"))
-                                    .frame(width: 50, height: 50)
-                                Text(String(user.name.first!))
-                                    .font(.custom("Poppins-Regular", size: 24))
-                            }
-                            // end profile pic
-                            
-                            //add space
-                            .padding(.leading, 20)
-                            
-                            
-                            VStack (alignment: .leading) {
-                                if (user.name != name){
-                                    Text (user.name)
-                                        .foregroundColor(.white)
-                                        .font(.custom("Poppins-SemiBold", size: 16))
+                            ForEach(dataManager.users, id: \.id) { user in
+                                // start friend card
+                                HStack {
+                                    // start profile pic
+                                    ZStack {
+                                        Circle()
+                                            .fill(Color("Blue"))
+                                            .frame(width: 50, height: 50)
+                                        Text(String(user.name.first!))
+                                            .font(.custom("Poppins-Regular", size: 24))
+                                    }
+                                    // end profile pic
                                     
-                                    Text(user.username)
-                                        .foregroundColor(.white)
-                                        .font(.custom("Poppins-Regular", size: 12))
+                                    //add space
+                                    .padding(.leading, 20)
+                                    
+                                    VStack(alignment: .leading) {
+                                        if user.name != name {
+                                            Text(user.name)
+                                                .foregroundColor(.white)
+                                                .font(.custom("Poppins-SemiBold", size: 16))
+                                            
+                                            Text(user.username)
+                                                .foregroundColor(.white)
+                                                .font(.custom("Poppins-Regular", size: 12))
+                                        }
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .fill(.white)
+                                            .opacity(0.1)
+                                            .frame(width: 60, height: 30)
+                                        
+                                        Button(action: {
+                                            if let isAdded = isAddedDict[user.id] {
+                                                isAddedDict[user.id] = !isAdded
+                                            } else {
+                                                isAddedDict[user.id] = true
+                                            }
+                                        }) {
+                                            Text(isAddedDict[user.id] == true ? "Added" : "Add")
+                                                .foregroundColor(.white)
+                                                .font(.custom("Poppins-SemiBold", size: 14))
+                                        }
+                                    }
+                                    
+                                    .padding(.trailing, 20)
                                 }
+                                // end friend card
                                 
                             }
-                            
-                            Spacer()
-                            
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 15)
-                                    .fill(.white)
-                                    .opacity(0.1)
-                                    .frame(width: 60, height: 30)
-                                
-                                Text("Add")
-                                    .foregroundColor(.white)
-                                    .font(.custom("Poppins-SemiBold", size: 14))
-                            }
-                            .padding(.trailing, 20)
                         }
-                        // end friend card
-                        
-                    }
-                }
+
                 
                 
                 Spacer()

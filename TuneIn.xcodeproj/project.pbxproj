@@ -258,6 +258,7 @@
 				7DE0566829C5766A000CE81E /* GoogleService-Info.plist */,
 				B468500329A427F700ED1FF3 /* AppDelegate.swift */,
 				B468500929A42D9000ED1FF3 /* SceneDelegate.swift */,
+				7DBE28B5297F30BF00A6DB06 /* ContentView.swift */,
 				B468500529A4281900ED1FF3 /* ViewController.swift */,
 				7DC31D37298B1B8100BC43CA /* Views */,
 				7DBE28DF297F32C500A6DB06 /* ViewModels */,
@@ -343,7 +344,6 @@
 			isa = PBXGroup;
 			children = (
 				7DBE28B3297F30BF00A6DB06 /* TuneInApp.swift */,
-				7DBE28B5297F30BF00A6DB06 /* ContentView.swift */,
 				7DBE2943297F4F8600A6DB06 /* Settings.swift */,
 				B4F05CD3298B5AF800977951 /* Notifications.swift */,
 				B4F05CD5298B5F0400977951 /* MyProfile.swift */,
