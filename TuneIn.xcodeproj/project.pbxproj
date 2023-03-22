@@ -10,6 +10,7 @@
 		7D242A4B2989F0E200B77902 /* SongCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D242A4A2989F0E200B77902 /* SongCard.swift */; };
 		7D242A4D2989FD0F00B77902 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D242A4C2989FD0F00B77902 /* Feed.swift */; };
 		7D2B562329CA4E44004B2920 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B562229CA4E44004B2920 /* Song.swift */; };
+		7D2B562529CB9707004B2920 /* MyFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B562429CB9707004B2920 /* MyFriends.swift */; };
 		7DA10BCC299ECD3900BCDB4F /* ProfileCreationTimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA10BCB299ECD3900BCDB4F /* ProfileCreationTimeZone.swift */; };
 		7DA10BCE299ED5EB00BCDB4F /* FeedEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA10BCD299ED5EB00BCDB4F /* FeedEmpty.swift */; };
 		7DA10BD0299EF65000BCDB4F /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA10BCF299EF65000BCDB4F /* Styles.swift */; };
@@ -128,6 +129,7 @@
 		7D242A4A2989F0E200B77902 /* SongCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCard.swift; sourceTree = "<group>"; };
 		7D242A4C2989FD0F00B77902 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		7D2B562229CA4E44004B2920 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		7D2B562429CB9707004B2920 /* MyFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriends.swift; sourceTree = "<group>"; };
 		7DA10BCB299ECD3900BCDB4F /* ProfileCreationTimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationTimeZone.swift; sourceTree = "<group>"; };
 		7DA10BCD299ED5EB00BCDB4F /* FeedEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEmpty.swift; sourceTree = "<group>"; };
 		7DA10BCF299EF65000BCDB4F /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 			children = (
 				7DBE28B3297F30BF00A6DB06 /* TuneInApp.swift */,
 				7DBE2943297F4F8600A6DB06 /* Settings.swift */,
+				7D2B562429CB9707004B2920 /* MyFriends.swift */,
 				B4F05CD3298B5AF800977951 /* Notifications.swift */,
 				B4F05CD5298B5F0400977951 /* MyProfile.swift */,
 				7D242A4C2989FD0F00B77902 /* Feed.swift */,
@@ -606,6 +609,7 @@
 				7DC31D3D298B1C7800BC43CA /* ProfileCreationNumber.swift in Sources */,
 				B468500429A427F700ED1FF3 /* AppDelegate.swift in Sources */,
 				7DA10BD0299EF65000BCDB4F /* Styles.swift in Sources */,
+				7D2B562529CB9707004B2920 /* MyFriends.swift in Sources */,
 				B468500A29A42D9000ED1FF3 /* SceneDelegate.swift in Sources */,
 				B478FCC029CB647500F76B3E /* LogInNumber.swift in Sources */,
 				B4F05CD6298B5F0400977951 /* MyProfile.swift in Sources */,
