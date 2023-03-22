@@ -24,7 +24,7 @@ struct ContentView: View {
 //        }
 //        if Auth.auth().currentUser == nil {
             NavigationView {
-                LogIn()
+                Home()
             }
 //        }
 //        else {
@@ -34,7 +34,7 @@ struct ContentView: View {
 //        }
         
 //        NavigationView {
-//            LogIn()
+//            Home()
 //
 //        }
 

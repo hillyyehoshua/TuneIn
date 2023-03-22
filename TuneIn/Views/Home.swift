@@ -1,5 +1,5 @@
 //
-//  LogIn.swift
+//  Home.swift
 //  TuneIn
 //
 //  Created by Hilly Yehoshua on 1/23/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LogIn: View {
+struct Home: View {
     
     var body: some View {
         ZStack{
@@ -69,8 +69,10 @@ struct LogIn: View {
                 HStack {
                     Text("Already have an account?")
                         .font(.custom("Poppins-Regular", size: 14))
-                    Text("Log In")
-                        .font(.custom("Poppins-SemiBold", size: 14))
+                    NavigationLink(destination: LogInNumber()){
+                        Text("Log In")
+                            .font(.custom("Poppins-SemiBold", size: 14))
+                    }
                 }
                 .foregroundColor(.white)
                 
@@ -81,8 +83,8 @@ struct LogIn: View {
 }
 
 
-struct LogIn_Previews: PreviewProvider {
+struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        LogIn()
+        Home()
     }
 }

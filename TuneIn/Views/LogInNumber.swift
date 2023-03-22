@@ -1,22 +1,19 @@
 //
-//  ProfileCreationPhoneAuth.swift
+//  LogInNumber.swift
 //  TuneIn
 //
-//  Created by Izzy Hood on 3/21/23.
+//  Created by Izzy Hood on 3/22/23.
 //
 
 import SwiftUI
 
-struct ProfileCreationPhoneAuth: View {
+
+struct LogInNumber: View {
     
-    @EnvironmentObject var dataManager: DataManager
-    @State var verCode = ""
+    @State var phoneNumber = ""
     @State var verificationComplete = false
-    @State var verificationError = false
-    @Binding var name: String
-    @Binding var usernm: String
-    @Binding var phoneNumber: String
     
+    //MARK: CUSTOM BACK BUTTON CODE
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var btnBack : some View { Button(action: {
@@ -29,14 +26,15 @@ struct ProfileCreationPhoneAuth: View {
             }
         }
     }
+    //END: CUSTOM BACK BUTTON CODE
     
     var body: some View {
-        ZStack {
+        
+        ZStack{
             Color("Dark Blue")
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
-                
                 HStack {
                     Text("TuneIn")
                         .frame(alignment: .center)
@@ -47,14 +45,22 @@ struct ProfileCreationPhoneAuth: View {
                 Spacer ()
                     .frame(height: 45)
                 
-                Text("Please input the 6-digit verification code texted to your phone number")
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .font(.custom("Poppins", size: 18))
+                HStack {
+                    Text("Welcome back! Enter your phone number to sign in to TuneIn.")
+                        .frame(alignment: .center)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.white)
+                        .font(.custom("Poppins-Regular", size: 16))
+                        .padding()
+                    
+                }
+                
+                Spacer()
+                    .frame(height: 20)
                 
                 HStack(alignment: .center) {
-                    TextField("", text: $verCode)
-                        .modifier(PlaceholderStyle(showPlaceHolder: verCode.isEmpty, placeholder: "XXXXXX"))
+                    TextField("", text: $phoneNumber)
+                        .modifier(PlaceholderStyle(showPlaceHolder: phoneNumber.isEmpty, placeholder: "+1 ___-___-____"))
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
                         .accentColor(.white)
@@ -63,7 +69,10 @@ struct ProfileCreationPhoneAuth: View {
                 .frame(alignment: .center)
                 .foregroundColor(.white)
                 
-                if verCode.isEmpty{
+                
+                Spacer()
+                
+                if phoneNumber.isEmpty {
                     Text("Next")
                         .foregroundColor(.white)
                         .font(.custom("Poppins-Regular", size: 16))
@@ -73,20 +82,18 @@ struct ProfileCreationPhoneAuth: View {
                         .frame(width: 230, height: 50)
                         .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
                     
-                } else {
-                    
-                    NavigationLink(destination: ProfileCreationTimeZone(userID: "", name: $name, usernm: $usernm, phoneNumber : $phoneNumber),    isActive: $verificationComplete) {
+                } else{
+                    NavigationLink(destination: LogInPhoneAuth(), isActive: $verificationComplete) {
                         VStack {
                             Button(
                                 "Next",
                                 action:{
-                                    AuthManager.shared.verifyCode(smsCode: verCode) { success in
+                                    AuthManager.shared.startAuth(phoneNumber: phoneNumber) { success in
                                         if success {
+                                            print("Success with phone authentication")
                                             verificationComplete = true
-                                            print("Code successfully verified")
                                         } else {
-                                            verificationError = true
-                                            print("Error, code could not be successfully verified")
+                                            print("Error with phone authentication")
                                         }
                                     }
                                 }
@@ -98,14 +105,8 @@ struct ProfileCreationPhoneAuth: View {
                             .padding()
                             .frame(width: 230, height: 50)
                             .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                            
                         }
-                    }
-                    
-                    if verificationError {
-                        Text("Verification code is incorrect. Please try again.")
-                            .foregroundColor(.red)
-                            .font(.custom("Poppins-Regular", size: 16))
-                            .multilineTextAlignment(.center)
                     }
                 }
             }
@@ -115,8 +116,8 @@ struct ProfileCreationPhoneAuth: View {
     }
 }
 
-struct ProfileCreationPhoneAuth_Previews: PreviewProvider {
+struct LogInNumber_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileCreationPhoneAuth(name: .constant("John Doe"), usernm: .constant("username"), phoneNumber: .constant("1234567890"))
+        LogInNumber()
     }
 }

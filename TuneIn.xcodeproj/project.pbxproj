@@ -49,7 +49,7 @@
 		7DBE2914297F348800A6DB06 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7DBE2913297F348800A6DB06 /* FirebaseRemoteConfigSwift */; };
 		7DBE2916297F348800A6DB06 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7DBE2915297F348800A6DB06 /* FirebaseStorage */; };
 		7DBE2918297F348800A6DB06 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 7DBE2917297F348800A6DB06 /* FirebaseStorageCombine-Community */; };
-		7DBE291A297F3ABF00A6DB06 /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE2919297F3ABF00A6DB06 /* LogIn.swift */; };
+		7DBE291A297F3ABF00A6DB06 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE2919297F3ABF00A6DB06 /* Home.swift */; };
 		7DBE292E297F3C2500A6DB06 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DBE291C297F3C2200A6DB06 /* Poppins-Medium.ttf */; };
 		7DBE292F297F3C2500A6DB06 /* Poppins-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DBE291D297F3C2200A6DB06 /* Poppins-BlackItalic.ttf */; };
 		7DBE2930297F3C2500A6DB06 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DBE291E297F3C2200A6DB06 /* Poppins-SemiBold.ttf */; };
@@ -86,6 +86,8 @@
 		B478FCB029C513B000F76B3E /* UploadSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCAF29C513B000F76B3E /* UploadSongView.swift */; };
 		B478FCBC29C92D0400F76B3E /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCBB29C92D0400F76B3E /* AuthManager.swift */; };
 		B478FCBE29CA0E5000F76B3E /* ProfileCreationPhoneAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCBD29CA0E5000F76B3E /* ProfileCreationPhoneAuth.swift */; };
+		B478FCC029CB647500F76B3E /* LogInNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCBF29CB647500F76B3E /* LogInNumber.swift */; };
+		B478FCC229CB65E000F76B3E /* LogInPhoneAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCC129CB65E000F76B3E /* LogInPhoneAuth.swift */; };
 		B4F05CD4298B5AF800977951 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD3298B5AF800977951 /* Notifications.swift */; };
 		B4F05CD6298B5F0400977951 /* MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD5298B5F0400977951 /* MyProfile.swift */; };
 /* End PBXBuildFile section */
@@ -139,7 +141,7 @@
 		7DBE28CA297F30C100A6DB06 /* TuneInUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TuneInUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DBE28CE297F30C100A6DB06 /* TuneInUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneInUITests.swift; sourceTree = "<group>"; };
 		7DBE28D0297F30C100A6DB06 /* TuneInUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuneInUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		7DBE2919297F3ABF00A6DB06 /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
+		7DBE2919297F3ABF00A6DB06 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		7DBE291C297F3C2200A6DB06 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		7DBE291D297F3C2200A6DB06 /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
 		7DBE291E297F3C2200A6DB06 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -180,6 +182,8 @@
 		B478FCBA29C929F000F76B3E /* TuneIn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TuneIn.entitlements; sourceTree = "<group>"; };
 		B478FCBB29C92D0400F76B3E /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		B478FCBD29CA0E5000F76B3E /* ProfileCreationPhoneAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationPhoneAuth.swift; sourceTree = "<group>"; };
+		B478FCBF29CB647500F76B3E /* LogInNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInNumber.swift; sourceTree = "<group>"; };
+		B478FCC129CB65E000F76B3E /* LogInPhoneAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInPhoneAuth.swift; sourceTree = "<group>"; };
 		B4F05CD3298B5AF800977951 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		B4F05CD5298B5F0400977951 /* MyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -360,7 +364,9 @@
 				7D242A4C2989FD0F00B77902 /* Feed.swift */,
 				7DA10BCD299ED5EB00BCDB4F /* FeedEmpty.swift */,
 				B478FCAF29C513B000F76B3E /* UploadSongView.swift */,
-				7DBE2919297F3ABF00A6DB06 /* LogIn.swift */,
+				7DBE2919297F3ABF00A6DB06 /* Home.swift */,
+				B478FCBF29CB647500F76B3E /* LogInNumber.swift */,
+				B478FCC129CB65E000F76B3E /* LogInPhoneAuth.swift */,
 				B46B42792981A74A00DFB1D1 /* EditProfile.swift */,
 				7DA10BCB299ECD3900BCDB4F /* ProfileCreationTimeZone.swift */,
 				7DC31D3A298B1C7300BC43CA /* ProfileCreationName.swift */,
@@ -583,19 +589,21 @@
 				7DBE28B6297F30BF00A6DB06 /* ContentView.swift in Sources */,
 				7DC31D3B298B1C7300BC43CA /* ProfileCreationName.swift in Sources */,
 				7DE0566329C50EC8000CE81E /* DataManager.swift in Sources */,
-				7DBE291A297F3ABF00A6DB06 /* LogIn.swift in Sources */,
+				7DBE291A297F3ABF00A6DB06 /* Home.swift in Sources */,
 				7DD6727029C7BDD40072809D /* NewUserView.swift in Sources */,
 				7DE0566729C57347000CE81E /* listView.swift in Sources */,
 				7DA10BCC299ECD3900BCDB4F /* ProfileCreationTimeZone.swift in Sources */,
 				B4F05CD4298B5AF800977951 /* Notifications.swift in Sources */,
 				B478FCB029C513B000F76B3E /* UploadSongView.swift in Sources */,
 				7DBE2944297F4F8600A6DB06 /* Settings.swift in Sources */,
+				B478FCC229CB65E000F76B3E /* LogInPhoneAuth.swift in Sources */,
 				7DC31D39298B1C5E00BC43CA /* ProfileCreationBday.swift in Sources */,
 				7D242A4B2989F0E200B77902 /* SongCard.swift in Sources */,
 				7DC31D3D298B1C7800BC43CA /* ProfileCreationNumber.swift in Sources */,
 				B468500429A427F700ED1FF3 /* AppDelegate.swift in Sources */,
 				7DA10BD0299EF65000BCDB4F /* Styles.swift in Sources */,
 				B468500A29A42D9000ED1FF3 /* SceneDelegate.swift in Sources */,
+				B478FCC029CB647500F76B3E /* LogInNumber.swift in Sources */,
 				B4F05CD6298B5F0400977951 /* MyProfile.swift in Sources */,
 				7DD6727429C7D5B90072809D /* ProfileCreationUserNM.swift in Sources */,
 				7DA10BCE299ED5EB00BCDB4F /* FeedEmpty.swift in Sources */,
