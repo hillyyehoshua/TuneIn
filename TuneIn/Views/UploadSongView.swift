@@ -10,12 +10,24 @@ import SwiftUI
 struct UploadSongView: View {
     
     @EnvironmentObject var dataManager: DataManager
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Binding var name: String
     @State private var songUploaded = false
     @Binding var usernm: String
     @State private var songTitle = ""
     @State private var artistName = ""
     @Binding var userID: String
+    
+    var btnBack : some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+        }) {
+            HStack {
+            Image("left") // set image here
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.white)
+            }
+        }
+    }
     
     var body: some View {
         
@@ -30,13 +42,6 @@ struct UploadSongView: View {
 //                }
                 
                 ZStack {
-                    HStack {
-                        Image("left")
-                            .frame(alignment: .leading)
-                            .padding(.leading,  20)
-                        Spacer()
-                    }
-                    
                     
                     HStack {
                         Text("Upload Song")
@@ -105,6 +110,8 @@ struct UploadSongView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
     }
 }
 

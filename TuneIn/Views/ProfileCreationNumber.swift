@@ -77,7 +77,7 @@ struct ProfileCreationNumber: View {
                 
                 HStack(alignment: .center) {
                     TextField("", text: $phoneNumber)
-                        .modifier(PlaceholderStyle(showPlaceHolder: phoneNumber.isEmpty, placeholder: "XXX  XXX  XXXX"))
+                        .modifier(PlaceholderStyle(showPlaceHolder: phoneNumber.isEmpty, placeholder: "+1XXXXXXXXXX"))
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
                         .accentColor(.white)

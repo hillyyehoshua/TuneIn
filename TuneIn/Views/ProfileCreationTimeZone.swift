@@ -135,6 +135,8 @@ struct ProfileCreationTimeZone: View {
                 if let userID = userID {
                     // Do something with the created user ID
                     print("Created user ID: \(userID)")
+                    self.userID = userID
+                    //self.presentationMode.wrappedValue.dismiss() // Dismiss the current view
                     
                     
                     } else {
