@@ -15,6 +15,7 @@ struct FeedEmpty: View {
     var body: some View {
         ZStack{
             //App background color
+            let _ = print ("user ID in feed empty \(userID)")
             Color ("Dark Blue")
                 .edgesIgnoringSafeArea(.all)
             

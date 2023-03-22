@@ -61,11 +61,7 @@ struct SongCard: View {
                     .frame(maxWidth: .infinity,alignment: .center)
                     .font(.custom("Poppins-Regular", size: 16))
             }
-            
-
         }
-        
-            
     }
 }
 

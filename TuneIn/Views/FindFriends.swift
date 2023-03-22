@@ -158,18 +158,23 @@ struct FindFriends: View {
                             }
                             
                             Spacer()
+                            
+                            let _ = print ("This is user.id: (friends) \(user.id)")
+                            let _ = print ("This is my ID: (me) \(userID)")
+                            
                             ZStack {
                                 RoundedRectangle(cornerRadius: 15)
                                     .fill(.white)
                                     .opacity(0.1)
                                     .frame(width: 60, height: 30)
+
                                 Button(action: {
                                     if let isAdded = isAddedDict[user.id] {
                                         isAddedDict[user.id] = !isAdded
                                     } else {
                                         isAddedDict[user.id] = true
                                     }
-                                    //                                    dataManager.addFriendToUser(userId: userID, friendId: "36Vvz7Cp2ZKytxZjbwxs")
+                                    dataManager.addFriendToUser(userId: userID, friendId: "36Vvz7Cp2ZKytxZjbwxs")
                                 }) {
                                     if let isAdded = isAddedDict[user.id], isAdded {
                                         Text("Added")
