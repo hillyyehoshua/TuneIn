@@ -7,10 +7,12 @@
 // Check the phone number function using ChatGTP
 
 import SwiftUI
+import iPhoneNumberField
 
 struct ProfileCreationNumber: View {
     
     @State private var phoneNumber: String = ""
+    @State private var isEditing: Bool = false
     @State private var verificationComplete: Bool = false
 //    @State private var navPath = NavigationPath()
     @Binding var name: String
@@ -76,15 +78,23 @@ struct ProfileCreationNumber: View {
                     .frame(height: 20)
                 
                 HStack(alignment: .center) {
-                    TextField("", text: $phoneNumber)
-                        .modifier(PlaceholderStyle(showPlaceHolder: phoneNumber.isEmpty, placeholder: "+1XXXXXXXXXX"))
+                    iPhoneNumberField("+1 (000) 000-0000", text: $phoneNumber, isEditing: $isEditing)
+                        .flagHidden(false)
                         .multilineTextAlignment(.center)
-                        .foregroundColor(.white)
-                        .accentColor(.white)
-                        .font(.custom("Poppins-SemiBold", size: 36))
+                        .flagSelectable(true)
+                        .prefixHidden(false)
+                        .font(UIFont(name:"Poppins-SemiBold", size: 30))
+                        .clearButtonMode(.whileEditing)
+                        .maximumDigits(10)
+                        .onClear { _ in isEditing.toggle() }
+                        .padding()
+                        .keyboardType(.numberPad)
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .accentColor(Color("Blue"))
+                        .padding()
                 }
                 .frame(alignment: .center)
-                .foregroundColor(.white)
                 
                 
                 Spacer()

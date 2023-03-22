@@ -88,6 +88,7 @@
 		B478FCBE29CA0E5000F76B3E /* ProfileCreationPhoneAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCBD29CA0E5000F76B3E /* ProfileCreationPhoneAuth.swift */; };
 		B478FCC029CB647500F76B3E /* LogInNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCBF29CB647500F76B3E /* LogInNumber.swift */; };
 		B478FCC229CB65E000F76B3E /* LogInPhoneAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCC129CB65E000F76B3E /* LogInPhoneAuth.swift */; };
+		B478FCC529CB709B00F76B3E /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = B478FCC429CB709B00F76B3E /* iPhoneNumberField */; };
 		B4F05CD4298B5AF800977951 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD3298B5AF800977951 /* Notifications.swift */; };
 		B4F05CD6298B5F0400977951 /* MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD5298B5F0400977951 /* MyProfile.swift */; };
 /* End PBXBuildFile section */
@@ -200,6 +201,7 @@
 				7DBE28E4297F348800A6DB06 /* FirebaseAnalytics in Frameworks */,
 				7DAD950B29A6BF8F0045A7A0 /* SpotifyiOS.xcframework in Frameworks */,
 				7DBE28E6297F348800A6DB06 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				B478FCC529CB709B00F76B3E /* iPhoneNumberField in Frameworks */,
 				7DBE290C297F348800A6DB06 /* FirebaseMLModelDownloader in Frameworks */,
 				7DBE2900297F348800A6DB06 /* FirebaseFirestoreSwift in Frameworks */,
 				7DBE28EC297F348800A6DB06 /* FirebaseAppCheck in Frameworks */,
@@ -442,6 +444,7 @@
 				7DBE2913297F348800A6DB06 /* FirebaseRemoteConfigSwift */,
 				7DBE2915297F348800A6DB06 /* FirebaseStorage */,
 				7DBE2917297F348800A6DB06 /* FirebaseStorageCombine-Community */,
+				B478FCC429CB709B00F76B3E /* iPhoneNumberField */,
 			);
 			productName = TuneIn;
 			productReference = 7DBE28B0297F30BF00A6DB06 /* TuneIn.app */;
@@ -518,6 +521,7 @@
 			mainGroup = 7DBE28A7297F30BF00A6DB06;
 			packageReferences = (
 				7DBE28E2297F348800A6DB06 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B478FCC329CB709A00F76B3E /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
 			);
 			productRefGroup = 7DBE28B1297F30BF00A6DB06 /* Products */;
 			projectDirPath = "";
@@ -963,6 +967,14 @@
 				kind = branch;
 			};
 		};
+		B478FCC329CB709A00F76B3E /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1100,6 +1112,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7DBE28E2297F348800A6DB06 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		B478FCC429CB709B00F76B3E /* iPhoneNumberField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B478FCC329CB709A00F76B3E /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;
+			productName = iPhoneNumberField;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

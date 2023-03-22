@@ -174,7 +174,7 @@ struct FindFriends: View {
                                     } else {
                                         isAddedDict[user.id] = true
                                     }
-                                    dataManager.addFriendToUser(userId: userID, friendId: "36Vvz7Cp2ZKytxZjbwxs")
+                                    dataManager.addFriendToUser(userId: userID, friendId: user.id)
                                 }) {
                                     if let isAdded = isAddedDict[user.id], isAdded {
                                         Text("Added")
