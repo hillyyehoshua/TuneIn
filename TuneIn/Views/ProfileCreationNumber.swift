@@ -106,6 +106,7 @@ struct ProfileCreationNumber: View {
                                 Button(
                                     "Next",
                                     action:{
+                                        let _ = print("Pre auth manager getting called")
                                         AuthManager.shared.startAuth(phoneNumber: phoneNumber) { success in
                                             if success {
                                                 print("Success with phone authentication")
@@ -124,6 +125,8 @@ struct ProfileCreationNumber: View {
                                 .frame(width: 230, height: 50)
                                 .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
                             }
+                            let _ = print("post when auth manager getting called")
+
                             }
                                 
                         }

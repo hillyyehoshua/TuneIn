@@ -19,6 +19,8 @@ class AuthManager {
     
     public func startAuth(phoneNumber: String, completion: @escaping (Bool) -> Void) {
         
+        print("beginning of auth function")
+        
         auth.settings?.isAppVerificationDisabledForTesting = true
             
         print("startAuth called with phoneNumber: \(phoneNumber)")

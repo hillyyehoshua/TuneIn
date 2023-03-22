@@ -134,62 +134,62 @@ struct MyFriends: View {
                 
                 ScrollView {
                     
-                        ForEach(friends, id: \.self) { friendID in
-                            HStack{
-                                ZStack {
-                                    Circle()
-                                        .fill(Color("Blue"))
-                                        .frame(width: 50, height: 50)
-                                    Text(String(friendID.first!))
-                                        .font(.custom("Poppins-Regular", size: 24))
-                                }.padding(.leading, 20)
-                                VStack{
-                                    Text(friendID)
-                                        .foregroundColor(.white)
-                                        .font(.custom("Poppins-SemiBold", size: 16))
-                                    Text("username")
-                                        .foregroundColor(.white)
-                                        .font(.custom("Poppins-Regular", size: 12))
-                                }
-                                Spacer()
-                                
-
-                                
-                                ZStack{
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .fill(.white)
-                                        .opacity(0.1)
-                                        .frame(width: 80, height: 30)
-                                    Text("Remove")
-                                        .foregroundColor(.white)
-                                        .font(.custom("Poppins-SemiBold", size: 14))
-                                }.padding()
+                    ForEach(friends, id: \.self) { friendID in
+                        HStack{
+                            ZStack {
+                                Circle()
+                                    .fill(Color("Blue"))
+                                    .frame(width: 50, height: 50)
+                                Text(String(friendID.first!))
+                                    .font(.custom("Poppins-Regular", size: 24))
+                            }.padding(.leading, 20)
+                            VStack{
+                                Text(friendID)
+                                    .foregroundColor(.white)
+                                    .font(.custom("Poppins-SemiBold", size: 16))
+                                Text("username")
+                                    .foregroundColor(.white)
+                                    .font(.custom("Poppins-Regular", size: 12))
                             }
-
-
+                            Spacer()
+                            
+                            
+                            
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 15)
+                                    .fill(.white)
+                                    .opacity(0.1)
+                                    .frame(width: 80, height: 30)
+                                Text("Remove")
+                                    .foregroundColor(.white)
+                                    .font(.custom("Poppins-SemiBold", size: 14))
+                            }.padding()
                         }
-                    }.onAppear {
-                        dataManager.getUserFriends(userID: userID) { friends, error in
-                            if let error = error {
-                                print("Error retrieving friends list: \(error.localizedDescription)")
-                            } else if let friends = friends {
-                                self.friends = friends
-                            } else {
-                                print("No friends found.")
-                            }
+                        
+                        
+                    }
+                }.onAppear {
+                    dataManager.getUserFriends(userID: userID) { friends, error in
+                        if let error = error {
+                            print("Error retrieving friends list: \(error.localizedDescription)")
+                        } else if let friends = friends {
+                            self.friends = friends
+                        } else {
+                            print("No friends found.")
                         }
                     }
-                Spacer()
-
-                    
                 }
+                Spacer()
                 
-                // Enables Custom back button
-                .navigationBarBackButtonHidden(true)
-                .navigationBarItems(trailing: btnBack)
+                
             }
+            
+            // Enables Custom back button
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(trailing: btnBack)
         }
     }
+}
 
 struct MyFriends_Previews: PreviewProvider {
     static var previews: some View {
