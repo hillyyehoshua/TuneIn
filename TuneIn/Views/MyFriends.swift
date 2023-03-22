@@ -70,7 +70,7 @@ struct MyFriends: View {
                             .padding(.leading, 35)
                         
                         TextField("", text: $searchreq)
-                            .modifier(PlaceholderStyle(showPlaceHolder: searchreq.isEmpty, placeholder: "Find friends with good taste          "))
+                            .modifier(PlaceholderStyle(showPlaceHolder: searchreq.isEmpty, placeholder: "Look at your friend list!          "))
                             .multilineTextAlignment(.leading)
                             .foregroundColor(.white)
                             .accentColor(.white)
@@ -105,9 +105,9 @@ struct MyFriends: View {
                         }
                         .padding(.leading, 35)
                         
-                        Text("Invite your friends")
+                        Text("Invite your friends to join the app!")
                             .foregroundColor(.white)
-                            .font(.custom("Poppins-Regular", size: 16))
+                            .font(.custom("Poppins-SemiBold", size: 16))
                             .padding(.leading, 5)
                             .opacity(0.7)
                         
@@ -143,19 +143,27 @@ struct MyFriends: View {
                                     Text(String(friendID.first!))
                                         .font(.custom("Poppins-Regular", size: 24))
                                 }.padding(.leading, 20)
-                                Text(friendID)
-                                    .foregroundColor(.white)
-                                    .font(.custom("Poppins-Regular", size: 12))
+                                VStack{
+                                    Text(friendID)
+                                        .foregroundColor(.white)
+                                        .font(.custom("Poppins-SemiBold", size: 16))
+                                    Text("username")
+                                        .foregroundColor(.white)
+                                        .font(.custom("Poppins-Regular", size: 12))
+                                }
+                                Spacer()
+                                
+
                                 
                                 ZStack{
                                     RoundedRectangle(cornerRadius: 15)
                                         .fill(.white)
                                         .opacity(0.1)
-                                        .frame(width: 60, height: 30)
+                                        .frame(width: 80, height: 30)
                                     Text("Remove")
                                         .foregroundColor(.white)
                                         .font(.custom("Poppins-SemiBold", size: 14))
-                                }
+                                }.padding()
                             }
 
 
