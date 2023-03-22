@@ -150,6 +150,28 @@ class DataManager: ObservableObject{
         }
     }
     
+//    func getUserFriends(userID: String, completion: @escaping ([String]?, Error?) -> Void) {
+//        let db = Firestore.firestore()
+//        let userDoc = db.collection("Users").document(userID)
+//        userDoc.getDocument { (document, error) in
+//            if let error = error {
+//                completion(nil, error)
+//                return
+//            }
+//            guard let document = document, document.exists else {
+//                completion(nil, nil)
+//                return
+//            }
+//            guard let userData = document.data(), let friends = userData["friends"] as? [String] else {
+//                completion(nil, nil)
+//                return
+//            }
+//            completion(friends, nil)
+//        }
+//    }
+    
+    
+    //edited with chatgpt
     func getUserFriends(userID: String, completion: @escaping ([String]?, Error?) -> Void) {
         let db = Firestore.firestore()
         let userDoc = db.collection("Users").document(userID)
@@ -162,14 +184,34 @@ class DataManager: ObservableObject{
                 completion(nil, nil)
                 return
             }
-            guard let userData = document.data(), let friends = userData["friends"] as? [String] else {
+            guard let userData = document.data(), let friendIDs = userData["friends"] as? [String] else {
                 completion(nil, nil)
                 return
             }
-            completion(friends, nil)
+            var friendNames: [String] = []
+            let group = DispatchGroup()
+            for friendID in friendIDs {
+                group.enter()
+                self.getUserName(userID: friendID) { name, error in
+                    defer {
+                        group.leave()
+                    }
+                    if let error = error {
+                        print("Error retrieving friend's name: \(error.localizedDescription)")
+                    } else if let name = name {
+                        friendNames.append(name)
+                    } else {
+                        print("No name found for friend with ID \(friendID).")
+                    }
+                }
+            }
+            group.notify(queue: .main) {
+                completion(friendNames, nil)
+            }
         }
     }
-    
+
+    //edited with chatgpt
     func getUserName(userID: String, completion: @escaping (String?, Error?) -> Void) {
         let db = Firestore.firestore()
         let userDoc = db.collection("Users").document(userID)

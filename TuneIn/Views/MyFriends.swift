@@ -130,50 +130,58 @@ struct MyFriends: View {
                 //Iterate through all of the users in the database
                 
                 
-
+                
                 
                 ScrollView {
                     
-                    
-                
-                    
-                    
-                                ForEach(friends, id: \.self) { friendID in
-                                    HStack{
-                                        ZStack {
-                                            Circle()
-                                                .fill(Color("Blue"))
-                                                .frame(width: 50, height: 50)
-                                            Text(String(friendID.first!))
-                                                .font(.custom("Poppins-Regular", size: 24))
-                                        }.padding(.leading, 20)
-                                        Text(friendID)
-                                            .foregroundColor(.white)
-                                            .font(.custom("Poppins-Regular", size: 12))
-                                    }
-                                    
-                                    
-                                }
-                            }.onAppear {
-                                dataManager.getUserFriends(userID: userID) { friends, error in
-                                    if let error = error {
-                                        print("Error retrieving friends list: \(error.localizedDescription)")
-                                    } else if let friends = friends {
-                                        self.friends = friends
-                                    } else {
-                                        print("No friends found.")
-                                    }
+                        ForEach(friends, id: \.self) { friendID in
+                            HStack{
+                                ZStack {
+                                    Circle()
+                                        .fill(Color("Blue"))
+                                        .frame(width: 50, height: 50)
+                                    Text(String(friendID.first!))
+                                        .font(.custom("Poppins-Regular", size: 24))
+                                }.padding(.leading, 20)
+                                Text(friendID)
+                                    .foregroundColor(.white)
+                                    .font(.custom("Poppins-Regular", size: 12))
+                                
+                                ZStack{
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .fill(.white)
+                                        .opacity(0.1)
+                                        .frame(width: 60, height: 30)
+                                    Text("Remove")
+                                        .foregroundColor(.white)
+                                        .font(.custom("Poppins-SemiBold", size: 14))
                                 }
                             }
+
+
+                        }
+                    }.onAppear {
+                        dataManager.getUserFriends(userID: userID) { friends, error in
+                            if let error = error {
+                                print("Error retrieving friends list: \(error.localizedDescription)")
+                            } else if let friends = friends {
+                                self.friends = friends
+                            } else {
+                                print("No friends found.")
+                            }
+                        }
+                    }
+                Spacer()
+
+                    
+                }
                 
+                // Enables Custom back button
+                .navigationBarBackButtonHidden(true)
+                .navigationBarItems(trailing: btnBack)
             }
-            
-            // Enables Custom back button
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(trailing: btnBack)
         }
     }
-}
 
 struct MyFriends_Previews: PreviewProvider {
     static var previews: some View {
