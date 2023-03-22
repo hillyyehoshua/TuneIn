@@ -129,6 +129,68 @@ class DataManager: ObservableObject{
         }
         print("Exiting addFriendtoUser")
     }
+    
+    func checkFriendship(friendId: String, userId: String, completion: @escaping (Bool) -> Void) {
+        let db = Firestore.firestore()
+        let userDoc = db.collection("Users").document(userId)
+        userDoc.getDocument { (document, error) in
+            if let document = document, document.exists {
+                // Retrieve the user data dictionary from the document
+                let userData = document.data()!
+                // Retrieve the friends array from the user data dictionary
+                let friends = userData["friends"] as! [String]
+                // Check if the friend ID is in the friends array
+                let isFriend = friends.contains(friendId)
+                // Call the completion handler with the result
+                completion(isFriend)
+            } else {
+                print("Error retrieving user document: \(error?.localizedDescription ?? "Unknown error")")
+                completion(false)
+            }
+        }
+    }
+    
+    func getUserFriends(userID: String, completion: @escaping ([String]?, Error?) -> Void) {
+        let db = Firestore.firestore()
+        let userDoc = db.collection("Users").document(userID)
+        userDoc.getDocument { (document, error) in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            guard let document = document, document.exists else {
+                completion(nil, nil)
+                return
+            }
+            guard let userData = document.data(), let friends = userData["friends"] as? [String] else {
+                completion(nil, nil)
+                return
+            }
+            completion(friends, nil)
+        }
+    }
+    
+    func getUserName(userID: String, completion: @escaping (String?, Error?) -> Void) {
+        let db = Firestore.firestore()
+        let userDoc = db.collection("Users").document(userID)
+        userDoc.getDocument { (document, error) in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            guard let document = document, document.exists else {
+                completion(nil, nil)
+                return
+            }
+            guard let userData = document.data(), let name = userData["name"] as? String else {
+                completion(nil, nil)
+                return
+            }
+            completion(name, nil)
+        }
+    }
+
+
         
         
         func addUser(name: String, username: String, phone: String, timezone: String, friends: [String], completion: @escaping (String?, Error?) -> Void) {

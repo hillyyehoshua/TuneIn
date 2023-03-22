@@ -128,6 +128,86 @@ struct FindFriends: View {
                 // MARK: Friend section
                 //Iterate through all of the users in the database
                 
+                
+//                ScrollView {
+//
+//                    ForEach(dataManager.users, id: \.id) { user in
+//
+//                        let isFriend = dataManager.checkFriendship(friendId: user.id, userId: userID)
+//                            //Group {
+////                            if let isFriend = $dataManager.checkFriendship(userId: userID, friendId: user.id) {
+//
+//                        if isFriend {
+//
+//                            VStack {
+//
+//                                                    // start profile pic
+//                                                    ZStack {
+//                                                        Circle()
+//                                                            .fill(Color("Blue"))
+//                                                            .frame(width: 50, height: 50)
+//                                                        Text(String(user.name.first!))
+//                                                            .font(.custom("Poppins-Regular", size: 24))
+//                                                    }
+//                                                    // end profile pic
+//
+//                                                    //add space
+//                                                    .padding(.leading, 20)
+//
+//                                                    VStack(alignment: .leading) {
+//                                                        if user.name != name {
+//                                                            Text(user.name)
+//                                                                .foregroundColor(.white)
+//                                                                .font(.custom("Poppins-SemiBold", size: 16))
+//
+//                                                            Text(user.username)
+//                                                                .foregroundColor(.white)
+//                                                                .font(.custom("Poppins-Regular", size: 12))
+//                                                        }
+//                                                    }
+//
+//                                                    Spacer()
+//
+//                                                    let _ = print ("This is user.id: (friends) \(user.id)")
+//                                                    let _ = print ("This is my ID: (me) \(userID)")
+//
+//                                                    ZStack {
+//                                                        RoundedRectangle(cornerRadius: 15)
+//                                                            .fill(.white)
+//                                                            .opacity(0.1)
+//                                                            .frame(width: 60, height: 30)
+//
+//                                                        Button(action: {
+//                                                            if let isAdded = isAddedDict[user.id] {
+//                                                                isAddedDict[user.id] = !isAdded
+//                                                            } else {
+//                                                                isAddedDict[user.id] = true
+//                                                            }
+//                                                            dataManager.addFriendToUser(userId: userID, friendId: "36Vvz7Cp2ZKytxZjbwxs")
+//                                                        }) {
+//                                                            if let isAdded = isAddedDict[user.id], isAdded {
+//                                                                Text("Added")
+//                                                                    .foregroundColor(.white)
+//                                                                    .font(.custom("Poppins-SemiBold", size: 14))
+//                                                            } else {
+//                                                                Text("Add")
+//                                                                    .foregroundColor(.white)
+//                                                                    .font(.custom("Poppins-SemiBold", size: 14))
+//                                                            }
+//                                                        }
+//
+//
+//                                                    }
+//
+//                                            }
+//                                        }
+//                                    //}
+//                        }
+//                        Spacer()
+//
+//
+//                }
+                
                 ScrollView {
                     ForEach(dataManager.users, id: \.id) { user in
                         // start friend card
@@ -141,27 +221,27 @@ struct FindFriends: View {
                                     .font(.custom("Poppins-Regular", size: 24))
                             }
                             // end profile pic
-                            
+
                             //add space
                             .padding(.leading, 20)
-                            
+
                             VStack(alignment: .leading) {
                                 if user.name != name {
                                     Text(user.name)
                                         .foregroundColor(.white)
                                         .font(.custom("Poppins-SemiBold", size: 16))
-                                    
+
                                     Text(user.username)
                                         .foregroundColor(.white)
                                         .font(.custom("Poppins-Regular", size: 12))
                                 }
                             }
-                            
+
                             Spacer()
-                            
+
                             let _ = print ("This is user.id: (friends) \(user.id)")
                             let _ = print ("This is my ID: (me) \(userID)")
-                            
+
                             ZStack {
                                 RoundedRectangle(cornerRadius: 15)
                                     .fill(.white)
@@ -174,7 +254,7 @@ struct FindFriends: View {
                                     } else {
                                         isAddedDict[user.id] = true
                                     }
-                                    dataManager.addFriendToUser(userId: userID, friendId: "36Vvz7Cp2ZKytxZjbwxs")
+                                    dataManager.addFriendToUser(userId: userID, friendId: user.id)
                                 }) {
                                     if let isAdded = isAddedDict[user.id], isAdded {
                                         Text("Added")
@@ -186,53 +266,14 @@ struct FindFriends: View {
                                             .font(.custom("Poppins-SemiBold", size: 14))
                                     }
                                 }
-                                
-                                
+
+
                             }
-                            
-                            //                            ZStack {
-                            //                                RoundedRectangle(cornerRadius: 15)
-                            //                                    .fill(.white)
-                            //                                    .opacity(0.1)
-                            //                                    .frame(width: 60, height: 30)
-                            //                                Button(action: {
-                            //                                    if let isAdded = isAddedDict[user.id] {
-                            //                                        isAddedDict[user.id] = !isAdded
-                            //                                    } else {
-                            //                                        isAddedDict[user.id] = true
-                            //                                    }
-                            //                                }) {
-                            //                                    if let isAdded = isAddedDict[user.id], isAdded {
-                            //                                        Text("Added")
-                            //                                            .foregroundColor(.white)
-                            //                                            .font(.custom("Poppins-SemiBold", size: 14))
-                            //                                    } else {
-                            //                                        Text("Add")
-                            //                                            .foregroundColor(.white)
-                            //                                            .font(.custom("Poppins-SemiBold", size: 14))
-                            //                                    }
-                            //                                }.onDisappear {
-                            //                                    dataManager.addFriendToUser(userId: userID, friendId: "36Vvz7Cp2ZKytxZjbwxs") { error in
-                            //                                        if let error = error {
-                            //                                            print("Error adding friend: \(error.localizedDescription)")
-                            //                                        } else {
-                            //                                            print("Friend added successfully.")
-                            //                                        }
-                            //
-                            //                                        //todo csll from here
-                            //                                    }
-                            //                                }
-                            //
-                            //
-                            //                                .padding(.trailing, 20)
-                            //                            }
-                            // end friend card
-                            
                         }
                     }
-                    
-                    
-                    
+
+
+
                     Spacer()
                 }
                 

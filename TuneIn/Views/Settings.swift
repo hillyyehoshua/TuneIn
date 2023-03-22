@@ -90,13 +90,14 @@ struct Settings: View {
                                 .opacity(0.1)
                                 .frame(width: 348, height: 43)
                             HStack{
-                                Image("Library")
+                                Image("person.2.fill")
+                                    .foregroundColor(.white)
                                     .frame(width: 25, height: 25, alignment: .leading)
                                     .padding(.leading, 35)
                                 
                                 
-                                NavigationLink(destination: MyProfile()){
-                                    Text("Your Library")
+                                NavigationLink(destination: MyFriends(name: $name, usernm: $usernm, userID: $userID)){
+                                    Text("My Friends")
                                         .foregroundColor(.white)
                                         .font(.custom("Poppins-Regular", size: 16))
                                         .padding(.leading, 5)
