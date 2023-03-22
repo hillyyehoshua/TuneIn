@@ -78,30 +78,7 @@ class DataManager: ObservableObject{
         }
     }
     
-//    func addUser(name: String, username: String, phone: String, timezone: String, friends: [String]) {
-//        let db = Firestore.firestore()
-//        let ref = db.collection("Users").document(name)
-//
-//        var timezoneString = ""
-//        if let intValue = Int(timezone) {
-//            if (intValue == 1){
-//                timezoneString = "America"
-//            } else if (intValue == 2){
-//                timezoneString = "Europe"
-//            } else if (intValue == 3){
-//                timezoneString = "East Asia"
-//            } else if (intValue == 4){
-//                timezoneString = "West Asia"
-//            }
-//        }
-//
-//        ref.setData(["name": name, "username": username, "id": UUID().uuidString, "phone" : phone, "timezone": timezoneString, "friends": friends]){
-//            error in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            }
-//        }
-//    }
+
     
     func addSong(artist: String, song_name: String) {
         let db = Firestore.firestore()
@@ -123,41 +100,46 @@ class DataManager: ObservableObject{
         }
     }
 
-    
-//        func addSong(artist: String, song_name: String) {
-//            let db = Firestore.firestore()
-//            let ref = db.collection("Songs").document()
-//
-//
-////            ref.setData(["artist": artist, "song_name": song_name, "id": UUID().uuidString]){
-////                error in
-////                if let error = error {
-////                    print(error.localizedDescription)
-////                }
-////            }
-////
-//
-//            /*
-//             var id: String
-//             var artist: String
-//             var song_name: String
-//             */
-//
-//            let data: [String: Any] = [
-//                "id": ref.documentID,
-//                "artist": artist,
-//                "song_name": song_name,
-//
-//            ]
-//            ref.setData(data) { error in
-//                if let error = error {
-//                    completion(nil, error)
-//                } else {
-//                    completion(ref.documentID, nil)
-//                }
+    func addFriendToUser(userId: String, friendId: String) {
+        let db = Firestore.firestore()
+        let userDoc = db.collection("Users").document(userId)
+       
+        userDoc.updateData([
+            "friends": FieldValue.arrayUnion([friendId])
+        ]) { error in
+            if let error = error {
+                // Handle the error
+                print("Error adding friend: \(error)")
+            } else {
+                print("Friend added successfully.")
+            }
+        }
+//        let db = Firestore.firestore()
+//        let userRef = db.collection("Users").document(userId)
+//        userRef.updateData([
+//            "friends": FieldValue.arrayUnion([friendId])
+//        ]) { error in
+//            if let error = error {
+//                completion(error)
+//            } else {
+//                completion(nil)
 //            }
 //        }
+    }
     
+    /*
+     let userId = "ABC123" // the ID of the user you want to modify
+     let friendId = "DEF456" // the ID of the friend you want to add
+
+     addFriendToUser(userId: userId, friendId: friendId) { error in
+         if let error = error {
+             print("Error adding friend: \(error.localizedDescription)")
+         } else {
+             print("Friend added successfully.")
+         }
+     }
+     */
+
     
     func addUser(name: String, username: String, phone: String, timezone: String, friends: [String], completion: @escaping (String?, Error?) -> Void) {
         let db = Firestore.firestore()

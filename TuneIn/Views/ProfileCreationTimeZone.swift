@@ -26,6 +26,7 @@ struct ProfileCreationTimeZone: View {
     
     var body: some View {
         ZStack {
+            
             Color("Dark Blue")
                 .edgesIgnoringSafeArea(.all)
             
@@ -134,8 +135,9 @@ struct ProfileCreationTimeZone: View {
                 if let userID = userID {
                     // Do something with the created user ID
                     print("Created user ID: \(userID)")
-                    //todo csll from here
-                } else {
+                    
+                    
+                    } else {
                     // Handle the error
                     print("Failed to create user: \(error?.localizedDescription ?? "Unknown error")")
                 }
