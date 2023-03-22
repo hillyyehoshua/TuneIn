@@ -11,6 +11,8 @@ import SwiftUI
 struct ProfileCreationNumber: View {
     
     @State private var phoneNumber: String = ""
+    @State private var verificationComplete: Bool = false
+//    @State private var navPath = NavigationPath()
     @Binding var name: String
     @Binding var usernm: String
     
@@ -62,15 +64,15 @@ struct ProfileCreationNumber: View {
                 
                 
                 HStack {
-                    Text("This is how we will create your account.")
+                    Text("We will send a code via SMS text message to your phone number. Message and data rates may apply.")
                         .frame(alignment: .center)
                         .foregroundColor(.white)
                         .font(.custom("Poppins-Regular", size: 16))
                         .opacity(0.8)
                 }
-                    
+                
                 Spacer()
-                        .frame(height: 20)
+                    .frame(height: 20)
                 
                 HStack(alignment: .center) {
                     TextField("", text: $phoneNumber)
@@ -83,10 +85,11 @@ struct ProfileCreationNumber: View {
                 .frame(alignment: .center)
                 .foregroundColor(.white)
                 
-                    
+                
                 Spacer()
-                  
-                if !isValidPhoneNumber(phoneNumber){
+                
+                //                if !isValidPhoneNumber(phoneNumber){
+                if phoneNumber.isEmpty {
                     Text("Next")
                         .foregroundColor(.white)
                         .font(.custom("Poppins-Regular", size: 16))
@@ -95,10 +98,23 @@ struct ProfileCreationNumber: View {
                         .padding()
                         .frame(width: 230, height: 50)
                         .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
-                }else{
-                    NavigationLink(destination: ProfileCreationTimeZone(name: $name, usernm: $usernm, phoneNumber : $phoneNumber)){
-                        HStack{
-                            Text("Next")
+                    
+                } else{
+                    NavigationLink(destination: ProfileCreationPhoneAuth(name: $name, usernm: $usernm, phoneNumber: $phoneNumber), isActive: $verificationComplete) {
+                            VStack {
+                                Button(
+                                    "Next",
+                                    action:{
+                                        AuthManager.shared.startAuth(phoneNumber: phoneNumber) { success in
+                                            if success {
+                                                print("Success with phone authentication")
+                                                verificationComplete = true
+                                            } else {
+                                                print("Error with phone authentication")
+                                            }
+                                        }
+                                    }
+                                )
                                 .foregroundColor(.white)
                                 .font(.custom("Poppins-Regular", size: 16))
                                 .fixedSize(horizontal: false, vertical: true)
@@ -106,23 +122,23 @@ struct ProfileCreationNumber: View {
                                 .padding()
                                 .frame(width: 230, height: 50)
                                 .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                            }
+                            }
+                                
                         }
                     }
                 }
-                
-                
-            }
-        }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: btnBack)
     }
 }
 
-func isValidPhoneNumber(_ phoneNumber: String) -> Bool {
-    let numericRegEx = "^[0-9]{10}$"
-    let numericTest = NSPredicate(format: "SELF MATCHES %@", numericRegEx)
-    return numericTest.evaluate(with: phoneNumber)
-}
+//TODO: Commenting this out for now until auth works, need to change this logic to allow +1 numbers
+//func isValidPhoneNumber(_ phoneNumber: String) -> Bool {
+//    let numericRegEx = "^[0-9]{10}$"
+//    let numericTest = NSPredicate(format: "SELF MATCHES %@", numericRegEx)
+//    return numericTest.evaluate(with: phoneNumber)
+//}
 
 
 struct ProfileCreationNumber_Previews: PreviewProvider {

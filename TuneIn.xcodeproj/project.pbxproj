@@ -83,7 +83,8 @@
 		B468500A29A42D9000ED1FF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500929A42D9000ED1FF3 /* SceneDelegate.swift */; };
 		B46B427A2981A74A00DFB1D1 /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46B42792981A74A00DFB1D1 /* EditProfile.swift */; };
 		B478FCB029C513B000F76B3E /* UploadSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCAF29C513B000F76B3E /* UploadSongView.swift */; };
-		B478FCB929C8F36F00F76B3E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE0566429C572DF000CE81E /* User.swift */; };
+		B478FCBC29C92D0400F76B3E /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCBB29C92D0400F76B3E /* AuthManager.swift */; };
+		B478FCBE29CA0E5000F76B3E /* ProfileCreationPhoneAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCBD29CA0E5000F76B3E /* ProfileCreationPhoneAuth.swift */; };
 		B4F05CD4298B5AF800977951 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD3298B5AF800977951 /* Notifications.swift */; };
 		B4F05CD6298B5F0400977951 /* MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD5298B5F0400977951 /* MyProfile.swift */; };
 /* End PBXBuildFile section */
@@ -174,6 +175,9 @@
 		B468500E29A42FD700ED1FF3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B46B42792981A74A00DFB1D1 /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
 		B478FCAF29C513B000F76B3E /* UploadSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSongView.swift; sourceTree = "<group>"; };
+		B478FCBA29C929F000F76B3E /* TuneIn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TuneIn.entitlements; sourceTree = "<group>"; };
+		B478FCBB29C92D0400F76B3E /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		B478FCBD29CA0E5000F76B3E /* ProfileCreationPhoneAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationPhoneAuth.swift; sourceTree = "<group>"; };
 		B4F05CD3298B5AF800977951 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		B4F05CD5298B5F0400977951 /* MyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -256,8 +260,10 @@
 		7DBE28B2297F30BF00A6DB06 /* TuneIn */ = {
 			isa = PBXGroup;
 			children = (
+				B478FCBA29C929F000F76B3E /* TuneIn.entitlements */,
 				7DE0566829C5766A000CE81E /* GoogleService-Info.plist */,
 				B468500329A427F700ED1FF3 /* AppDelegate.swift */,
+				B478FCBB29C92D0400F76B3E /* AuthManager.swift */,
 				B468500929A42D9000ED1FF3 /* SceneDelegate.swift */,
 				B468500529A4281900ED1FF3 /* ViewController.swift */,
 				7DC31D37298B1B8100BC43CA /* Views */,
@@ -356,8 +362,9 @@
 				7DC31D3A298B1C7300BC43CA /* ProfileCreationName.swift */,
 				7DD6727329C7D5B90072809D /* ProfileCreationUserNM.swift */,
 				7DC31D38298B1C5E00BC43CA /* ProfileCreationBday.swift */,
-				7DC31D3C298B1C7800BC43CA /* ProfileCreationNumber.swift */,
 				7DA10BCB299ECD3900BCDB4F /* ProfileCreationTimeZone.swift */,
+				7DC31D3C298B1C7800BC43CA /* ProfileCreationNumber.swift */,
+				B478FCBD29CA0E5000F76B3E /* ProfileCreationPhoneAuth.swift */,
 				7DBE2945297F50E100A6DB06 /* FindFriends.swift */,
 				7D242A4A2989F0E200B77902 /* SongCard.swift */,
 				7DA10BCF299EF65000BCDB4F /* Styles.swift */,
@@ -565,8 +572,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DBE2946297F50E100A6DB06 /* FindFriends.swift in Sources */,
+				B478FCBE29CA0E5000F76B3E /* ProfileCreationPhoneAuth.swift in Sources */,
 				B468500629A4281900ED1FF3 /* ViewController.swift in Sources */,
 				7D242A4D2989FD0F00B77902 /* Feed.swift in Sources */,
+				B478FCBC29C92D0400F76B3E /* AuthManager.swift in Sources */,
 				7DD6727629C8D1CA0072809D /* User.swift in Sources */,
 				7DBE28B6297F30BF00A6DB06 /* ContentView.swift in Sources */,
 				7DC31D3B298B1C7300BC43CA /* ProfileCreationName.swift in Sources */,
@@ -745,10 +754,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TuneIn/TuneIn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TuneIn/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NFZVL4434K;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -767,7 +777,6 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "Hilly-Yehoshua.TuneIn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -784,10 +793,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TuneIn/TuneIn.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TuneIn/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NFZVL4434K;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -806,7 +816,6 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "Hilly-Yehoshua.TuneIn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
