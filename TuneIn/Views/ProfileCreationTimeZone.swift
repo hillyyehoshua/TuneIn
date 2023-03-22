@@ -150,7 +150,7 @@ struct ProfileCreationTimeZone: View {
 
 struct ProfileCreationTimeZone_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileCreationTimeZone(name: .constant("John Doe"), usernm: .constant("username"), phoneNumber: .constant("1234567890"), userID: ("UniqueID") )
+        ProfileCreationTimeZone(userID: ("UniqueID"), name: .constant("John Doe"), usernm: .constant("username"), phoneNumber: .constant("1234567890") )
     }
 }
 
