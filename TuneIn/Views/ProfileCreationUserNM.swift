@@ -10,7 +10,7 @@ import SwiftUI
 struct ProfileCreationUserNM: View {
     @Binding var name: String
     @State private var usernm = ""
-    
+    //@Binding var userID: String
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var btnBack : some View { Button(action: {

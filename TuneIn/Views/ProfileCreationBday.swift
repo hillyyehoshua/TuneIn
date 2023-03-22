@@ -12,6 +12,7 @@ struct ProfileCreationBday: View {
     @State private var birthdate = Date()
     @Binding var name: String
     @Binding var usernm: String
+    //@Binding var userID: String
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 

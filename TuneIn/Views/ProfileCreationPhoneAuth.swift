@@ -63,7 +63,7 @@ struct ProfileCreationPhoneAuth: View {
                     
                 } else {
                     
-                    NavigationLink(destination: ProfileCreationTimeZone(name: $name, usernm: $usernm, phoneNumber : $phoneNumber), isActive: $verificationComplete) {
+                    NavigationLink(destination: ProfileCreationTimeZone(name: $name, usernm: $usernm, phoneNumber : $phoneNumber),    isActive: $verificationComplete) {
                         VStack {
                             Button(
                                 "Next",

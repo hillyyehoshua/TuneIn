@@ -15,6 +15,7 @@ struct ProfileCreationNumber: View {
 //    @State private var navPath = NavigationPath()
     @Binding var name: String
     @Binding var usernm: String
+   // @Binding var userID: String
     
 //    init(phoneNumber: Binding<String>, name: Binding<String>, usernm: Binding<String>) {
 //            _phoneNumber = State(initialValue: phoneNumber.wrappedValue)
@@ -100,7 +101,7 @@ struct ProfileCreationNumber: View {
                         .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
                     
                 } else{
-                    NavigationLink(destination: ProfileCreationPhoneAuth(name: $name, usernm: $usernm, phoneNumber: $phoneNumber, userID: ""), isActive: $verificationComplete) {
+                    NavigationLink(destination: ProfileCreationPhoneAuth(name: $name, usernm: $usernm, phoneNumber: $phoneNumber), isActive: $verificationComplete) {
                             VStack {
                                 Button(
                                     "Next",

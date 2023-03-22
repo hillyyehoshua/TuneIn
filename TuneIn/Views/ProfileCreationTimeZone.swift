@@ -3,14 +3,14 @@ import SwiftUI
 struct ProfileCreationTimeZone: View {
     
     @EnvironmentObject var dataManager: DataManager
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var selection = 0
+    //@State private var userID: String
+    @State var userID: String
     @State private var timeZoneUs = "Not Selected"
     @Binding var name: String
     @Binding var usernm: String
     @Binding var phoneNumber: String
-    @State var userID: String
-    
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var btnBack : some View { Button(action: {
         self.presentationMode.wrappedValue.dismiss()
