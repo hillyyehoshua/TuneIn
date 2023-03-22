@@ -10,6 +10,7 @@ import SwiftUI
 struct FeedEmpty: View {
     @Binding var name: String
     @Binding var usernm: String
+    @Binding var userID: String
     
     var body: some View {
         ZStack{
@@ -39,28 +40,30 @@ struct FeedEmpty: View {
                     //note - maybe we can add the play circle here
                     
                     //Add user's profile picture / image
-                    NavigationLink(destination: Settings(name: $name, usernm: $usernm)){
-                        Image("HProfile")
-                            .resizable()
-                            .clipShape(Circle())
-                            .frame(width: 40, height: 40)
-                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                    NavigationLink(destination: Settings(name: $name, usernm: $usernm, userID : $userID)){
+//                        Image("HProfile")
+//                            .resizable()
+//                            .clipShape(Circle())
+//                            .frame(width: 40, height: 40)
+//                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                        ZStack {
+                            Circle()
+                                .fill(Color("Blue"))
+                                .frame(width: 40, height: 40)
+                            Text(String(name.first!))
+                                .font(.custom("Poppins-Regular", size: 16))
+                                .foregroundColor(.black)
+                        }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                        
                     }
                 }
                 
                 //Scroll and see all of peoples' posts
                 ScrollView {
                     
-                    //playlist with all of your friends tunes; if you haven't uploaded a song its your add song button
+                    Empty(name: $name, usernm: $usernm, userID: $userID)
                     
-                    Empty(name: $name, usernm: $usernm)
                     
-                    //ideally would have parameters for this instead of isabella hood each time but we can fix later
-                    
-//                    SongCard()
-//                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
-//                    SongCard()
-//                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
                 }
                 
             }
@@ -76,12 +79,18 @@ struct FeedEmpty: View {
 struct Empty: View {
     @Binding var name: String
     @Binding var usernm: String
+    @Binding var userID: String
+    
     var body: some View {
         VStack (spacing: 1){
-            Image("plus")
-                .resizable()
-                .frame(width: 172, height: 172)
-            NavigationLink(destination: Feed(name: $name, usernm: $usernm)){
+            NavigationLink(destination: UploadSongView(name: $name, usernm: $usernm, userID: $userID)){
+                Image("plus")
+                    .resizable()
+                    .frame(width: 172, height: 172)
+            }
+            
+            
+            NavigationLink(destination: Feed(name: $name, usernm: $usernm, userID: $userID)){
                 Text("Add Monday's Song")
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
@@ -91,21 +100,6 @@ struct Empty: View {
                     .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
             }
             
-//            HStack{
-//                Image("heart")
-//                    .resizable()
-//                    .clipShape(Circle())
-//                    .frame(width: 15, height: 15)
-//                    .padding(EdgeInsets(top: 0, leading: 120, bottom: 0, trailing: 0))
-//                    .frame(maxWidth: .infinity,alignment: .center)
-//                    
-//                Text("Your Friends")
-//                    .foregroundColor(.white)
-//                    .frame(maxWidth: .infinity, alignment: .leading)
-//                    .padding(EdgeInsets(top: 0, leading: -30, bottom: 0, trailing: 0))
-//                    .font(.custom("Poppins-Regular", size: 13))
-//                    
-//            }
             Spacer()
                 .frame(height: 100)
             NavigationLink(destination: FindFriends(name: $name, usernm: $usernm)){
@@ -131,6 +125,6 @@ struct Empty: View {
 
 struct FeedEmpty_Previews: PreviewProvider {
     static var previews: some View {
-        FeedEmpty(name: .constant("John Doe"), usernm: .constant("username"))
+        FeedEmpty(name: .constant("John Doe"), usernm: .constant("username") , userID: .constant("UniqueID"))
     }
 }

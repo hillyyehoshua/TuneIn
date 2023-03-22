@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7D242A4B2989F0E200B77902 /* SongCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D242A4A2989F0E200B77902 /* SongCard.swift */; };
 		7D242A4D2989FD0F00B77902 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D242A4C2989FD0F00B77902 /* Feed.swift */; };
+		7D2B562329CA4E44004B2920 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2B562229CA4E44004B2920 /* Song.swift */; };
 		7DA10BCC299ECD3900BCDB4F /* ProfileCreationTimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA10BCB299ECD3900BCDB4F /* ProfileCreationTimeZone.swift */; };
 		7DA10BCE299ED5EB00BCDB4F /* FeedEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA10BCD299ED5EB00BCDB4F /* FeedEmpty.swift */; };
 		7DA10BD0299EF65000BCDB4F /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA10BCF299EF65000BCDB4F /* Styles.swift */; };
@@ -123,6 +124,7 @@
 /* Begin PBXFileReference section */
 		7D242A4A2989F0E200B77902 /* SongCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCard.swift; sourceTree = "<group>"; };
 		7D242A4C2989FD0F00B77902 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		7D2B562229CA4E44004B2920 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		7DA10BCB299ECD3900BCDB4F /* ProfileCreationTimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationTimeZone.swift; sourceTree = "<group>"; };
 		7DA10BCD299ED5EB00BCDB4F /* FeedEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEmpty.swift; sourceTree = "<group>"; };
 		7DA10BCF299EF65000BCDB4F /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				B468500329A427F700ED1FF3 /* AppDelegate.swift */,
 				B478FCBB29C92D0400F76B3E /* AuthManager.swift */,
 				B468500929A42D9000ED1FF3 /* SceneDelegate.swift */,
+				7DBE28B5297F30BF00A6DB06 /* ContentView.swift */,
 				B468500529A4281900ED1FF3 /* ViewController.swift */,
 				7DC31D37298B1B8100BC43CA /* Views */,
 				7DBE28DF297F32C500A6DB06 /* ViewModels */,
@@ -307,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				7DD6727529C8D1CA0072809D /* User.swift */,
+				7D2B562229CA4E44004B2920 /* Song.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -350,7 +354,6 @@
 			isa = PBXGroup;
 			children = (
 				7DBE28B3297F30BF00A6DB06 /* TuneInApp.swift */,
-				7DBE28B5297F30BF00A6DB06 /* ContentView.swift */,
 				7DBE2943297F4F8600A6DB06 /* Settings.swift */,
 				B4F05CD3298B5AF800977951 /* Notifications.swift */,
 				B4F05CD5298B5F0400977951 /* MyProfile.swift */,
@@ -359,10 +362,10 @@
 				B478FCAF29C513B000F76B3E /* UploadSongView.swift */,
 				7DBE2919297F3ABF00A6DB06 /* LogIn.swift */,
 				B46B42792981A74A00DFB1D1 /* EditProfile.swift */,
+				7DA10BCB299ECD3900BCDB4F /* ProfileCreationTimeZone.swift */,
 				7DC31D3A298B1C7300BC43CA /* ProfileCreationName.swift */,
 				7DD6727329C7D5B90072809D /* ProfileCreationUserNM.swift */,
 				7DC31D38298B1C5E00BC43CA /* ProfileCreationBday.swift */,
-				7DA10BCB299ECD3900BCDB4F /* ProfileCreationTimeZone.swift */,
 				7DC31D3C298B1C7800BC43CA /* ProfileCreationNumber.swift */,
 				B478FCBD29CA0E5000F76B3E /* ProfileCreationPhoneAuth.swift */,
 				7DBE2945297F50E100A6DB06 /* FindFriends.swift */,
@@ -597,6 +600,7 @@
 				7DD6727429C7D5B90072809D /* ProfileCreationUserNM.swift in Sources */,
 				7DA10BCE299ED5EB00BCDB4F /* FeedEmpty.swift in Sources */,
 				7DBE28B4297F30BF00A6DB06 /* TuneInApp.swift in Sources */,
+				7D2B562329CA4E44004B2920 /* Song.swift in Sources */,
 				B46B427A2981A74A00DFB1D1 /* EditProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

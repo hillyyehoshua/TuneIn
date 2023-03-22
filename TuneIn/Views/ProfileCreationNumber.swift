@@ -100,7 +100,7 @@ struct ProfileCreationNumber: View {
                         .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
                     
                 } else{
-                    NavigationLink(destination: ProfileCreationPhoneAuth(name: $name, usernm: $usernm, phoneNumber: $phoneNumber), isActive: $verificationComplete) {
+                    NavigationLink(destination: ProfileCreationPhoneAuth(name: $name, usernm: $usernm, phoneNumber: $phoneNumber, userID: ""), isActive: $verificationComplete) {
                             VStack {
                                 Button(
                                     "Next",

@@ -23,7 +23,17 @@ struct NewUserView: View {
 
             TextField("timezone", text: $newTimeZone)
             Button {
-                dataManager.addUser(name: newUser, username: newUserName, phone: newPhone, timezone: newTimeZone)
+//                dataManager.addUser(name: newUser, username: newUserName, phone: newPhone, timezone: newTimeZone, friends: [])
+                
+                dataManager.addUser(name: newUser, username: newUserName, phone: newPhone, timezone: newTimeZone, friends: []) { userID, error in
+                    if let userID = userID {
+                        // Do something with the created user ID
+                        print("Created user ID: \(userID)")
+                    } else {
+                        // Handle the error
+                        print("Failed to create user: \(error?.localizedDescription ?? "Unknown error")")
+                    }
+                }
                 
             }label: {
                 Text("save")

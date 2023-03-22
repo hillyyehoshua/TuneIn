@@ -8,6 +8,7 @@ struct ProfileCreationTimeZone: View {
     @Binding var name: String
     @Binding var usernm: String
     @Binding var phoneNumber: String
+    @State var userID: String
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -102,7 +103,7 @@ struct ProfileCreationTimeZone: View {
                 Spacer()
                 
                 if selection != 0 {
-                    NavigationLink(destination: FeedEmpty(name: $name, usernm: $usernm)){
+                    NavigationLink(destination: FeedEmpty(name: $name, usernm: $usernm, userID : $userID)){
                         HStack{
                             Text("Next")
                                 .foregroundColor(.white)
@@ -128,7 +129,17 @@ struct ProfileCreationTimeZone: View {
                 }
             }
         }.onDisappear {
-            dataManager.addUser(name: name, username: usernm, phone: phoneNumber, timezone: String(selection))
+            let friends: [String] = []
+            dataManager.addUser(name: name, username: usernm, phone: phoneNumber, timezone: String(selection), friends: friends) { userID, error in
+                if let userID = userID {
+                    // Do something with the created user ID
+                    print("Created user ID: \(userID)")
+                    //todo csll from here
+                } else {
+                    // Handle the error
+                    print("Failed to create user: \(error?.localizedDescription ?? "Unknown error")")
+                }
+            }
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: btnBack)
@@ -137,7 +148,7 @@ struct ProfileCreationTimeZone: View {
 
 struct ProfileCreationTimeZone_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileCreationTimeZone(name: .constant("John Doe"), usernm: .constant("username"), phoneNumber: .constant("1234567890"))
+        ProfileCreationTimeZone(name: .constant("John Doe"), usernm: .constant("username"), phoneNumber: .constant("1234567890"), userID: ("UniqueID") )
     }
 }
 
