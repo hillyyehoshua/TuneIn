@@ -11,9 +11,14 @@ import iPhoneNumberField
 
 struct LogInNumber: View {
     
+    @EnvironmentObject var dataManager: DataManager
     @State var phoneNumber = ""
     @State var isEditing: Bool = false
     @State var verificationComplete = false
+//    @State private var phoneExists: Bool = true
+    @State private var phoneExists: Bool = true // Change type to optional Bool
+
+
     
     //MARK: CUSTOM BACK BUTTON CODE
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -80,9 +85,46 @@ struct LogInNumber: View {
                 .frame(alignment: .center)
                 
                 
-                Spacer()
+                
+                
+                
+//                Spacer()
+//                let phoneNumber = self.$phoneNumber.wrappedValue
+//
+//                let phoneExists = dataManager.checkPhoneDoesntExists(phoneNum: phoneNumber) { exists in
+//                    if exists {
+//                        print("Phone number already exists in database.")
+//                    } else {
+//                        print("Phone number does not exist in database.")
+//                        // Add the user to the database here
+//                    }
+//                }
+//                Button(action: {
+//                    print ("getting into the Button in LogInNumber to set phone number ")
+//                                    let phoneNumber = self.$phoneNumber.wrappedValue
+//                                    
+//                                    dataManager.checkPhoneDoesntExists(phoneNum: phoneNumber) { exists in
+//                                        if exists {
+//                                            print("Phone number already exists in database.")
+//                                            phoneExists = true
+//                                        } else {
+//                                            print("Phone number does not exist in database.")
+//                                            phoneExists = false
+//                                            // Add the user to the database here
+//                                        }
+//                                    }
+//                                    
+//                                }) {
+//                                    Text("Check if phone exists")
+//                                        .foregroundColor(.white)
+//                                }
+//                                .padding()
+//                
+                
+                
                 
                 if phoneNumber.isEmpty {
+                    let _ = print ("getting into the isEmpty in LogInNumber ")
                     Text("Next")
                         .foregroundColor(.white)
                         .font(.custom("Poppins-Regular", size: 16))
@@ -92,7 +134,9 @@ struct LogInNumber: View {
                         .frame(width: 230, height: 50)
                         .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
                     
-                } else{
+                }
+                else{
+                    let _ = print ("getting into the else in LogInNumber")
                     NavigationLink(destination: LogInPhoneAuth(), isActive: $verificationComplete) {
                         VStack {
                             Button(

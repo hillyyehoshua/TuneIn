@@ -11,6 +11,7 @@ import Foundation
 
 class AuthManager {
     
+    
     static let shared = AuthManager()
     
     private let auth = Auth.auth()
@@ -79,6 +80,8 @@ class AuthManager {
         
         print("PhoneAuthProvider.provider().verifyPhoneNumber called with phoneNumber: \(phoneNumber)")
     }
+    
+    
 
     
     public func verifyCode(smsCode: String, completion: @escaping (Bool) -> Void) {

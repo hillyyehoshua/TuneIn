@@ -15,6 +15,8 @@ struct MyFriends: View {
     @State private var searchreq = ""
     @State private var friends: [String] = []
     @State private var isAddedDict: [String: Bool] = [:]
+    @State private var isRemoved = false
+
     
     
     // MARK: Custom back button code
@@ -96,20 +98,21 @@ struct MyFriends: View {
                     
                     HStack{
                         
-                        ZStack {
-                            Circle()
-                                .fill(Color("Blue"))
-                                .frame(width: 30, height: 30)
-                            Text(String(name.first!))
-                                .font(.custom("Poppins-Regular", size: 16))
-                        }
-                        .padding(.leading, 35)
+//                        ZStack {
+//                            Circle()
+//                                .fill(Color("Blue"))
+//                                .frame(width: 30, height: 30)
+//                            Text(String(name.first!))
+//                                .font(.custom("Poppins-Regular", size: 16))
+//                        }
+//                        .padding(.leading, 35)
                         
-                        Text("Invite your friends to join the app!")
+                        Text("         Invite your friends to join the app!")
                             .foregroundColor(.white)
-                            .font(.custom("Poppins-SemiBold", size: 16))
+                            .font(.custom("Poppins-Regular", size: 16))
                             .padding(.leading, 5)
                             .opacity(0.7)
+                            //.background(Rectangle().fill(Color.white).shadow(radius: 5))
                         
                         Spacer()
                         
@@ -134,62 +137,75 @@ struct MyFriends: View {
                 
                 ScrollView {
                     
-                    ForEach(friends, id: \.self) { friendID in
-                        HStack{
-                            ZStack {
-                                Circle()
-                                    .fill(Color("Blue"))
-                                    .frame(width: 50, height: 50)
-                                Text(String(friendID.first!))
-                                    .font(.custom("Poppins-Regular", size: 24))
-                            }.padding(.leading, 20)
-                            VStack{
-                                Text(friendID)
-                                    .foregroundColor(.white)
-                                    .font(.custom("Poppins-SemiBold", size: 16))
-                                Text("username")
-                                    .foregroundColor(.white)
-                                    .font(.custom("Poppins-Regular", size: 12))
+                        ForEach(friends, id: \.self) { friendID in
+                            HStack{
+                                ZStack {
+                                    Circle()
+                                        .fill(Color("Blue"))
+                                        .frame(width: 50, height: 50)
+                                    Text(String(friendID.first!))
+                                        .font(.custom("Poppins-Regular", size: 24))
+                                }.padding(.leading, 10)
+                                VStack{
+                                    Text(friendID)
+                                        .foregroundColor(.white)
+                                        .font(.custom("Poppins-SemiBold", size: 16))
+                                    Text("username")
+                                        .foregroundColor(.white)
+                                        .font(.custom("Poppins-Regular", size: 12))
+                                }
+                                Spacer()
+                                
+
+                                
+//                                ZStack{
+//                                    RoundedRectangle(cornerRadius: 15)
+//                                        .fill(.white)
+//                                        .opacity(0.1)
+//                                        .frame(width: 80, height: 30)
+//                                    Text("Remove")
+//                                        .foregroundColor(.white)
+//                                        .font(.custom("Poppins-SemiBold", size: 14))
+//                                }.padding()
+                                
+                                Button(action: {
+                                    isRemoved.toggle()
+                                }) {
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .fill(isRemoved ? Color.green.opacity(0.8) : Color.white.opacity(0.1))
+                                            .frame(width: 80, height: 30)
+                                        Text(isRemoved ? "Removed" : "Remove")
+                                            .foregroundColor(.white)
+                                            .font(.custom("Poppins-SemiBold", size: 14))
+                                    }
+                                }.padding()
                             }
-                            Spacer()
-                            
-                            
-                            
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 15)
-                                    .fill(.white)
-                                    .opacity(0.1)
-                                    .frame(width: 80, height: 30)
-                                Text("Remove")
-                                    .foregroundColor(.white)
-                                    .font(.custom("Poppins-SemiBold", size: 14))
-                            }.padding()
+
+
                         }
-                        
-                        
-                    }
-                }.onAppear {
-                    dataManager.getUserFriends(userID: userID) { friends, error in
-                        if let error = error {
-                            print("Error retrieving friends list: \(error.localizedDescription)")
-                        } else if let friends = friends {
-                            self.friends = friends
-                        } else {
-                            print("No friends found.")
+                    }.onAppear {
+                        dataManager.getUserFriends(userID: userID) { friends, error in
+                            if let error = error {
+                                print("Error retrieving friends list: \(error.localizedDescription)")
+                            } else if let friends = friends {
+                                self.friends = friends
+                            } else {
+                                print("No friends found.")
+                            }
                         }
                     }
-                }
                 Spacer()
+
+                    
+                }
                 
-                
+                // Enables Custom back button
+                .navigationBarBackButtonHidden(true)
+                .navigationBarItems(trailing: btnBack)
             }
-            
-            // Enables Custom back button
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(trailing: btnBack)
         }
     }
-}
 
 struct MyFriends_Previews: PreviewProvider {
     static var previews: some View {

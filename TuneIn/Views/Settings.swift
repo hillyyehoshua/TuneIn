@@ -91,12 +91,18 @@ struct Settings: View {
                                 .opacity(0.1)
                                 .frame(width: 348, height: 43)
                             HStack{
-                                Image("person.2.fill")
-                                    .foregroundColor(.white)
-                                    .frame(width: 25, height: 25, alignment: .leading)
-                                    .padding(.leading, 35)
+//                                UIImage(systemName: ("person.2.fill"))
+//                                    .foregroundColor(.white)
+//                                    .frame(width: 25, height: 25, alignment: .leading)
+//                                    .padding(.leading, 35)
                                 
-                                
+                                if let image = UIImage(systemName: "person.2.fill")?.withRenderingMode(.alwaysTemplate) {
+                                    Image(uiImage: image)
+                                        .foregroundColor(.white)
+                                        .frame(width: 25, height: 25, alignment: .leading)
+                                        .padding(.leading, 35)
+                                }
+
                                 
                                 Text("My Friends")
                                     .foregroundColor(.white)
