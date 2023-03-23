@@ -158,28 +158,28 @@ struct MyFriends: View {
                                 
 
                                 
-                                ZStack{
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .fill(.white)
-                                        .opacity(0.1)
-                                        .frame(width: 80, height: 30)
-                                    Text("Remove")
-                                        .foregroundColor(.white)
-                                        .font(.custom("Poppins-SemiBold", size: 14))
-                                }.padding()
-                                
-//                                Button(action: {
-//                                    isRemoved.toggle()
-//                                }) {
-//                                    ZStack {
-//                                        RoundedRectangle(cornerRadius: 15)
-//                                            .fill(isRemoved ? Color.green.opacity(0.8) : Color.white.opacity(0.1))
-//                                            .frame(width: 80, height: 30)
-//                                        Text(isRemoved ? "Removed" : "Remove")
-//                                            .foregroundColor(.white)
-//                                            .font(.custom("Poppins-SemiBold", size: 14))
-//                                    }
+//                                ZStack{
+//                                    RoundedRectangle(cornerRadius: 15)
+//                                        .fill(.white)
+//                                        .opacity(0.1)
+//                                        .frame(width: 80, height: 30)
+//                                    Text("Remove")
+//                                        .foregroundColor(.white)
+//                                        .font(.custom("Poppins-SemiBold", size: 14))
 //                                }.padding()
+                                
+                                Button(action: {
+                                    isRemoved.toggle()
+                                }) {
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .fill(isRemoved ? Color.green.opacity(0.8) : Color.white.opacity(0.1))
+                                            .frame(width: 80, height: 30)
+                                        Text(isRemoved ? "Removed" : "Remove")
+                                            .foregroundColor(.white)
+                                            .font(.custom("Poppins-SemiBold", size: 14))
+                                    }
+                                }.padding()
                             }
 
 

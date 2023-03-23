@@ -11,12 +11,19 @@ import Foundation
 
 class AuthManager {
     
+    
     static let shared = AuthManager()
     
     private let auth = Auth.auth()
     
     private var verificationID: String?
     
+    /*
+     /if there is a user with the given phone number then returns false
+     func checkPhoneDoesntExists(phoneNum: String, completion: @escaping (Bool) -> Void) {
+     */
+    
+    //if mode = 1 then it is sign up, and call the check phone number function, if it is 2 then don't call it 
     public func startAuth(phoneNumber: String, completion: @escaping (Bool) -> Void) {
         
         print("beginning of auth function")
@@ -60,6 +67,8 @@ class AuthManager {
         
         print("PhoneAuthProvider.provider().verifyPhoneNumber called with phoneNumber: \(phoneNumber)")
     }
+    
+    
 
     
     public func verifyCode(smsCode: String, completion: @escaping (Bool) -> Void) {
