@@ -11,31 +11,27 @@ import FirebaseAuth
 // Structure for the view that manages primary app screens and navigation.
 struct ContentView: View {
     
-    // TODO: FIGURE OUT HOW TO NOT HAVE THESE
-    @State private var name = "Temp"
-    @State private var usernm = "Temp2"
+    @EnvironmentObject var dataManager: DataManager
+//    @State var currUser = Auth.auth().currentUser
+//    @State var name = ""
+//    @State var username = ""
+//    @State var userID = ""
     
     var body: some View {
-//        NavigationView {
-//            UploadSongView()
-//        }
-//        VStack {
-//            Spotify()
-//        }
-//        if Auth.auth().currentUser == nil {
+
+//        if currUser == nil {
             NavigationView {
                 Home()
             }
-//        }
-//        else {
-//            NavigationView {
-//                Feed(name: $name, usernm: $usernm)
-//            }
-//        }
-        
-//        NavigationView {
-//            Home()
+//        } else {
 //
+//            name = currUser.name
+//            username = currUser.username
+//            userID = currUser.id
+//
+//            NavigationView {
+//                FeedEmpty(name: $name, usernm: $username, userID: $userID)
+//            }
 //        }
 
     }

@@ -17,6 +17,25 @@ class AuthManager {
     
     private var verificationID: String?
     
+    private var authStateDidChangeHandle: AuthStateDidChangeListenerHandle?
+
+    init() {
+        setupAuthStateDidChange()
+    }
+    
+    // set up listener
+    private func setupAuthStateDidChange() {
+        authStateDidChangeHandle = auth.addStateDidChangeListener { auth, user in
+            if let user = user {
+                // User is signed in, you can update your UI or do other tasks
+                print("User is signed in with uid: \(user.uid)")
+            } else {
+                // User is signed out
+                print("User is signed out")
+            }
+        }
+    }
+    
     public func startAuth(phoneNumber: String, completion: @escaping (Bool) -> Void) {
         
         print("beginning of auth function")
@@ -86,4 +105,21 @@ class AuthManager {
             completion(true)
         }
     }
+    
+    public func signOut() {
+        do {
+            try auth.signOut()
+            print("User has been successfully signed out!!!!!!! Yas")
+        } catch let error {
+            print("Error signing out: \(error.localizedDescription)")
+        }
+    }
+    
+    // Remove the listener when the object is deallocated
+    deinit {
+        if let handle = authStateDidChangeHandle {
+            auth.removeStateDidChangeListener(handle)
+        }
+    }
+
 }
