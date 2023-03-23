@@ -260,10 +260,12 @@ struct FindFriends: View {
                                         Text("Added")
                                             .foregroundColor(.white)
                                             .font(.custom("Poppins-SemiBold", size: 14))
+                                            .padding()
                                     } else {
                                         Text("Add")
                                             .foregroundColor(.white)
                                             .font(.custom("Poppins-SemiBold", size: 14))
+                                            .padding()
                                     }
                                 }
                                 
