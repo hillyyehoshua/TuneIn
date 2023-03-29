@@ -237,8 +237,14 @@ class DataManager: ObservableObject{
         
         
         func addUser(name: String, username: String, phone: String, timezone: String, friends: [String], completion: @escaping (String?, Error?) -> Void) {
+            
+            guard let uid = AuthManager.shared.auth.currentUser?.uid else {
+                print("IN ADD USER FUNCTION: uid was nil")
+                return
+            }
+            
             let db = Firestore.firestore()
-            let ref = db.collection("Users").document()
+            let ref = db.collection("Users").document(uid)
             let timezoneString: String
             switch Int(timezone) {
             case 1:
@@ -255,7 +261,8 @@ class DataManager: ObservableObject{
             let data: [String: Any] = [
                 "name": name,
                 "username": username,
-                "id": ref.documentID,
+//                "id": ref.documentID,
+                "id": uid,
                 "phone": phone,
                 "timezone": timezoneString,
                 "friends": friends

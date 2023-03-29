@@ -14,7 +14,7 @@ class AuthManager {
     
     static let shared = AuthManager()
     
-    private let auth = Auth.auth()
+    let auth = Auth.auth()
     
     private var verificationID: String?
     

@@ -75,22 +75,8 @@ struct ProfileCreationPhoneAuth: View {
                     
                 } else {
                     
-                    NavigationLink(destination: ProfileCreationTimeZone(userID: "", name: $name, usernm: $usernm, phoneNumber : $phoneNumber),    isActive: $verificationComplete) {
-                        VStack {
-                            Button(
-                                "Next",
-                                action:{
-                                    AuthManager.shared.verifyCode(smsCode: verCode) { success in
-                                        if success {
-                                            verificationComplete = true
-                                            print("Code successfully verified")
-                                        } else {
-                                            verificationError = true
-                                            print("Error, code could not be successfully verified")
-                                        }
-                                    }
-                                }
-                            )
+                    NavigationLink(destination: ProfileCreationTimeZone(userID: "", name: $name, usernm: $usernm, phoneNumber: $phoneNumber)) {
+                        Text("Next")
                             .foregroundColor(.white)
                             .font(.custom("Poppins-Regular", size: 16))
                             .fixedSize(horizontal: false, vertical: true)
@@ -98,15 +84,22 @@ struct ProfileCreationPhoneAuth: View {
                             .padding()
                             .frame(width: 230, height: 50)
                             .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                    }
+                    .simultaneousGesture(TapGesture().onEnded({
+                        AuthManager.shared.verifyCode(smsCode: verCode) { success in
+                            if success {
+                                verificationComplete = true
+                                print("Code successfully verified")
+                            } else {
+                                verificationError = true
+                                print("Error, code could not be successfully verified")
+                                presentationMode.wrappedValue.dismiss()
+                            }
                         }
-                    }
+                    }))
                     
-                    if verificationError {
-                        Text("Verification code is incorrect. Please try again.")
-                            .foregroundColor(.red)
-                            .font(.custom("Poppins-Regular", size: 16))
-                            .multilineTextAlignment(.center)
-                    }
+
+
                 }
             }
         }

@@ -14,6 +14,7 @@ struct ProfileCreationNumber: View {
     @State private var phoneNumber: String = ""
     @State private var isEditing: Bool = false
     @State private var verificationComplete: Bool = false
+    @State private var verificationCompleteOptional: Bool?
 //    @State private var navPath = NavigationPath()
     @Binding var name: String
     @Binding var usernm: String
@@ -88,7 +89,6 @@ struct ProfileCreationNumber: View {
                         .maximumDigits(10)
                         .onClear { _ in isEditing.toggle() }
                         .padding()
-                        .keyboardType(.numberPad)
                         .background(Color.white)
                         .cornerRadius(10)
                         .accentColor(Color("Blue"))
@@ -111,37 +111,31 @@ struct ProfileCreationNumber: View {
                         .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Grey")).shadow(radius: 3))
                     
                 } else{
-                    NavigationLink(destination: ProfileCreationPhoneAuth(name: $name, usernm: $usernm, phoneNumber: $phoneNumber), isActive: $verificationComplete) {
-                            VStack {
-                                Button(
-                                    "Next",
-                                    action:{
-                                        let _ = print("Pre auth manager getting called")
-                                        AuthManager.shared.startAuth(phoneNumber: phoneNumber) { success in
-                                            if success {
-                                                print("Success with phone authentication")
-                                                verificationComplete = true
-                                            } else {
-                                                print("Error with phone authentication")
-                                            }
-                                        }
-                                    }
-                                )
-                                .foregroundColor(.white)
-                                .font(.custom("Poppins-Regular", size: 16))
-                                .fixedSize(horizontal: false, vertical: true)
-                                .multilineTextAlignment(.center)
-                                .padding()
-                                .frame(width: 230, height: 50)
-                                .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
-                            }
-                            let _ = print("post when auth manager getting called")
-
-                            }
-                                
-                        }
+                    NavigationLink(destination: ProfileCreationPhoneAuth(name: $name, usernm: $usernm, phoneNumber: $phoneNumber)) {
+                        Text("Next")
+                            .foregroundColor(.white)
+                            .font(.custom("Poppins-Regular", size: 16))
+                            .fixedSize(horizontal: false, vertical: true)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                            .frame(width: 230, height: 50)
+                            .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
                     }
+                    .simultaneousGesture(TapGesture().onEnded({
+                        let _ = print("Pressed button that should call startAuth")
+                        AuthManager.shared.startAuth(phoneNumber: phoneNumber) { success in
+                            if success {
+                                print("Success with phone authentication")
+                                verificationComplete = true
+                            } else {
+                                print("Error with phone authentication")
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        }
+                    }))
                 }
+            }
+        }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: btnBack)
     }

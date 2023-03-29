@@ -208,6 +208,7 @@ struct FindFriends: View {
                 //
                 //                }
                 
+                //TODO: There is a bug here where the if the database of users are empty, it crashes
                 ScrollView {
                     ForEach(dataManager.users, id: \.id) { user in
                         // start friend card
