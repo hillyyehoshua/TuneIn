@@ -12,12 +12,10 @@ class DataManager: ObservableObject{
     @Published var users: [User] = []
     @Published var songs: [Song] = []
     
-    init(){
-        fetchUsers()
-        fetchSongs()
+   init(){
+       fetchUsers()
+       fetchSongs()
     }
-    
-    
     
     func fetchUsers() {
         users.removeAll()
@@ -34,7 +32,7 @@ class DataManager: ObservableObject{
                 for document in snapshot.documents{
                     let data = document.data()
                     //                    print (data)
-                    let id = data["id"] as? String ?? ""
+                    let id = data["_id"] as? String ?? ""
                     let name = data["name"] as? String ?? ""
                     let username = data["username"] as? String ?? ""
                     let phone = data["phone"] as? String ?? ""
@@ -42,7 +40,7 @@ class DataManager: ObservableObject{
                     let friends = data["friends"] as? [String] ?? [""]
                     
                     
-                    let user = User(id: id, name: name, username: username, phone: phone, timezone: timezone, friends: friends)
+                    let user = User(_id: id, name: name, username: username, phone: phone, timezone: timezone, friends: friends)
                     self.users.append(user)
                 }
             }
@@ -51,7 +49,7 @@ class DataManager: ObservableObject{
     
     
     func fetchSongs() {
-        users.removeAll()
+        songs.removeAll()
         let db = Firestore.firestore()
         let ref = db.collection("Songs")
         
@@ -77,8 +75,7 @@ class DataManager: ObservableObject{
             }
         }
     }
-    
-    
+
     
     func addSong(artist: String, song_name: String) {
         let db = Firestore.firestore()
@@ -236,44 +233,44 @@ class DataManager: ObservableObject{
 
         
         
-        func addUser(name: String, username: String, phone: String, timezone: String, friends: [String], completion: @escaping (String?, Error?) -> Void) {
-            
-            guard let uid = AuthManager.shared.auth.currentUser?.uid else {
-                print("IN ADD USER FUNCTION: uid was nil")
-                return
-            }
-            
-            let db = Firestore.firestore()
-            let ref = db.collection("Users").document(uid)
-            let timezoneString: String
-            switch Int(timezone) {
-            case 1:
-                timezoneString = "America"
-            case 2:
-                timezoneString = "Europe"
-            case 3:
-                timezoneString = "East Asia"
-            case 4:
-                timezoneString = "West Asia"
-            default:
-                timezoneString = ""
-            }
-            let data: [String: Any] = [
-                "name": name,
-                "username": username,
+    func addUser(name: String, username: String, phone: String, timezone: String, friends: [String], completion: @escaping (String?, Error?) -> Void) {
+        
+        guard let uid = AuthManager.shared.auth.currentUser?.uid else {
+            print("IN ADD USER FUNCTION: uid was nil")
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let ref = db.collection("Users").document(uid)
+        let timezoneString: String
+        switch Int(timezone) {
+        case 1:
+            timezoneString = "America"
+        case 2:
+            timezoneString = "Europe"
+        case 3:
+            timezoneString = "East Asia"
+        case 4:
+            timezoneString = "West Asia"
+        default:
+            timezoneString = ""
+        }
+        let data: [String: Any] = [
+            "_id": uid,
+            "name": name,
+            "username": username,
 //                "id": ref.documentID,
-                "id": uid,
-                "phone": phone,
-                "timezone": timezoneString,
-                "friends": friends
-            ]
-            ref.setData(data) { error in
-                if let error = error {
-                    completion(nil, error)
-                } else {
-                    completion(ref.documentID, nil)
-                }
+            "phone": phone,
+            "timezone": timezoneString,
+            "friends": friends
+        ]
+        ref.setData(data) { error in
+            if let error = error {
+                completion(nil, error)
+            } else {
+                completion(ref.documentID, nil)
             }
         }
     }
+}
 

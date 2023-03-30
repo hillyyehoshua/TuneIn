@@ -5,7 +5,7 @@ struct ProfileCreationTimeZone: View {
     @EnvironmentObject var dataManager: DataManager
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var selection = 0
-    //@State private var userID: String
+//    @State private var userID: String
     @State var userID: String
     @State private var timeZoneUs = "Not Selected"
     @Binding var name: String
@@ -104,7 +104,7 @@ struct ProfileCreationTimeZone: View {
                 Spacer()
                 
                 if selection != 0 {
-                    NavigationLink(destination: FeedEmpty(name: $name, usernm: $usernm, userID : $userID)){
+                    NavigationLink(destination: FeedEmpty(name: $name, usernm: $usernm, userID: $userID)){
                         HStack{
                             Text("Next")
                                 .foregroundColor(.white)
@@ -136,7 +136,6 @@ struct ProfileCreationTimeZone: View {
                     // Do something with the created user ID
                     print("Created user ID: \(userID)")
                     self.userID = userID
-                    //self.presentationMode.wrappedValue.dismiss() // Dismiss the current view
                     
                     
                     } else {

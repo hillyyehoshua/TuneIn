@@ -11,14 +11,14 @@ import iPhoneNumberField
 
 struct ProfileCreationNumber: View {
     
+    @EnvironmentObject var dataManager: DataManager
     @State private var phoneNumber: String = ""
     @State private var isEditing: Bool = false
     @State private var verificationComplete: Bool = false
     @State private var verificationCompleteOptional: Bool?
-//    @State private var navPath = NavigationPath()
     @Binding var name: String
     @Binding var usernm: String
-   // @Binding var userID: String
+//    @Binding var userID: String
     
 //    init(phoneNumber: Binding<String>, name: Binding<String>, usernm: Binding<String>) {
 //            _phoneNumber = State(initialValue: phoneNumber.wrappedValue)

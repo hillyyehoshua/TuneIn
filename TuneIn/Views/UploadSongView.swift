@@ -117,7 +117,7 @@ struct UploadSongView: View {
 
 struct UploadSongView_Previews: PreviewProvider {
     static var previews: some View {
-        UploadSongView(name: .constant("John Doe"), usernm: .constant("username"),userID: .constant("UniqueID"))
+        UploadSongView(name: .constant("ijeds"), usernm: .constant("lkewuslk"), userID: .constant("dsfdfskf"))
     }
 }
 

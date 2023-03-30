@@ -9,6 +9,8 @@ import SwiftUI
 
 struct Settings: View {
     
+    @EnvironmentObject var dataManager: DataManager
+
     @Binding var name: String
     @Binding var usernm: String
     @Binding var userID: String
@@ -29,6 +31,8 @@ struct Settings: View {
     // END: Custom back button code
     
     var body: some View {
+        
+
         ZStack{
             Color("Dark Blue")
                 .edgesIgnoringSafeArea(.all)
@@ -224,12 +228,20 @@ struct Settings: View {
                         .fill(.white)
                         .opacity(0.1)
                         .frame(width: 348, height: 52)
-                    Text("Log Out")
-                        .foregroundColor(.red)
-                        .font(.custom("Poppins-SemiBold", size: 18))
+                    NavigationLink(destination: Home()) {
+                        Text("Next")
+                            .foregroundColor(.red)
+                            .font(.custom("Poppins-SemiBold", size: 18))
+                    }
+                    .simultaneousGesture(TapGesture().onEnded({
+                        AuthManager.shared.signOut()
+//                        dataManager.setCurrentUser {
+//                            print("setCurrentUser finished running in Settings")
+//                        }
+                    }))
+                    }
                 }
             }
-        }
         
         // Enables Custom back button
         .navigationBarBackButtonHidden(true)
@@ -239,6 +251,6 @@ struct Settings: View {
 
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
-        Settings(name: .constant("John Doe"), usernm: .constant("username"), userID: .constant("UniqueID"))
+        Settings(name: .constant("john uyebf"), usernm: .constant("ksdnf"), userID: .constant("uniqueid"))
     }
 }

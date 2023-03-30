@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct FeedEmpty: View {
+    
+    @EnvironmentObject var dataManager: DataManager
     @Binding var name: String
     @Binding var usernm: String
     @Binding var userID: String
     
     var body: some View {
+                
         ZStack{
             //App background color
-            let _ = print ("user ID in feed empty \(userID)")
+            let _ = print ("user ID in feed empty \(String(describing: $userID))")
             Color ("Dark Blue")
                 .edgesIgnoringSafeArea(.all)
             
@@ -41,7 +44,7 @@ struct FeedEmpty: View {
                     //note - maybe we can add the play circle here
                     
                     //Add user's profile picture / image
-                    NavigationLink(destination: Settings(name: $name, usernm: $usernm, userID : $userID)){
+                    NavigationLink(destination: Settings(name: $name, usernm: $usernm, userID: $userID)){
 //                        Image("HProfile")
 //                            .resizable()
 //                            .clipShape(Circle())
@@ -72,6 +75,12 @@ struct FeedEmpty: View {
             .scrollDismissesKeyboard(.immediately)
             
         }
+//        .onAppear(perform: {
+//            dataManager.fetchCurrentUser {
+//                print("setCurrentUser finished running in FeedEmpty")
+//
+//            }
+//        })
        
     }
 }
@@ -103,7 +112,7 @@ struct Empty: View {
             
             Spacer()
                 .frame(height: 100)
-            NavigationLink(destination: FindFriends(name: $name, usernm: $usernm, userID:$userID)){
+            NavigationLink(destination: FindFriends(name: $name, usernm: $usernm, userID: $userID)){
                 HStack{
                     Text("Find Friends")
                         .foregroundColor(.white)
@@ -126,6 +135,6 @@ struct Empty: View {
 
 struct FeedEmpty_Previews: PreviewProvider {
     static var previews: some View {
-        FeedEmpty(name: .constant("John Doe"), usernm: .constant("username") , userID: .constant("UniqueID"))
+        FeedEmpty(name: .constant("John Doe"), usernm: .constant("joey"), userID: .constant("UNIQUEID"))
     }
 }

@@ -38,6 +38,8 @@ struct MyFriends: View {
     // END: Custom back button code
     
     var body: some View {
+        
+
         ZStack {
             
             //set the background
@@ -209,6 +211,6 @@ struct MyFriends: View {
 
 struct MyFriends_Previews: PreviewProvider {
     static var previews: some View {
-        MyFriends(name: .constant("John Doe"), usernm: .constant("username"), userID: .constant("UniqueID"))
+        MyFriends(name: .constant("john dope"), usernm: .constant("joey"), userID: .constant("UNIQUEID"))
     }
 }

@@ -35,6 +35,8 @@ struct FindFriends: View {
     // END: Custom back button code
     
     var body: some View {
+        
+
         ZStack {
             
             //set the background
@@ -210,7 +212,7 @@ struct FindFriends: View {
                 
                 //TODO: There is a bug here where the if the database of users are empty, it crashes
                 ScrollView {
-                    ForEach(dataManager.users, id: \.id) { user in
+                    ForEach(dataManager.users, id: \._id) { user in
                         // start friend card
                         HStack {
                             // start profile pic
@@ -250,14 +252,14 @@ struct FindFriends: View {
                                     .frame(width: 60, height: 30)
                                 
                                 Button(action: {
-                                    if let isAdded = isAddedDict[user.id] {
-                                        isAddedDict[user.id] = !isAdded
+                                    if let isAdded = isAddedDict[user._id] {
+                                        isAddedDict[user._id] = !isAdded
                                     } else {
-                                        isAddedDict[user.id] = true
+                                        isAddedDict[user._id] = true
                                     }
-                                    dataManager.addFriendToUser(userId: userID, friendId: user.id)
+                                    dataManager.addFriendToUser(userId: userID, friendId: user._id)
                                 }) {
-                                    if let isAdded = isAddedDict[user.id], isAdded {
+                                    if let isAdded = isAddedDict[user._id], isAdded {
                                         Text("Added")
                                             .foregroundColor(.white)
                                             .font(.custom("Poppins-SemiBold", size: 14))
@@ -291,7 +293,7 @@ struct FindFriends: View {
 
 struct FindFriends_Previews: PreviewProvider {
     static var previews: some View {
-        FindFriends(name: .constant("John Doe"), usernm: .constant("username"), userID: .constant("UniqueID"))
+        FindFriends(name: .constant("john"), usernm: .constant("johnny"), userID: .constant("uniqueid"))
             .environmentObject(DataManager())
     }
 }

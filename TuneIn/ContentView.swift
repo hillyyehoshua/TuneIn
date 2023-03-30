@@ -12,29 +12,30 @@ import FirebaseAuth
 struct ContentView: View {
     
     @EnvironmentObject var dataManager: DataManager
-//    @State var currUser = Auth.auth().currentUser
-//    @State var name = ""
-//    @State var username = ""
-//    @State var userID = ""
+    @State var currUserUid = Auth.auth().currentUser?.uid
+    @State var name = "Test"
+    @State var username = "Testing"
+    @State var userID = "Testing"
     
     var body: some View {
-
-//        if currUser == nil {
+        
+        
+//        if currUserUid == nil {
             NavigationView {
                 Home()
             }
 //        } else {
 //
-//            name = currUser.name
-//            username = currUser.username
-//            userID = currUser.id
 //
+//            let _ = print("There is a user logged in already with uid: \(String(describing: currUserUid))")
+////            let _ = dataManager.fetchCurrentUser
 //            NavigationView {
-//                FeedEmpty(name: $name, usernm: $username, userID: $userID)
+//                FeedEmpty()
 //            }
 //        }
 
     }
+
 }
 
 struct ContentView_Previews: PreviewProvider {

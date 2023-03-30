@@ -9,11 +9,14 @@ import SwiftUI
 
 struct Feed: View {
     
+    @EnvironmentObject var dataManager: DataManager
     @Binding var name: String
     @Binding var usernm: String
     @Binding var userID: String
-    
+//
     var body: some View {
+        
+
         ZStack{
             //App background color
             Color ("Dark Blue")
@@ -43,7 +46,7 @@ struct Feed: View {
                     
                     //TODO: Add logic of if photo then display, if not show first letter of name
                     //Add user's profile picture / image
-                    NavigationLink(destination: Settings(name: $name, usernm: $usernm, userID : $userID)){
+                    NavigationLink(destination: Settings(name: $name, usernm: $usernm, userID: $userID)){
                         ZStack {
                             Circle()
                                 .fill(Color("Blue"))
@@ -125,7 +128,7 @@ struct TodayTune: View {
 
 struct Feed_Previews: PreviewProvider {
     static var previews: some View {
-        Feed(name: .constant("John Doe"), usernm: .constant("username"), userID: .constant("UniqueID"))
+        Feed(name: .constant("john doe"), usernm: .constant("jed kdjnwdahewl"), userID: .constant("uinique1"))
     }
 }
 
