@@ -19,9 +19,11 @@ struct ContentView: View {
     
     var body: some View {
         
+        //MARK: CHANGE THE STARTING VIEW HERE TO TEST
         NavigationView {
 //            SearchTrack()
-            SongSearchListView(name: $name, userID: $userID, songs: [])
+//            SongSearchListView(name: $name, userID: $userID, songs: [])
+            Home()
         }
 //        if currUserUid == nil {
 //            NavigationView {

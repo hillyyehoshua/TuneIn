@@ -171,6 +171,7 @@ struct MyFriends: View {
 //                                }.padding()
                                 
                                 Button(action: {
+                                    dataManager.removeFriendFromUser(userId: userID, friendId: friendID)
                                     isRemoved.toggle()
                                 }) {
                                     ZStack {

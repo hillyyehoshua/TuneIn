@@ -17,6 +17,7 @@ class DataManager: ObservableObject{
        fetchSongs()
     }
     
+    //MARK: Reading data from Firestore
     func fetchUsers() {
         users.removeAll()
         let db = Firestore.firestore()
@@ -73,6 +74,145 @@ class DataManager: ObservableObject{
                     let song = Song(id: id, artist: artist, name: name, coverArt: coverArt, album: album)
                     self.songs.append(song)
                 }
+            }
+        }
+    }
+    
+    //edited with chatgpt
+    func getUserName(userID: String, completion: @escaping (String?, Error?) -> Void) {
+        let db = Firestore.firestore()
+        let userDoc = db.collection("Users").document(userID)
+        userDoc.getDocument { (document, error) in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            guard let document = document, document.exists else {
+                completion(nil, nil)
+                return
+            }
+            guard let userData = document.data(), let name = userData["name"] as? String else {
+                completion(nil, nil)
+                return
+            }
+            completion(name, nil)
+        }
+    }
+    
+    //edited with chatgpt
+    func getUserFriends(userID: String, completion: @escaping ([String]?, Error?) -> Void) {
+        
+        print("Getting friends for userID: \(userID)")
+        let db = Firestore.firestore()
+        let userDoc = db.collection("Users").document(userID)
+        userDoc.getDocument { (document, error) in
+            if let error = error {
+                print("Error getting user document: \(error.localizedDescription)")
+                completion(nil, error)
+                return
+            }
+            guard let document = document, document.exists else {
+                print("User document not found")
+                completion(nil, nil)
+                return
+            }
+            print("User document found")
+            guard let userData = document.data(), let friendIDs = userData["friends"] as? [String] else {
+                print("Error getting user data or friend IDs")
+                completion(nil, nil)
+                return
+            }
+            print("Friend IDs found: \(friendIDs)")
+            var friendNames: [String] = []
+            let group = DispatchGroup()
+            for friendID in friendIDs {
+                group.enter()
+                self.getUserName(userID: friendID) { name, error in
+                    defer {
+                        group.leave()
+                    }
+                    if let error = error {
+                        print("Error retrieving friend's name: \(error.localizedDescription)")
+                    } else if let name = name {
+                        print("Friend name found: \(name)")
+                        friendNames.append(name)
+                    } else {
+                        print("No name found for friend with ID \(friendID).")
+                    }
+                }
+            }
+            group.notify(queue: .main) {
+                print("Success getting friends")
+                completion(friendNames, nil)
+            }
+        }
+    }
+
+    //END: reading from Firestore
+
+    
+    // MARK: Writing to Firestore functions
+    func addUser(name: String, username: String, phone: String, timezone: String, friends: [String], uploadedSongs: [String], completion: @escaping (String?, Error?) -> Void) {
+        
+        guard let uid = AuthManager.shared.auth.currentUser?.uid else {
+            print("IN ADD USER FUNCTION: uid was nil")
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let ref = db.collection("Users").document(uid)
+        let timezoneString: String
+        switch Int(timezone) {
+        case 1:
+            timezoneString = "America"
+        case 2:
+            timezoneString = "Europe"
+        case 3:
+            timezoneString = "East Asia"
+        case 4:
+            timezoneString = "West Asia"
+        default:
+            timezoneString = ""
+        }
+        let data: [String: Any] = [
+            "id": uid,
+            "name": name,
+            "username": username,
+//                "id": ref.documentID,
+            "phone": phone,
+            "timezone": timezoneString,
+            "friends": friends,
+            "uploadedSongs": uploadedSongs
+        ]
+        ref.setData(data) { error in
+            if let error = error {
+                completion(nil, error)
+            } else {
+                completion(ref.documentID, nil)
+            }
+        }
+    }
+    
+    func addSongToUser(songID: String, userId: String) {
+        
+        // Print the song ID and user ID for debugging
+        print("Song ID: \(songID)")
+        print("User ID: \(userId)")
+        
+        // Create a reference to the Firestore database
+        let db = Firestore.firestore()
+        let ref = db.collection("Users").document(userId)
+        
+        // Update the user document with the song ID using the "arrayUnion" method
+        ref.updateData([
+            "uploadedSongs": FieldValue.arrayUnion([songID])
+        ]) { error in
+            // Handle any errors that occur during the update operation
+            if let error = error {
+                print("Error adding song to user: \(error.localizedDescription)")
+            } else {
+                // If there are no errors, print a success message
+                print("Song added to user successfully!")
             }
         }
     }
@@ -138,6 +278,25 @@ class DataManager: ObservableObject{
         print("Exiting addFriendtoUser")
     }
     
+    func removeFriendFromUser(userId: String, friendId: String) {
+        let db = Firestore.firestore()
+        let userDoc = db.collection("Users").document(userId)
+        
+        userDoc.updateData([
+            "friends": FieldValue.arrayRemove([friendId])
+        ]) { error in
+            if let error = error {
+                // Handle the error
+                print("Error removing friend: \(error)")
+            } else {
+                print("Friend removed successfully.")
+            }
+        }
+    }
+    //END: writing to Firestore
+
+    
+    // MARK: Helper functions
     func checkFriendship(friendId: String, userId: String, completion: @escaping (Bool) -> Void) {
         let db = Firestore.firestore()
         let userDoc = db.collection("Users").document(userId)
@@ -176,138 +335,7 @@ class DataManager: ObservableObject{
                 }
         }
     }
-
-
-    
-    
-    //edited with chatgpt
-    func getUserFriends(userID: String, completion: @escaping ([String]?, Error?) -> Void) {
-        let db = Firestore.firestore()
-        let userDoc = db.collection("Users").document(userID)
-        userDoc.getDocument { (document, error) in
-            if let error = error {
-                completion(nil, error)
-                return
-            }
-            guard let document = document, document.exists else {
-                completion(nil, nil)
-                return
-            }
-            guard let userData = document.data(), let friendIDs = userData["friends"] as? [String] else {
-                completion(nil, nil)
-                return
-            }
-            var friendNames: [String] = []
-            let group = DispatchGroup()
-            for friendID in friendIDs {
-                group.enter()
-                self.getUserName(userID: friendID) { name, error in
-                    defer {
-                        group.leave()
-                    }
-                    if let error = error {
-                        print("Error retrieving friend's name: \(error.localizedDescription)")
-                    } else if let name = name {
-                        friendNames.append(name)
-                    } else {
-                        print("No name found for friend with ID \(friendID).")
-                    }
-                }
-            }
-            group.notify(queue: .main) {
-                completion(friendNames, nil)
-            }
-        }
-    }
-
-    //edited with chatgpt
-    func getUserName(userID: String, completion: @escaping (String?, Error?) -> Void) {
-        let db = Firestore.firestore()
-        let userDoc = db.collection("Users").document(userID)
-        userDoc.getDocument { (document, error) in
-            if let error = error {
-                completion(nil, error)
-                return
-            }
-            guard let document = document, document.exists else {
-                completion(nil, nil)
-                return
-            }
-            guard let userData = document.data(), let name = userData["name"] as? String else {
-                completion(nil, nil)
-                return
-            }
-            completion(name, nil)
-        }
-    }
-
-
-        
-        
-    func addUser(name: String, username: String, phone: String, timezone: String, friends: [String], uploadedSongs: [String], completion: @escaping (String?, Error?) -> Void) {
-        
-        guard let uid = AuthManager.shared.auth.currentUser?.uid else {
-            print("IN ADD USER FUNCTION: uid was nil")
-            return
-        }
-        
-        let db = Firestore.firestore()
-        let ref = db.collection("Users").document(uid)
-        let timezoneString: String
-        switch Int(timezone) {
-        case 1:
-            timezoneString = "America"
-        case 2:
-            timezoneString = "Europe"
-        case 3:
-            timezoneString = "East Asia"
-        case 4:
-            timezoneString = "West Asia"
-        default:
-            timezoneString = ""
-        }
-        let data: [String: Any] = [
-            "id": uid,
-            "name": name,
-            "username": username,
-//                "id": ref.documentID,
-            "phone": phone,
-            "timezone": timezoneString,
-            "friends": friends,
-            "uploadedSongs": uploadedSongs
-        ]
-        ref.setData(data) { error in
-            if let error = error {
-                completion(nil, error)
-            } else {
-                completion(ref.documentID, nil)
-            }
-        }
-    }
-    
-    func addSongToUser(songID: String, userId: String) {
-        
-        // Print the song ID and user ID for debugging
-        print("Song ID: \(songID)")
-        print("User ID: \(userId)")
-        
-        // Create a reference to the Firestore database
-        let db = Firestore.firestore()
-        let ref = db.collection("Users").document(userId)
-        
-        // Update the user document with the song ID using the "arrayUnion" method
-        ref.updateData([
-            "uploadedSongs": FieldValue.arrayUnion([songID])
-        ]) { error in
-            // Handle any errors that occur during the update operation
-            if let error = error {
-                print("Error adding song to user: \(error.localizedDescription)")
-            } else {
-                // If there are no errors, print a success message
-                print("Song added to user successfully!")
-            }
-        }
-    }
+    // END: Helper functions
 
 }
 
