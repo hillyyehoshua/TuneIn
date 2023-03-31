@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UploadSongView: View {
-    
+
     @EnvironmentObject var dataManager: DataManager
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Binding var name: String
@@ -17,7 +17,7 @@ struct UploadSongView: View {
     @State private var songTitle = ""
     @State private var artistName = ""
     @Binding var userID: String
-    
+
     var btnBack : some View { Button(action: {
         self.presentationMode.wrappedValue.dismiss()
         }) {
@@ -28,21 +28,21 @@ struct UploadSongView: View {
             }
         }
     }
-    
+
     var body: some View {
-        
+
         ZStack {
             Color("Dark Blue")
                 .edgesIgnoringSafeArea(.all)
-            
+
             VStack {
-                
+
 //                ForEach(dataManager.songs, id: \.id) { song in
 //                    Text(song.song_name)
 //                }
-                
+
                 ZStack {
-                    
+
                     HStack {
                         Text("Upload Song")
                             .frame(alignment: .center)
@@ -50,7 +50,7 @@ struct UploadSongView: View {
                             .font(.custom("Poppins-SemiBold", size: 30))
                     }
                 }
-                
+
                 NavigationView {
                     Form {
                         Section(header: Text("Song Title")
@@ -59,7 +59,7 @@ struct UploadSongView: View {
                             TextField("Enter song title", text: $songTitle)
                                 .font(.custom("Poppins", size: 16))
                                 .background(Color.white.opacity(0.5))
-                                
+
                         }
                         .textCase(nil)
 
@@ -81,13 +81,13 @@ struct UploadSongView: View {
                 }
 
 
-                
+
                 Spacer()
-                
+
                 HStack{
                     Button(action: {
                                 self.songUploaded = true
-                        dataManager.addSong(artist: artistName, song_name: songTitle)
+//                        dataManager.addSong(song: <#Song#>, artist: artistName, song_name: songTitle)
                             }) {
                                 Text(songUploaded ? "Song Uploaded" : "Upload song")
                                     .foregroundColor(.white)
@@ -98,7 +98,7 @@ struct UploadSongView: View {
                                     .frame(width: 230, height: 50)
                                     .background(RoundedRectangle(cornerRadius: 30).fill(songUploaded ? Color.green : Color.blue).shadow(radius: 3))
                             }
-                    
+
 //                    Text("Upload song")
 //                        .foregroundColor(.white)
 //                        .font(.custom("Poppins-Regular", size: 16))

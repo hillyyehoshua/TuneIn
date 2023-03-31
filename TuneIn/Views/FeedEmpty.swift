@@ -93,7 +93,8 @@ struct Empty: View {
     
     var body: some View {
         VStack (spacing: 1){
-            NavigationLink(destination: UploadSongView(name: $name, usernm: $usernm, userID: $userID)){
+            // WAS: NavigationLink(destination: UploadSongView(name: $name, usernm: $usernm, userID: $userID)){
+            NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
                 Image("plus")
                     .resizable()
                     .frame(width: 172, height: 172)

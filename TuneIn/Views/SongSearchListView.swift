@@ -4,13 +4,17 @@ import SwiftUI
 
 struct SongSearchListView: View {
     
+    @Binding private var name: String
+    @Binding private var userID: String
     @State private var searchText: String = ""
     @State private var songs: [Song]
     @State private var selectedSong: Song?
     @State private var isSearchBarHidden = false
     @Environment(\.presentationMode) var presentationMode
 
-    init(songs: [Song]) {
+    init(name: Binding<String>, userID: Binding<String>, songs: [Song]) {
+        self._name = name
+        self._userID = userID
         self._songs = State(initialValue: songs)
     }
     
@@ -36,7 +40,7 @@ struct SongSearchListView: View {
             if !songs.isEmpty {
                 NavigationStack {
                     List(songs, id: \.self, selection: $selectedSong) { song in
-                        NavigationLink(destination: ConfirmSongUpload(isSearchBarHidden: $isSearchBarHidden, selectedSong: song)) {
+                        NavigationLink(destination: ConfirmSongUpload(isSearchBarHidden: $isSearchBarHidden, name: $name, userID: $userID, selectedSong: song)) {
                             HStack {
                                 // Display cover art
                                 AsyncImage(url: URL(string: song.coverArt)) { phase in
@@ -89,6 +93,6 @@ struct SongSearchListView: View {
 
 struct SongSearchListView_Previews: PreviewProvider {
     static var previews: some View {
-        SongSearchListView(songs: [Song(id: "uniqueid", artist: "taylor swift", name: "this is me trying", coverArt: "https://i.scdn.co/image/ab67616d00001e02a9c080fdc40e78a4b81e0520", album: "folklore")])
+        SongSearchListView(name: .constant("Joe"), userID: .constant("UNQIUEID"), songs: [Song(id: "uniqueid", artist: "taylor swift", name: "this is me trying", coverArt: "https://i.scdn.co/image/ab67616d00001e02a9c080fdc40e78a4b81e0520", album: "folklore")])
     }
 }

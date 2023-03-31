@@ -39,7 +39,7 @@ struct SearchTrack: View {
             .padding(.vertical)
             
             if !songs.isEmpty {
-                SongSearchListView(songs: songs)
+                SongSearchListView(name: .constant("test"), userID: .constant("test"), songs: songs)
                     .onDisappear {
                         self.presentationMode.wrappedValue.dismiss()
                     }

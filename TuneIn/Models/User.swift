@@ -7,15 +7,12 @@
 
 import SwiftUI
 
-struct User: Codable{
-    var _id: String = ""
+struct User: Identifiable{
+    var id: String = ""
     var name : String = ""
     var username: String = ""
     var phone: String = ""
     var timezone: String = ""
     var friends: [String] = []
-}
-
-extension User: Identifiable {
-    var id: String { _id }
+    var uploadedSongs: [String] = []
 }

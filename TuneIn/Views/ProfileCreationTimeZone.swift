@@ -131,7 +131,8 @@ struct ProfileCreationTimeZone: View {
             }
         }.onDisappear {
             let friends: [String] = []
-            dataManager.addUser(name: name, username: usernm, phone: phoneNumber, timezone: String(selection), friends: friends) { userID, error in
+            let uploadedSongs: [String] = []
+            dataManager.addUser(name: name, username: usernm, phone: phoneNumber, timezone: String(selection), friends: friends, uploadedSongs: uploadedSongs) { userID, error in
                 if let userID = userID {
                     // Do something with the created user ID
                     print("Created user ID: \(userID)")

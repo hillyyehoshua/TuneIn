@@ -32,15 +32,16 @@ class DataManager: ObservableObject{
                 for document in snapshot.documents{
                     let data = document.data()
                     //                    print (data)
-                    let id = data["_id"] as? String ?? ""
+                    let id = data["id"] as? String ?? ""
                     let name = data["name"] as? String ?? ""
                     let username = data["username"] as? String ?? ""
                     let phone = data["phone"] as? String ?? ""
                     let timezone = data["timezone"] as? String ?? ""
                     let friends = data["friends"] as? [String] ?? [""]
+                    let uploadedSongs = data["uploadedSongs"] as? [String] ?? [""]
+
                     
-                    
-                    let user = User(_id: id, name: name, username: username, phone: phone, timezone: timezone, friends: friends)
+                    let user = User(id: id, name: name, username: username, phone: phone, timezone: timezone, friends: friends, uploadedSongs: uploadedSongs)
                     self.users.append(user)
                 }
             }
@@ -64,11 +65,12 @@ class DataManager: ObservableObject{
                     let data = document.data()
                     //                    print (data)
                     let id = data["id"] as? String ?? ""
-                    let song_name = data["song_name"] as? String ?? ""
+                    let name = data["name"] as? String ?? ""
                     let artist = data["artist"] as? String ?? ""
+                    let coverArt = data["coverArt"] as? String ?? ""
+                    let album = data["album"] as? String ?? ""
                     
-                    
-                    let song = Song(id: id, artist: artist, name: song_name, coverArt: "https://i.scdn.co/image/ab67616d00001e02a9c080fdc40e78a4b81e0520", album: "folklore")
+                    let song = Song(id: id, artist: artist, name: name, coverArt: coverArt, album: album)
                     self.songs.append(song)
                 }
             }
@@ -76,26 +78,36 @@ class DataManager: ObservableObject{
     }
 
     
-    func addSong(artist: String, song_name: String) {
-        let db = Firestore.firestore()
-        let docId = UUID().uuidString // create a UUID for the document ID
-        let ref = db.collection("Songs").document(docId)
+    func addSong(song: Song, completion: @escaping (Result<String, Error>) -> Void) {
         
+        print("Song beging added to firestore: \(song)")
+        
+        let db = Firestore.firestore()
+        let id = UUID().uuidString
+        let ref = db.collection("Songs").document(id)
+        
+        // Create a dictionary that represents the song data
         let data: [String: Any] = [
-            "id": docId,
-            "artist": artist,
-            "song_name": song_name
+            "id": id,
+            "artist": song.artist,
+            "name": song.name,
+            "coverArt": song.coverArt,
+            "album": song.album
         ]
         
+        // Create a new document with the song data
         ref.setData(data) { error in
             if let error = error {
-                print("Error adding song: \(error.localizedDescription)")
+                print("Error adding song")
+                completion(.failure(error))
             } else {
                 print("Song added successfully!")
+                completion(.success(id))
             }
         }
     }
-    
+
+
     func addFriendToUser(userId: String, friendId: String) {
         
         print ("This is user.id: (friends) \(friendId)")
@@ -232,7 +244,7 @@ class DataManager: ObservableObject{
 
         
         
-    func addUser(name: String, username: String, phone: String, timezone: String, friends: [String], completion: @escaping (String?, Error?) -> Void) {
+    func addUser(name: String, username: String, phone: String, timezone: String, friends: [String], uploadedSongs: [String], completion: @escaping (String?, Error?) -> Void) {
         
         guard let uid = AuthManager.shared.auth.currentUser?.uid else {
             print("IN ADD USER FUNCTION: uid was nil")
@@ -255,13 +267,14 @@ class DataManager: ObservableObject{
             timezoneString = ""
         }
         let data: [String: Any] = [
-            "_id": uid,
+            "id": uid,
             "name": name,
             "username": username,
 //                "id": ref.documentID,
             "phone": phone,
             "timezone": timezoneString,
-            "friends": friends
+            "friends": friends,
+            "uploadedSongs": uploadedSongs
         ]
         ref.setData(data) { error in
             if let error = error {
@@ -271,5 +284,30 @@ class DataManager: ObservableObject{
             }
         }
     }
+    
+    func addSongToUser(songID: String, userId: String) {
+        
+        // Print the song ID and user ID for debugging
+        print("Song ID: \(songID)")
+        print("User ID: \(userId)")
+        
+        // Create a reference to the Firestore database
+        let db = Firestore.firestore()
+        let ref = db.collection("Users").document(userId)
+        
+        // Update the user document with the song ID using the "arrayUnion" method
+        ref.updateData([
+            "uploadedSongs": FieldValue.arrayUnion([songID])
+        ]) { error in
+            // Handle any errors that occur during the update operation
+            if let error = error {
+                print("Error adding song to user: \(error.localizedDescription)")
+            } else {
+                // If there are no errors, print a success message
+                print("Song added to user successfully!")
+            }
+        }
+    }
+
 }
 

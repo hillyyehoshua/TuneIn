@@ -25,7 +25,7 @@ struct NewUserView: View {
             Button {
 //                dataManager.addUser(name: newUser, username: newUserName, phone: newPhone, timezone: newTimeZone, friends: [])
                 
-                dataManager.addUser(name: newUser, username: newUserName, phone: newPhone, timezone: newTimeZone, friends: []) { userID, error in
+                dataManager.addUser(name: newUser, username: newUserName, phone: newPhone, timezone: newTimeZone, friends: [], uploadedSongs: []) { userID, error in
                     if let userID = userID {
                         // Do something with the created user ID
                         print("Created user ID: \(userID)")

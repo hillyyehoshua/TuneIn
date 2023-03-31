@@ -212,7 +212,7 @@ struct FindFriends: View {
                 
                 //TODO: There is a bug here where the if the database of users are empty, it crashes
                 ScrollView {
-                    ForEach(dataManager.users, id: \._id) { user in
+                    ForEach(dataManager.users, id: \.id) { user in
                         // start friend card
                         HStack {
                             // start profile pic
@@ -252,14 +252,14 @@ struct FindFriends: View {
                                     .frame(width: 60, height: 30)
                                 
                                 Button(action: {
-                                    if let isAdded = isAddedDict[user._id] {
-                                        isAddedDict[user._id] = !isAdded
+                                    if let isAdded = isAddedDict[user.id] {
+                                        isAddedDict[user.id] = !isAdded
                                     } else {
-                                        isAddedDict[user._id] = true
+                                        isAddedDict[user.id] = true
                                     }
-                                    dataManager.addFriendToUser(userId: userID, friendId: user._id)
+                                    dataManager.addFriendToUser(userId: userID, friendId: user.id)
                                 }) {
-                                    if let isAdded = isAddedDict[user._id], isAdded {
+                                    if let isAdded = isAddedDict[user.id], isAdded {
                                         Text("Added")
                                             .foregroundColor(.white)
                                             .font(.custom("Poppins-SemiBold", size: 14))

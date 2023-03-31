@@ -13,15 +13,15 @@ struct ContentView: View {
     
     @EnvironmentObject var dataManager: DataManager
     @State var currUserUid = Auth.auth().currentUser?.uid
-    @State var name = "Test"
-    @State var username = "Testing"
-    @State var userID = "Testing"
+    @State var name = "Hello"
+    @State var username = "Hello"
+    @State var userID = "If9Qxz96WRNePQHhUhcThUvZkyj2"
     
     var body: some View {
         
         NavigationView {
 //            SearchTrack()
-            SongSearchListView(songs: [])
+            SongSearchListView(name: $name, userID: $userID, songs: [])
         }
 //        if currUserUid == nil {
 //            NavigationView {
