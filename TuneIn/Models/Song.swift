@@ -7,9 +7,15 @@
 
 import SwiftUI
 
-struct Song: Identifiable{
+struct Song: Codable, Identifiable, Hashable{
     var id: String
     var artist: String
-    var song_name: String
+    var name: String
+    var coverArt: String
+    var album: String
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
 

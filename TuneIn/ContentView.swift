@@ -19,11 +19,14 @@ struct ContentView: View {
     
     var body: some View {
         
-        
+        NavigationView {
+//            SearchTrack()
+            SongSearchListView(songs: [])
+        }
 //        if currUserUid == nil {
-            NavigationView {
-                Home()
-            }
+//            NavigationView {
+//                Home()
+//            }
 //        } else {
 //
 //

@@ -80,6 +80,12 @@
 		7DE0566329C50EC8000CE81E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE0566229C50EC8000CE81E /* DataManager.swift */; };
 		7DE0566729C57347000CE81E /* listView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE0566629C57347000CE81E /* listView.swift */; };
 		7DE0566929C5766A000CE81E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DE0566829C5766A000CE81E /* GoogleService-Info.plist */; };
+		B40B24F329D6458F00780C7A /* SpotifyAPI in Frameworks */ = {isa = PBXBuildFile; productRef = B40B24F229D6458F00780C7A /* SpotifyAPI */; };
+		B40B24FD29D65A3200780C7A /* TrackVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B24FC29D65A3200780C7A /* TrackVM.swift */; };
+		B40B250129D65C4F00780C7A /* SearchTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B250029D65C4F00780C7A /* SearchTrack.swift */; };
+		B40B250329D65FD600780C7A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B250229D65FD600780C7A /* Response.swift */; };
+		B40B250729D6669F00780C7A /* SongSearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B250629D6669F00780C7A /* SongSearchListView.swift */; };
+		B40B250929D66C5D00780C7A /* ConfirmSongUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B250829D66C5D00780C7A /* ConfirmSongUpload.swift */; };
 		B468500429A427F700ED1FF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500329A427F700ED1FF3 /* AppDelegate.swift */; };
 		B468500629A4281900ED1FF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500529A4281900ED1FF3 /* ViewController.swift */; };
 		B468500A29A42D9000ED1FF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500929A42D9000ED1FF3 /* SceneDelegate.swift */; };
@@ -175,6 +181,11 @@
 		7DE0566229C50EC8000CE81E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		7DE0566629C57347000CE81E /* listView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listView.swift; sourceTree = "<group>"; };
 		7DE0566829C5766A000CE81E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B40B24FC29D65A3200780C7A /* TrackVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackVM.swift; sourceTree = "<group>"; };
+		B40B250029D65C4F00780C7A /* SearchTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTrack.swift; sourceTree = "<group>"; };
+		B40B250229D65FD600780C7A /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		B40B250629D6669F00780C7A /* SongSearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearchListView.swift; sourceTree = "<group>"; };
+		B40B250829D66C5D00780C7A /* ConfirmSongUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmSongUpload.swift; sourceTree = "<group>"; };
 		B468500329A427F700ED1FF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B468500529A4281900ED1FF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B468500929A42D9000ED1FF3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -218,6 +229,7 @@
 				7DBE2912297F348800A6DB06 /* FirebaseRemoteConfig in Frameworks */,
 				7DBE28EE297F348800A6DB06 /* FirebaseAppDistribution-Beta in Frameworks */,
 				7DBE28F2297F348800A6DB06 /* FirebaseAuthCombine-Community in Frameworks */,
+				B40B24F329D6458F00780C7A /* SpotifyAPI in Frameworks */,
 				7DBE2910297F348800A6DB06 /* FirebasePerformance in Frameworks */,
 				7DBE2908297F348800A6DB06 /* FirebaseInAppMessagingSwift-Beta in Frameworks */,
 				7DBE2916297F348800A6DB06 /* FirebaseStorage in Frameworks */,
@@ -275,6 +287,7 @@
 				B468500329A427F700ED1FF3 /* AppDelegate.swift */,
 				B478FCBB29C92D0400F76B3E /* AuthManager.swift */,
 				B468500929A42D9000ED1FF3 /* SceneDelegate.swift */,
+				B40B24FC29D65A3200780C7A /* TrackVM.swift */,
 				7DBE28B5297F30BF00A6DB06 /* ContentView.swift */,
 				B468500529A4281900ED1FF3 /* ViewController.swift */,
 				7DC31D37298B1B8100BC43CA /* Views */,
@@ -319,6 +332,7 @@
 			children = (
 				7DD6727529C8D1CA0072809D /* User.swift */,
 				7D2B562229CA4E44004B2920 /* Song.swift */,
+				B40B250229D65FD600780C7A /* Response.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -362,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				7DBE28B3297F30BF00A6DB06 /* TuneInApp.swift */,
+				B40B250029D65C4F00780C7A /* SearchTrack.swift */,
 				7DBE2943297F4F8600A6DB06 /* Settings.swift */,
 				7D2B562429CB9707004B2920 /* MyFriends.swift */,
 				B4F05CD3298B5AF800977951 /* Notifications.swift */,
@@ -382,6 +397,8 @@
 				7DBE2945297F50E100A6DB06 /* FindFriends.swift */,
 				7D242A4A2989F0E200B77902 /* SongCard.swift */,
 				7DA10BCF299EF65000BCDB4F /* Styles.swift */,
+				B40B250629D6669F00780C7A /* SongSearchListView.swift */,
+				B40B250829D66C5D00780C7A /* ConfirmSongUpload.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -448,6 +465,7 @@
 				7DBE2915297F348800A6DB06 /* FirebaseStorage */,
 				7DBE2917297F348800A6DB06 /* FirebaseStorageCombine-Community */,
 				B478FCC429CB709B00F76B3E /* iPhoneNumberField */,
+				B40B24F229D6458F00780C7A /* SpotifyAPI */,
 			);
 			productName = TuneIn;
 			productReference = 7DBE28B0297F30BF00A6DB06 /* TuneIn.app */;
@@ -525,6 +543,7 @@
 			packageReferences = (
 				7DBE28E2297F348800A6DB06 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				B478FCC329CB709A00F76B3E /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
+				B40B24F129D6458F00780C7A /* XCRemoteSwiftPackageReference "SpotifyAPI" */,
 			);
 			productRefGroup = 7DBE28B1297F30BF00A6DB06 /* Products */;
 			projectDirPath = "";
@@ -591,13 +610,16 @@
 				B478FCBE29CA0E5000F76B3E /* ProfileCreationPhoneAuth.swift in Sources */,
 				B468500629A4281900ED1FF3 /* ViewController.swift in Sources */,
 				7D242A4D2989FD0F00B77902 /* Feed.swift in Sources */,
+				B40B250729D6669F00780C7A /* SongSearchListView.swift in Sources */,
 				B478FCBC29C92D0400F76B3E /* AuthManager.swift in Sources */,
 				7DD6727629C8D1CA0072809D /* User.swift in Sources */,
 				7DBE28B6297F30BF00A6DB06 /* ContentView.swift in Sources */,
+				B40B250929D66C5D00780C7A /* ConfirmSongUpload.swift in Sources */,
 				7DC31D3B298B1C7300BC43CA /* ProfileCreationName.swift in Sources */,
 				7DE0566329C50EC8000CE81E /* DataManager.swift in Sources */,
 				7DBE291A297F3ABF00A6DB06 /* Home.swift in Sources */,
 				7DD6727029C7BDD40072809D /* NewUserView.swift in Sources */,
+				B40B24FD29D65A3200780C7A /* TrackVM.swift in Sources */,
 				7DE0566729C57347000CE81E /* listView.swift in Sources */,
 				7DA10BCC299ECD3900BCDB4F /* ProfileCreationTimeZone.swift in Sources */,
 				B4F05CD4298B5AF800977951 /* Notifications.swift in Sources */,
@@ -606,12 +628,14 @@
 				B478FCC229CB65E000F76B3E /* LogInPhoneAuth.swift in Sources */,
 				7DC31D39298B1C5E00BC43CA /* ProfileCreationBday.swift in Sources */,
 				7D242A4B2989F0E200B77902 /* SongCard.swift in Sources */,
+				B40B250329D65FD600780C7A /* Response.swift in Sources */,
 				7DC31D3D298B1C7800BC43CA /* ProfileCreationNumber.swift in Sources */,
 				B468500429A427F700ED1FF3 /* AppDelegate.swift in Sources */,
 				7DA10BD0299EF65000BCDB4F /* Styles.swift in Sources */,
 				7D2B562529CB9707004B2920 /* MyFriends.swift in Sources */,
 				B468500A29A42D9000ED1FF3 /* SceneDelegate.swift in Sources */,
 				B478FCC029CB647500F76B3E /* LogInNumber.swift in Sources */,
+				B40B250129D65C4F00780C7A /* SearchTrack.swift in Sources */,
 				B4F05CD6298B5F0400977951 /* MyProfile.swift in Sources */,
 				7DD6727429C7D5B90072809D /* ProfileCreationUserNM.swift in Sources */,
 				7DA10BCE299ED5EB00BCDB4F /* FeedEmpty.swift in Sources */,
@@ -797,6 +821,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "Hilly-Yehoshua.TuneIn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -836,6 +861,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "Hilly-Yehoshua.TuneIn";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -969,6 +995,14 @@
 			requirement = {
 				branch = master;
 				kind = branch;
+			};
+		};
+		B40B24F129D6458F00780C7A /* XCRemoteSwiftPackageReference "SpotifyAPI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Peter-Schorn/SpotifyAPI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
 			};
 		};
 		B478FCC329CB709A00F76B3E /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
@@ -1116,6 +1150,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7DBE28E2297F348800A6DB06 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		B40B24F229D6458F00780C7A /* SpotifyAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B40B24F129D6458F00780C7A /* XCRemoteSwiftPackageReference "SpotifyAPI" */;
+			productName = SpotifyAPI;
 		};
 		B478FCC429CB709B00F76B3E /* iPhoneNumberField */ = {
 			isa = XCSwiftPackageProductDependency;

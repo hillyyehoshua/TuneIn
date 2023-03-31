@@ -68,8 +68,7 @@ class DataManager: ObservableObject{
                     let artist = data["artist"] as? String ?? ""
                     
                     
-                    
-                    let song = Song(id: id, artist: artist, song_name: song_name)
+                    let song = Song(id: id, artist: artist, name: song_name, coverArt: "https://i.scdn.co/image/ab67616d00001e02a9c080fdc40e78a4b81e0520", album: "folklore")
                     self.songs.append(song)
                 }
             }
