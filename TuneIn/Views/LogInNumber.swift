@@ -137,7 +137,7 @@ struct LogInNumber: View {
                 }
                 else{
                     let _ = print ("getting into the else in LogInNumber")
-                    NavigationLink(destination: LogInPhoneAuth(), isActive: $verificationComplete) {
+                    //NavigationLink(destination: LogInPhoneAuth(phoneNumber), isActive: $verificationComplete) {
                         VStack {
                             Button(
                                 "Next",
@@ -161,7 +161,7 @@ struct LogInNumber: View {
                             .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
                             
                         }
-                    }
+                    //}
                 }
             }
         }

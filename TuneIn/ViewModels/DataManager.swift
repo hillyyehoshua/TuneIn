@@ -240,9 +240,13 @@ class DataManager: ObservableObject{
             completion(name, nil)
         }
     }
+    
+    /*returns an array of tuples containing the song and the user's name for every friend in the user's database.*/
+    
 
+    
 
-        
+  
         
     func addUser(name: String, username: String, phone: String, timezone: String, friends: [String], uploadedSongs: [String], completion: @escaping (String?, Error?) -> Void) {
         

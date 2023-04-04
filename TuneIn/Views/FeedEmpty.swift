@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import Firebase
 struct FeedEmpty: View {
     
     @EnvironmentObject var dataManager: DataManager
@@ -64,6 +64,7 @@ struct FeedEmpty: View {
                 
                 //Scroll and see all of peoples' posts
                 ScrollView {
+                   
                     
                     Empty(name: $name, usernm: $usernm, userID: $userID)
                     
@@ -101,7 +102,7 @@ struct Empty: View {
             }
             
             
-            NavigationLink(destination: Feed(name: $name, usernm: $usernm, userID: $userID)){
+            NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
                 Text("Add Monday's Song")
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
@@ -113,6 +114,7 @@ struct Empty: View {
             
             Spacer()
                 .frame(height: 100)
+
             NavigationLink(destination: FindFriends(name: $name, usernm: $usernm, userID: $userID)){
                 HStack{
                     Text("Find Friends")

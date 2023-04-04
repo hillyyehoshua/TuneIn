@@ -1,5 +1,3 @@
-
-
 import SwiftUI
 
 struct SongSearchListView: View {
@@ -11,88 +9,102 @@ struct SongSearchListView: View {
     @State private var selectedSong: Song?
     @State private var isSearchBarHidden = false
     @Environment(\.presentationMode) var presentationMode
-
+    
+    
     init(name: Binding<String>, userID: Binding<String>, songs: [Song]) {
         self._name = name
         self._userID = userID
         self._songs = State(initialValue: songs)
+        
     }
     
+    
+    func getCurrentDayOfWeek() -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        return formatter.string(from: date)
+    }
     var body: some View {
-        
-        VStack {
-            
-            TextField("Enter search query", text: $searchText)
-                .padding(.horizontal)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            Button(action: {
-                searchTracks(query: searchText) { songs in
-                    // Use the songs array returned by the completion closure here
-                    self.songs = songs
-                    print(songs)
+        ZStack {
+            Color("Dark Blue")
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                HStack (alignment: .top, spacing: 0) {
+                    TextField("Search", text: $searchText)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.horizontal)
+                    
+                    Button(action: {
+                        searchTracks(query: searchText) { songs in
+                            self.songs = songs
+                            print(songs)
+                        }
+                    }, label: {
+                        Text("Search")
+                    })
+                    
+                    .padding(.vertical)
                 }
-            }, label: {
-                Text("Search")
-            })
-            .padding(.vertical)
-            
-            if !songs.isEmpty {
-                NavigationStack {
-                    List(songs, id: \.self, selection: $selectedSong) { song in
-                        NavigationLink(destination: ConfirmSongUpload(isSearchBarHidden: $isSearchBarHidden, name: $name, userID: $userID, selectedSong: song)) {
-                            HStack {
-                                // Display cover art
-                                AsyncImage(url: URL(string: song.coverArt)) { phase in
-                                    switch phase {
-                                    case .empty:
-                                        ProgressView()
-                                    case .success(let image):
-                                        image
-                                            .resizable()
-                                            .scaledToFit()
-                                    case .failure:
-                                        Image(systemName: "xmark.circle")
-                                    @unknown default:
-                                        EmptyView()
+                
+                if !songs.isEmpty {
+                    NavigationStack {
+                        //isSearchBarHidden = true
+                        List(songs, id: \.self, selection: $selectedSong) { song in
+                            
+                            NavigationLink(destination: ConfirmSongUpload( name: $name, userID: $userID, selectedSong: song)) {
+                                HStack {
+                                    // Display cover art
+                                    AsyncImage(url: URL(string: song.coverArt)) { phase in
+                                        switch phase {
+                                        case .empty:
+                                            ProgressView()
+                                        case .success(let image):
+                                            image
+                                                .resizable()
+                                                .scaledToFit()
+                                        case .failure:
+                                            Image(systemName: "xmark.circle")
+                                        @unknown default:
+                                            EmptyView()
+                                        }
+                                    }
+                                    .frame(width: 50, height: 50)
+                                    
+                                    // Display song name, artist, and album
+                                    VStack(alignment: .leading) {
+                                        Text(song.name)
+                                            .font(.headline)
+                                        Text("\(song.artist) - \(song.album)")
+                                            .font(.subheadline)
+                                            .foregroundColor(.gray)
                                     }
                                 }
-                                .frame(width: 50, height: 50)
-                                
-                                // Display song name, artist, and album
-                                VStack(alignment: .leading) {
-                                    Text(song.name)
-                                        .font(.headline)
-                                    Text("\(song.artist) - \(song.album)")
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
+                                .tag(song)
+                                .onTapGesture {
+                                    // Dismiss the root view when a song is selected
+                                    self.selectedSong = song
                                 }
                             }
-                            .tag(song)
-                            .onTapGesture {
-                                // Dismiss the root view when a song is selected
-                                self.selectedSong = song
-                            }
                         }
-
+                        .listStyle(PlainListStyle())
+                        .background(Color.clear)
                     }
-                    .navigationTitle("Song Search")
+                    .navigationViewStyle(StackNavigationViewStyle())
                 }
-                .navigationViewStyle(StackNavigationViewStyle())
             }
-        }
+        }.onAppear {
+                        // Call searchTracks with the current day of the week
+                        searchTracks(query: getCurrentDayOfWeek()) { songs in
+                            self.songs = songs
+                            print(songs)
+                        }
+                    }
         .onDisappear {
             if selectedSong != nil {
                 // Dismiss the whole view when selectedSong is not nil
                 presentationMode.wrappedValue.dismiss()
             }
         }
-    }
-}
-
-
-struct SongSearchListView_Previews: PreviewProvider {
-    static var previews: some View {
-        SongSearchListView(name: .constant("Joe"), userID: .constant("UNQIUEID"), songs: [Song(id: "uniqueid", artist: "taylor swift", name: "this is me trying", coverArt: "https://i.scdn.co/image/ab67616d00001e02a9c080fdc40e78a4b81e0520", album: "folklore")])
     }
 }
