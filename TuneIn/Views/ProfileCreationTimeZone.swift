@@ -104,7 +104,7 @@ struct ProfileCreationTimeZone: View {
                 Spacer()
                 
                 if selection != 0 {
-                    NavigationLink(destination: FeedEmpty(name: $name, usernm: $usernm, userID: $userID)){
+                    NavigationLink(destination: FeedEmpty(name: name, usernm: usernm, userID: userID)){
                         HStack{
                             Text("Next")
                                 .foregroundColor(.white)

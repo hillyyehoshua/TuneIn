@@ -20,24 +20,23 @@ struct ContentView: View {
     var body: some View {
         
         //MARK: CHANGE THE STARTING VIEW HERE TO TEST
-        NavigationView {
-//            SearchTrack()
-//            SongSearchListView(name: $name, userID: $userID, songs: [])
-            Home()
-        }
-//        if currUserUid == nil {
-//            NavigationView {
-//                Home()
-//            }
-//        } else {
-//
-//
-//            let _ = print("There is a user logged in already with uid: \(String(describing: currUserUid))")
-////            let _ = dataManager.fetchCurrentUser
-//            NavigationView {
-//                FeedEmpty()
-//            }
+//        NavigationView {
+////            SearchTrack()
+////            SongSearchListView(name: $name, userID: $userID, songs: [])
+//            Home()
 //        }
+        if currUserUid == nil {
+            NavigationView {
+                Home()
+            }
+        } else {
+
+            let _ = print("There is a user logged in already with uid: \(String(describing: currUserUid))")
+//            let _ = dataManager.fetchCurrentUser
+            NavigationView {
+                FeedEmpty()
+            }
+        }
 
     }
 

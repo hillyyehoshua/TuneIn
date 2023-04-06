@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import Combine
 
 @main
 struct TuneInApp: App {
