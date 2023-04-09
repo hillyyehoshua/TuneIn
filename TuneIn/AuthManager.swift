@@ -6,6 +6,7 @@
 //
 
 
+import Firebase
 import FirebaseAuth
 import Foundation
 
@@ -28,56 +29,56 @@ class AuthManager {
         authStateDidChangeHandle = auth.addStateDidChangeListener { auth, user in
             if let user = user {
                 // User is signed in, you can update your UI or do other tasks
-                print("User is signed in with uid: \(user.uid)")
+                print("[DEBUG] User is signed in with uid: \(user.uid)")
             } else {
                 // User is signed out
-                print("User is signed out")
+                print("[DEBUG] User is signed out")
             }
         }
     }
     
     public func startAuth(phoneNumber: String, completion: @escaping (Bool) -> Void) {
         
-        print("beginning of auth function")
+        print("[DEBUG] beginning of auth function")
         
         auth.settings?.isAppVerificationDisabledForTesting = true
             
-        print("startAuth called with phoneNumber: \(phoneNumber)")
+        print("[DEBUG] startAuth called with phoneNumber: \(phoneNumber)")
         
         let provider = PhoneAuthProvider.provider()
         print(provider)
-        print("Provider() called")
+        print("[DEBUG] Provider() called")
         
         provider.verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
             
-            print("PhoneAuthProvider.provider().verifyPhoneNumber closure called")
+            print("[DEBUG] PhoneAuthProvider.provider().verifyPhoneNumber closure called")
 
             if let error = error {
-            print("Error with phone verification in startAuth: \(error.localizedDescription)")
+            print("[DEBUG] Error with phone verification in startAuth: \(error.localizedDescription)")
             completion(false)
             return
             }
             
             if verificationID == nil {
-                print("Verification ID is still nil")
+                print("[DEBUG] Verification ID is still nil")
                 completion(false)
                 return
             }
 //
 //
 //            guard let verificationID = verificationID else {
-//                print("Error with phone verification in startAuth: verification ID is nil")
+//                print("[DEBUG] Error with phone verification in startAuth: verification ID is nil")
 //                completion(false)
 //                return
 //            }
             
             self.verificationID = verificationID
-            print("Success with phone verification in startAuth. Verification ID: \(String(describing: verificationID))")
+            print("[DEBUG] Success with phone verification in startAuth. Verification ID: \(String(describing: verificationID))")
             completion(true)
             
         }
         
-        print("PhoneAuthProvider.provider().verifyPhoneNumber called with phoneNumber: \(phoneNumber)")
+        print("[DEBUG] PhoneAuthProvider.provider().verifyPhoneNumber called with phoneNumber: \(phoneNumber)")
     }
     
     
@@ -85,10 +86,10 @@ class AuthManager {
     
     public func verifyCode(smsCode: String, completion: @escaping (Bool) -> Void) {
         
-        print("The SMS code: \(smsCode)")
+        print("[DEBUG] The SMS code: \(smsCode)")
         
         guard let verificationID = verificationID else {
-            print("VerificationID was nil")
+            print("[DEBUG] VerificationID was nil")
             completion(false)
             return
         }
@@ -99,21 +100,69 @@ class AuthManager {
         
         auth.signIn(with: credential) { result, error in
             guard result != nil, error == nil else {
-                print("Sign in was unsuccessful")
+                print("[DEBUG] Sign in was unsuccessful")
                 completion(false)
                 return
             }
-            print("Sign in successful")
+            print("[DEBUG] Sign in successful")
             completion(true)
         }
     }
     
+    func linkPhoneNumberAuthWithOriginalUid(completion: @escaping (Error?) -> Void) {
+        guard let user = Auth.auth().currentUser else {
+            completion(NSError(domain: "User is not logged in", code: 401))
+            return
+        }
+
+        let newUid = user.uid
+        guard let phoneNumber = user.phoneNumber else {
+            completion(NSError(domain: "Phone number is not linked to user", code: 400))
+            return
+        }
+
+        let db = Firestore.firestore()
+        let usersCollectionRef = db.collection("Users")
+        usersCollectionRef.whereField("phoneNumber", isEqualTo: phoneNumber).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                completion(error)
+                return
+            }
+
+            guard let querySnapshot = querySnapshot else {
+                completion(NSError(domain: "Original UID not found for phone number", code: 404))
+                return
+            }
+
+            guard let originalUid = querySnapshot.documents.first?.documentID else {
+                completion(NSError(domain: "Original UID not found for phone number", code: 404))
+                return
+            }
+
+            let phoneAuthProvider = PhoneAuthProvider.provider()
+            let credential = phoneAuthProvider.credential(withVerificationID: "", verificationCode: "")
+            Auth.auth().currentUser?.link(with: credential) { (result, error) in
+                if let error = error {
+                    completion(error)
+                    return
+                }
+
+                let userRef = usersCollectionRef.document(originalUid)
+                userRef.updateData(["uid": newUid]) { error in
+                    completion(error)
+                }
+            }
+        }
+    }
+
+
+    
     public func signOut() {
         do {
             try auth.signOut()
-            print("User has been successfully signed out!!!!!!! Yas")
+            print("[DEBUG] User has been successfully signed out!!!!!!! Yas")
         } catch let error {
-            print("Error signing out: \(error.localizedDescription)")
+            print("[DEBUG] Error signing out: \(error.localizedDescription)")
         }
     }
     

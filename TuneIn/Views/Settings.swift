@@ -229,7 +229,7 @@ struct Settings: View {
                         .opacity(0.1)
                         .frame(width: 348, height: 52)
                     NavigationLink(destination: Home()) {
-                        Text("Next")
+                        Text("Sign out")
                             .foregroundColor(.red)
                             .font(.custom("Poppins-SemiBold", size: 18))
                     }

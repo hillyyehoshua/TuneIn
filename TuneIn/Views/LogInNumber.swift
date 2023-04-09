@@ -137,21 +137,8 @@ struct LogInNumber: View {
                 }
                 else{
                     let _ = print ("getting into the else in LogInNumber")
-                    //NavigationLink(destination: LogInPhoneAuth(phoneNumber), isActive: $verificationComplete) {
-                        VStack {
-                            Button(
-                                "Next",
-                                action:{
-                                    AuthManager.shared.startAuth(phoneNumber: phoneNumber) { success in
-                                        if success {
-                                            print("Success with phone authentication")
-                                            verificationComplete = true
-                                        } else {
-                                            print("Error with phone authentication")
-                                        }
-                                    }
-                                }
-                            )
+                    NavigationLink(destination: LogInPhoneAuth()) {
+                        Text("Next")
                             .foregroundColor(.white)
                             .font(.custom("Poppins-Regular", size: 16))
                             .fixedSize(horizontal: false, vertical: true)
@@ -159,9 +146,47 @@ struct LogInNumber: View {
                             .padding()
                             .frame(width: 230, height: 50)
                             .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
-                            
+                    }
+                    .simultaneousGesture(TapGesture().onEnded({
+                        let _ = print("Pressed button that should call startAuth")
+                        AuthManager.shared.startAuth(phoneNumber: phoneNumber) { success in
+                            if success {
+                                print("Success with phone authentication")
+                                verificationComplete = true
+                            } else {
+                                print("Error with phone authentication")
+                                presentationMode.wrappedValue.dismiss()
+                            }
                         }
-                    //}
+                    }))
+                    
+                    
+                    //TODO: remove stuff below
+//                    NavigationLink(destination: LogInPhoneAuth(), isActive: $verificationComplete) {
+//                        VStack {
+//                            Button(
+//                                "Next",
+//                                action:{
+//                                    AuthManager.shared.startAuth(phoneNumber: phoneNumber) { success in
+//                                        if success {
+//                                            print("Success with phone authentication")
+//                                            verificationComplete = true
+//                                        } else {
+//                                            print("Error with phone authentication")
+//                                        }
+//                                    }
+//                                }
+//                            )
+//                            .foregroundColor(.white)
+//                            .font(.custom("Poppins-Regular", size: 16))
+//                            .fixedSize(horizontal: false, vertical: true)
+//                            .multilineTextAlignment(.center)
+//                            .padding()
+//                            .frame(width: 230, height: 50)
+//                            .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+//
+//                        }
+//                    }
                 }
             }
         }
