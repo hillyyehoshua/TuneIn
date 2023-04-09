@@ -357,91 +357,178 @@ class DataManager: ObservableObject{
 //                                    }
 //                                }
     
-    func getUserFriendsAndLastSongUpload(userID: String, completion: @escaping ([String: (String, String, String)]?, Error?) -> Void) {
+//    func getUserFriendsAndLastSongUpload(userID: String, completion: @escaping ([String: (String, String, String)]?, Error?) -> Void) {
+//        let userRef = Firestore.firestore().collection("users").document(userID)
+//
+//        userRef.getDocument { (snapshot, error) in
+//            if let error = error {
+//                print ("error 1")
+//                completion(nil, error)
+//                return
+//            }
+//
+//            guard let userData = snapshot?.data() else {
+//                print ("error 2")
+//                print ("this is the userID \(userID)")
+//                print("Snapshot contents: \(snapshot.debugDescription)")
+//                completion(nil, nil)
+//                return
+//            }
+//
+//            let friendsIDs = userData["friends"] as? [String] ?? []
+//            var friendData: [String: (String, String, String)] = [:] // declare friendData as a variable
+//
+//            let dispatchGroup = DispatchGroup() // create a dispatch group
+//
+//            for friendID in friendsIDs {
+//                print ("at line 186")
+//
+//                let friendRef = Firestore.firestore().collection("users").document(friendID)
+//                dispatchGroup.enter() // enter the dispatch group before making the inner closure call
+//                friendRef.getDocument { (friendSnapshot, friendError) in
+//                    defer {
+//                        dispatchGroup.leave() // leave the dispatch group after the inner closure finishes executing
+//                    }
+//
+//                    if let friendError = friendError {
+//                        print ("error 3")
+//                        completion(nil, friendError)
+//                        return
+//                    }
+//
+//                    guard let friendDataSnapshot = friendSnapshot?.data(),
+//                          let friendName = friendDataSnapshot["name"] as? String,
+//                          let friendSongsIDs = friendDataSnapshot["uploadedSongs"] as? [String],
+//                          !friendSongsIDs.isEmpty else {
+//                        // Skip friends with no uploaded songs
+//                        print ("Skipping friend \(friendID) as they have no uploaded songs")
+//                        return
+//                    }
+//
+//                    var lastSongUploadID: String?
+//
+//                    for songID in friendSongsIDs {
+//                        let songRef = Firestore.firestore().collection("songs").document(songID)
+//                        dispatchGroup.enter() // enter the dispatch group before making the inner closure call
+//                        songRef.getDocument { (songSnapshot, songError) in
+//                            defer {
+//                                dispatchGroup.leave() // leave the dispatch group after the inner closure finishes executing
+//                            }
+//
+//                            if let songError = songError {
+//                                print ("error 5")
+//                                completion(nil, songError)
+//                                return
+//                            }
+//
+//                            guard let songData = songSnapshot?.data(),
+//                                  let artistName = songData["artistName"] as? String,
+//                                  let songTitle = songData["songTitle"] as? String,
+//                                  let uploadDate = songData["uploadDate"] as? String else {
+//                                print ("error 6")
+//                                completion(nil, nil)
+//                                return
+//                            }
+//
+//                            friendData[songID] = (artistName, songTitle, uploadDate)
+//
+//                            if songID == friendSongsIDs.last {
+//                                friendData[friendID] = (friendName, "", "")
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//
+//            dispatchGroup.notify(queue: .main) {
+//                completion(friendData, nil)
+//            }
+//        }
+//    }
+    func getUserFriendsAndLastSongUpload(userID: String, completion: @escaping ([User]?, Error?) -> Void) {
         let userRef = Firestore.firestore().collection("users").document(userID)
 
         userRef.getDocument { (snapshot, error) in
             if let error = error {
-                print ("error 1")
+                print("Error fetching user data: \(error.localizedDescription)")
                 completion(nil, error)
                 return
             }
-
-            guard let userData = snapshot?.data() else {
-                print ("error 2")
-                print ("this is the userID \(userID)")
-                print("Snapshot contents: \(snapshot.debugDescription)")
+            print ("user id here \(userID)")
+            guard let userData = snapshot?.data(),
+                  let friendsIDs = userData["friends"] as? [String] else {
+                print("No user data found for user with ID \(userID)")
                 completion(nil, nil)
                 return
             }
 
-            let friendsIDs = userData["friends"] as? [String] ?? []
-            var friendData: [String: (String, String, String)] = [:] // declare friendData as a variable
-
-            let dispatchGroup = DispatchGroup() // create a dispatch group
+            var friendsWithSongs: [User] = []
+            let dispatchGroup = DispatchGroup()
 
             for friendID in friendsIDs {
-                print ("at line 186")
-
                 let friendRef = Firestore.firestore().collection("users").document(friendID)
-                dispatchGroup.enter() // enter the dispatch group before making the inner closure call
+
+                dispatchGroup.enter()
+
                 friendRef.getDocument { (friendSnapshot, friendError) in
                     defer {
-                        dispatchGroup.leave() // leave the dispatch group after the inner closure finishes executing
+                        dispatchGroup.leave()
                     }
 
                     if let friendError = friendError {
-                        print ("error 3")
-                        completion(nil, friendError)
+                        print("Error fetching friend data for user with ID \(friendID): \(friendError.localizedDescription)")
                         return
                     }
 
-                    guard let friendDataSnapshot = friendSnapshot?.data(),
-                          let friendName = friendDataSnapshot["name"] as? String,
-                          let friendSongsIDs = friendDataSnapshot["uploadedSongs"] as? [String],
-                          !friendSongsIDs.isEmpty else {
-                        // Skip friends with no uploaded songs
-                        print ("Skipping friend \(friendID) as they have no uploaded songs")
+                    guard let friendData = friendSnapshot?.data(),
+                          let friendName = friendData["name"] as? String,
+                          let uploadedSongsIDs = friendData["uploadedSongs"] as? [String] else {
+                        print("No friend data found for user with ID \(friendID)")
                         return
                     }
 
-                    var lastSongUploadID: String?
+                    var friendSongs: [Song] = []
 
-                    for songID in friendSongsIDs {
+                    for songID in uploadedSongsIDs {
                         let songRef = Firestore.firestore().collection("songs").document(songID)
-                        dispatchGroup.enter() // enter the dispatch group before making the inner closure call
+
+                        dispatchGroup.enter()
+
                         songRef.getDocument { (songSnapshot, songError) in
                             defer {
-                                dispatchGroup.leave() // leave the dispatch group after the inner closure finishes executing
+                                dispatchGroup.leave()
                             }
 
                             if let songError = songError {
-                                print ("error 5")
-                                completion(nil, songError)
+                                print("Error fetching song data for song with ID \(songID): \(songError.localizedDescription)")
                                 return
                             }
 
                             guard let songData = songSnapshot?.data(),
-                                  let artistName = songData["artistName"] as? String,
+                                  let songArtist = songData["artistName"] as? String,
                                   let songTitle = songData["songTitle"] as? String,
-                                  let uploadDate = songData["uploadDate"] as? String else {
-                                print ("error 6")
-                                completion(nil, nil)
+                                  let songCoverArt = songData["coverArt"] as? String,
+                                  let songAlbum = songData["album"] as? String else {
+                                print("No song data found for song with ID \(songID)")
                                 return
                             }
 
-                            friendData[songID] = (artistName, songTitle, uploadDate)
+                            let song = Song(id: songID, artist: songArtist, name: songTitle, coverArt: songCoverArt, album: songAlbum)
+                            friendSongs.append(song)
+                        }
+                    }
 
-                            if songID == friendSongsIDs.last {
-                                friendData[friendID] = (friendName, "", "")
-                            }
+                    dispatchGroup.notify(queue: .main) {
+                        if friendSongs.count > 0 {
+                            let friend = User(id: friendID, name: friendName, uploadedSongs: uploadedSongsIDs)
+                            friendsWithSongs.append(friend)
                         }
                     }
                 }
             }
 
             dispatchGroup.notify(queue: .main) {
-                completion(friendData, nil)
+                completion(friendsWithSongs, nil)
             }
         }
     }

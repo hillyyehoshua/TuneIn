@@ -73,57 +73,7 @@ struct FeedEmpty: View {
                 ScrollView {
                     
                     Button(action: {
-//                            dataManager.getUserFriendsAndLastSongUpload(userId: userID) { result in
-//                                switch result {
-//                                case .success(let friends):
-//                                    print("User friends: \(friends)")
-//                                case .failure(let error):
-//                                    print("Error getting user friends: \(error.localizedDescription)")
-//                                }
-//                            }
-//                        dataManager.getUserFriendsAndLastSongUpload(userID: userID) { (friendData, error) in
-//                            if let error = error {
-//                                print("Error getting user's friends and last song uploads: \(error.localizedDescription)")
-//                                return
-//                            }
-//
-//                            guard let friendData = friendData else {
-//                                print("No friend data found.")
-//                                return
-//                            }
-//
-//                            for friend in friendData {
-//                                print("Friend ID: \(friend.value.0)")
-//                                print("Friend Name: \(friend.value.1)")
-//                                print("Last Uploaded Song ID: \(friend.value.2)")
-//                                print("Last Upload Timestamp: \(friend.value.3)")
-//                            }
-//                        }
-//                        dataManager.getUserFriendsAndLastSongUpload(userID: userID) { (friendData, error) in
-//                            if let error = error {
-//                                print("Error getting user's friends and last song uploads: \(error.localizedDescription)")
-//                                return
-//                            }
-//
-//                            guard let friendData = friendData else {
-//                                print (friendData)
-//                                print("No friend data found.")
-//                                return
-//                            }
-//
-//                            if friendData.isEmpty {
-//                                print("User has no friends.")
-//                                return
-//                            }
-//
-//                            print("Friend data:")
-//                            for friend in friendData {
-//                                print("Friend ID: \(friend.value.0)")
-//                                print("Friend Name: \(friend.value.1)")
-//                                print("Last Uploaded Song ID: \(friend.value.2)")
-//                                print("Last Upload Timestamp: \(friend.value.3)")
-//                            }
-//                        }
+
 
                         dataManager.getUserFriendsAndLastSongUpload(userID: userID) { friendData, error in
                             if let error = error {
