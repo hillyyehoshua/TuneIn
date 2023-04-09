@@ -244,7 +244,52 @@ class DataManager: ObservableObject{
     /*returns an array of tuples containing the song and the user's name for every friend in the user's database.*/
     
 
-    
+    func getFriendsLastUploadedSongs(userId: String, completion: @escaping ([(id: String, name: String, song: Song)]) -> Void) {
+        let db = Firestore.firestore()
+        let userDoc = db.collection("Users").document(userId)
+        print ("user's id in getFriendsSong : \(userId)")
+
+
+        // Fetch the user's friends
+        userDoc.getDocument { (document, error) in
+            if let document = document, document.exists {
+                // Retrieve the user data dictionary from the document
+                let userData = document.data()!
+                // Retrieve the friends array from the user data dictionary
+                let friends = userData["friends"] as! [String]
+                
+                var results: [(id: String, name: String, song: Song)] = []
+                
+                // Fetch the last uploaded song for each friend
+                for friendId in friends {
+                    db.collection("Users").document(friendId).getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            // Retrieve the user data dictionary from the document
+                            let userData = document.data()!
+                            // Retrieve the user's name from the user data dictionary
+                            let name = userData["name"] as! String
+                            // Retrieve the user's last uploaded song from the user data dictionary
+                            let uploadedSongs = userData["uploadedSongs"] as! [String]
+                            if let lastUploadedSongId = uploadedSongs.last,
+                               let lastUploadedSong = self.songs.first(where: { $0.id == lastUploadedSongId }) {
+                                // Add the friend's ID, name, and last uploaded song to the results array
+                                results.append((id: friendId, name: name, song: lastUploadedSong))
+                            }
+                        } else {
+                            print("Error retrieving friend document: \(error?.localizedDescription ?? "Unknown error")")
+                        }
+                        
+                        // Call the completion handler with the results array
+                        completion(results)
+                    }
+                }
+            } else {
+                print("Error retrieving user document: \(error?.localizedDescription ?? "Unknown error")")
+                completion([])
+            }
+        }
+    }
+
 
   
         

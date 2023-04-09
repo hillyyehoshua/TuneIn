@@ -20,9 +20,9 @@ struct ContentView: View {
     var body: some View {
         
         NavigationView {
-            //Home()
+            Home()
 //            SearchTrack()
-            SongSearchListView(name: $name, userID: $userID, songs: [])
+            //SongSearchListView(name: $name, userID: $userID, songs: [])
         }
 //        if currUserUid == nil {
 //            NavigationView {

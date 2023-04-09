@@ -64,12 +64,31 @@ struct FeedEmpty: View {
                 
                 //Scroll and see all of peoples' posts
                 ScrollView {
-                   
-                    
+
+
                     Empty(name: $name, usernm: $usernm, userID: $userID)
-                    
-                    
+
+                    Button(action: {
+                        dataManager.getFriendsLastUploadedSongs(userId: userID) { results in
+                            print("printing the results in line 73 \(results)")
+//                                .foregroundColor(.white)
+//                                .font(.custom("Poppins-Regular", size: 20))
+                        }
+
+                    }) {
+                        Text("Discover some new tunes")
+                            .foregroundColor(.white)
+                            .font(.custom("Poppins-Regular", size: 20))
+                            .fixedSize(horizontal: false, vertical: true)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                            .frame(width: 230, height: 50)
+                            .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                    }
                 }
+                
+                
+
                 
             }
             .scrollIndicators(.hidden)
