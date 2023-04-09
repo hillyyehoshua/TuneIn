@@ -3,4 +3,54 @@
    uuid = "7B6D4A53-8E67-4DFC-9999-3459408D1485"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D353F8FF-3DFB-4DF9-AF8F-54641D352E38"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TuneIn/Views/FeedEmpty.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "D353F8FF-3DFB-4DF9-AF8F-54641D352E38 - 6281155221ae2bb4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #2 () -&gt; SwiftUI.TupleView&lt;(TuneIn.Empty, SwiftUI.Button&lt;&lt;&lt;opaque return type of SwiftUI.View.background&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(_: &#x3c4;_1_0, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.NavigationLink&lt;&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.EdgeInsets) -&gt; some&gt;&gt;.0, TuneIn.FindFriends&gt;, &lt;&lt;opaque return type of SwiftUI.View.font(Swift.Optional&lt;SwiftUI.Font&gt;) -&gt; some&gt;&gt;.0, SwiftUI.NavigationLink&lt;&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.EdgeInsets) -&gt; some&gt;&gt;.0, TuneIn.Settings&gt;)&gt;&gt;, SwiftUI.ScrollView&lt;SwiftUI.TupleView&lt;(TuneIn.Empty, SwiftUI.Button&lt;&lt;&lt;opaque return type of SwiftUI.View.background&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(_: &#x3c4;_1_0, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;)&gt;&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.edgesIgnoringSafeArea(SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.scrollDismissesKeyboard(SwiftUI.ScrollDismissesKeyboardMode) -&gt; some&gt;&gt;.0)&gt; in TuneIn.FeedEmpty.body.getter : some"
+                  moduleName = "TuneIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hillyyehoshua/Documents/Senior%20Year%20(2022-2023)/TuneIn/TuneIn/Views/FeedEmpty.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "29">
+               </Location>
+               <Location
+                  uuid = "D353F8FF-3DFB-4DF9-AF8F-54641D352E38 - 5ff609266258738f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;(id: Swift.String, name: Swift.String, song: TuneIn.Song)&gt;) -&gt; () in closure #1 () -&gt; () in closure #2 () -&gt; SwiftUI.TupleView&lt;(TuneIn.Empty, SwiftUI.Button&lt;&lt;&lt;opaque return type of SwiftUI.View.background&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(_: &#x3c4;_1_0, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.NavigationLink&lt;&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.EdgeInsets) -&gt; some&gt;&gt;.0, TuneIn.FindFriends&gt;, &lt;&lt;opaque return type of SwiftUI.View.font(Swift.Optional&lt;SwiftUI.Font&gt;) -&gt; some&gt;&gt;.0, SwiftUI.NavigationLink&lt;&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.EdgeInsets) -&gt; some&gt;&gt;.0, TuneIn.Settings&gt;)&gt;&gt;, SwiftUI.ScrollView&lt;SwiftUI.TupleView&lt;(TuneIn.Empty, SwiftUI.Button&lt;&lt;&lt;opaque return type of SwiftUI.View.background&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(_: &#x3c4;_1_0, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0&gt;)&gt;&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.edgesIgnoringSafeArea(SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.scrollDismissesKeyboard(SwiftUI.ScrollDismissesKeyboardMode) -&gt; some&gt;&gt;.0)&gt; in TuneIn.FeedEmpty.body.getter : some"
+                  moduleName = "TuneIn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hillyyehoshua/Documents/Senior%20Year%20(2022-2023)/TuneIn/TuneIn/Views/FeedEmpty.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "39">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
