@@ -258,7 +258,106 @@ class DataManager: ObservableObject{
 //        }
 //    }
 
-    func getUserFriendsAndLastSongUpload(userID: String, completion: @escaping ([String: (String, String, String, Date)]?, Error?) -> Void) {
+//    func getUserFriendsAndLastSongUpload(userID: String, completion: @escaping ([String: (String, String, String, Date)]?, Error?) -> Void) {
+//        let userRef = Firestore.firestore().collection("users").document(userID)
+//
+//        userRef.getDocument { (snapshot, error) in
+//            if let error = error {
+//                print ("error 1")
+//                completion(nil, error)
+//                return
+//            }
+//
+//
+//            guard let userData = snapshot?.data() else {
+//                print ("error 2")
+//                print ("this is the userID \(userID)")
+//                print("Snapshot contents: \(snapshot.debugDescription)")
+//                completion(nil, nil)
+//                return
+//            }
+//
+//            let friendsIDs = userData["friends"] as? [String] ?? []
+//            var friendData: [String: (String, String, String, Date)] = [:] // declare friendData as a variable
+//
+//            let dispatchGroup = DispatchGroup() // create a dispatch group
+//
+//            for friendID in friendsIDs {
+//                print ("at line 186")
+//
+//                let friendRef = Firestore.firestore().collection("users").document(friendID)
+//                dispatchGroup.enter() // enter the dispatch group before making the inner closure call
+//                friendRef.getDocument { (friendSnapshot, friendError) in
+//                    defer {
+//                        dispatchGroup.leave() // leave the dispatch group after the inner closure finishes executing
+//                    }
+//
+//                    if let friendError = friendError {
+//                        print ("error 3")
+//                        completion(nil, friendError)
+//                        return
+//                    }
+//
+//                    guard let friendDataSnapshot = friendSnapshot?.data(),
+//                          let friendName = friendDataSnapshot["name"] as? String else {
+//                        print ("error 4")
+//                        completion(nil, nil)
+//                        return
+//                    }
+//
+//                    let friendSongsIDs = friendDataSnapshot["uploadedSongs"] as? [String] ?? []
+//                    var lastSongUploadID: String?
+//                    var lastSongUploadTime: Date?
+//
+//                    for songID in friendSongsIDs {
+//                        let songRef = Firestore.firestore().collection("songs").document(songID)
+//                        dispatchGroup.enter() // enter the dispatch group before making the inner closure call
+//                        songRef.getDocument { (songSnapshot, songError) in
+//                            defer {
+//                                dispatchGroup.leave() // leave the dispatch group after the inner closure finishes executing
+//                            }
+//
+//                            if let songError = songError {
+//                                print ("error 5")
+//                                completion(nil, songError)
+//                                return
+//                            }
+//
+//                            guard let songData = songSnapshot?.data(),
+//                                  let songUploadTime = songData["uploadTime"] as? Timestamp else {
+//                                print ("error 6")
+//                                completion(nil, nil)
+//                                return
+//                            }
+//
+//                            let songUploadDate = songUploadTime.dateValue()
+//
+//                            if lastSongUploadTime == nil || songUploadDate > lastSongUploadTime! {
+//                                lastSongUploadID = songID
+//                                lastSongUploadTime = songUploadDate
+//                            }
+//
+//                            if let lastSongUploadID = lastSongUploadID, let lastSongUploadTime = lastSongUploadTime {
+//                                friendData[friendID] = (friendID, friendName, lastSongUploadID, lastSongUploadTime)
+//                            }
+//
+//                            if friendSongsIDs.last == songID {
+//                                                            // completion(friendData, nil) // remove the completion block from here
+//                                                            dispatchGroup.leave() // leave the dispatch group after the last song document has been processed
+//                                                        }
+//                                                    }
+//                                                }
+//                                            }
+//                                        }
+//
+//                                        dispatchGroup.notify(queue: .main) {
+//                                            print ("line 254")
+//                                            completion(friendData, nil) // move the completion block to here
+//                                        }
+//                                    }
+//                                }
+    
+    func getUserFriendsAndLastSongUpload(userID: String, completion: @escaping ([String: (String, String, String)]?, Error?) -> Void) {
         let userRef = Firestore.firestore().collection("users").document(userID)
 
         userRef.getDocument { (snapshot, error) in
@@ -268,7 +367,6 @@ class DataManager: ObservableObject{
                 return
             }
 
-            
             guard let userData = snapshot?.data() else {
                 print ("error 2")
                 print ("this is the userID \(userID)")
@@ -278,7 +376,7 @@ class DataManager: ObservableObject{
             }
 
             let friendsIDs = userData["friends"] as? [String] ?? []
-            var friendData: [String: (String, String, String, Date)] = [:] // declare friendData as a variable
+            var friendData: [String: (String, String, String)] = [:] // declare friendData as a variable
 
             let dispatchGroup = DispatchGroup() // create a dispatch group
 
@@ -299,15 +397,15 @@ class DataManager: ObservableObject{
                     }
 
                     guard let friendDataSnapshot = friendSnapshot?.data(),
-                          let friendName = friendDataSnapshot["name"] as? String else {
-                        print ("error 4")
-                        completion(nil, nil)
+                          let friendName = friendDataSnapshot["name"] as? String,
+                          let friendSongsIDs = friendDataSnapshot["uploadedSongs"] as? [String],
+                          !friendSongsIDs.isEmpty else {
+                        // Skip friends with no uploaded songs
+                        print ("Skipping friend \(friendID) as they have no uploaded songs")
                         return
                     }
 
-                    let friendSongsIDs = friendDataSnapshot["uploadedSongs"] as? [String] ?? []
                     var lastSongUploadID: String?
-                    var lastSongUploadTime: Date?
 
                     for songID in friendSongsIDs {
                         let songRef = Firestore.firestore().collection("songs").document(songID)
@@ -324,38 +422,30 @@ class DataManager: ObservableObject{
                             }
 
                             guard let songData = songSnapshot?.data(),
-                                  let songUploadTime = songData["uploadTime"] as? Timestamp else {
+                                  let artistName = songData["artistName"] as? String,
+                                  let songTitle = songData["songTitle"] as? String,
+                                  let uploadDate = songData["uploadDate"] as? String else {
                                 print ("error 6")
                                 completion(nil, nil)
                                 return
                             }
 
-                            let songUploadDate = songUploadTime.dateValue()
+                            friendData[songID] = (artistName, songTitle, uploadDate)
 
-                            if lastSongUploadTime == nil || songUploadDate > lastSongUploadTime! {
-                                lastSongUploadID = songID
-                                lastSongUploadTime = songUploadDate
+                            if songID == friendSongsIDs.last {
+                                friendData[friendID] = (friendName, "", "")
                             }
+                        }
+                    }
+                }
+            }
 
-                            if let lastSongUploadID = lastSongUploadID, let lastSongUploadTime = lastSongUploadTime {
-                                friendData[friendID] = (friendID, friendName, lastSongUploadID, lastSongUploadTime)
-                            }
+            dispatchGroup.notify(queue: .main) {
+                completion(friendData, nil)
+            }
+        }
+    }
 
-                            if friendSongsIDs.last == songID {
-                                                            // completion(friendData, nil) // remove the completion block from here
-                                                            dispatchGroup.leave() // leave the dispatch group after the last song document has been processed
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                            
-                                        dispatchGroup.notify(queue: .main) {
-                                            print ("line 254")
-                                            completion(friendData, nil) // move the completion block to here
-                                        }
-                                    }
-                                }
                                 
 
 
