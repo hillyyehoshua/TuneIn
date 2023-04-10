@@ -16,6 +16,7 @@ struct FeedEmpty: View {
     @State var usernm = "..."
     @State var userID = "..."
     @State var isLoading = true
+    @State var friendDataText = ""
     
     var body: some View {
         
@@ -71,58 +72,58 @@ struct FeedEmpty: View {
                 
                 //Scroll and see all of peoples' posts
                 ScrollView {
-                    
-                    Button(action: {
+                           Button(action: {
+                               dataManager.getUserFriendsAndLastSongUpload(userID: userID) { friendData, error in
+                                   if let error = error {
+                                       print("Error: \(error)")
+                                   } else if let friendData = friendData {
+                                       print("Friend data:")
+                                       var friendDataString = ""
+                                       for friend in friendData {
+                                           let friendName = friend.friendName
+                                           let friendUsername = friend.friendUsername
+                                           let song = friend.song
+                                           let friendDataLine = "Name: \(friendName), Username: \(friendUsername), Song: \(song)\n"
+                                           friendDataString += friendDataLine
+                                       }
+                                       friendDataText = friendDataString
+                                   }
+                               }
+                           }) {
+                               Text("Get User Friends")
+                                   .foregroundColor(.white)
+                                   .font(.system(size: 20, weight: .bold))
+                                   .padding(.horizontal, 10)
+                                   .padding(.vertical, 5)
+                                   .background(Color.blue)
+                                   .cornerRadius(10)
+                           }
 
+                           // your existing code...
 
-                        dataManager.getUserFriendsAndLastSongUpload(userID: userID) { friendData, error in
-                            if let error = error {
-                                print("Error: \(error)")
-                            } else if let friendData = friendData {
-                                print("Friend data:")
-                                for friend in friendData {
-                                    let friendName = friend.friendName
-                                    let friendUsername = friend.friendUsername
-                                    let song = friend.song
-                                    print("Name: \(friendName), Username: \(friendUsername), Song: \(song)")
+                           // display the friend data text
+//                           Text(friendDataText)
+//                               .foregroundColor(.white)
+//                               .multilineTextAlignment(.leading)
+//                               .font(.system(size: 14, weight: .regular))
+                    VStack(alignment: .leading, spacing: 10) {
+                            ForEach(friendDataText.split(separator: "\n"), id: \.self) { friendDataLine in
+                                if friendDataLine.starts(with: "Name:") {
+                                    Text(friendDataLine)
+                                        .foregroundColor(.white)
+                                        .padding(10)
+                                        .background(Color.pink)
+                                        .cornerRadius(10)
+                                } else {
+                                    Text(friendDataLine)
+                                        .foregroundColor(.white)
+                                        .multilineTextAlignment(.leading)
+                                        .font(.system(size: 14, weight: .regular))
                                 }
                             }
                         }
-
-
-
-                        }) {
-                            Text("Get User Friends")
-                                .foregroundColor(.white)
-                                .font(.system(size: 20, weight: .bold))
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 5)
-                                .background(Color.blue)
-                                .cornerRadius(10)
-                        }
                     
-                    //Empty(name: $name, usernm: $usernm, userID: $userID)
-                    
-                    //                    Button(action: {
-                    //                        dataManager.getFriendsLastUploadedSongs(userId: userID) { results in
-                    //                            print("printing the results in line 73 \(results)")
-                    ////                                .foregroundColor(.white)
-                    ////                                .font(.custom("Poppins-Regular", size: 20))
-                    //                        }
-                    //
-                    //                    }
-                    //
-                    //                    }) {
-                    //                        Text("Discover some new tunes")
-                    //                            .foregroundColor(.white)
-                    //                            .font(.custom("Poppins-Regular", size: 20))
-                    //                            .fixedSize(horizontal: false, vertical: true)
-                    //                            .multilineTextAlignment(.center)
-                    //                            .padding()
-                    //                            .frame(width: 230, height: 50)
-                    //                            .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
-                    //                    }
-                }
+                       }
                 .scrollIndicators(.hidden)
                 .scrollDismissesKeyboard(.immediately)
                 //            }
