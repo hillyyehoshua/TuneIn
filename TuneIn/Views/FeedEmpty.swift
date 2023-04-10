@@ -68,6 +68,45 @@ struct FeedEmpty: View {
                 
                 //Scroll and see all of peoples' posts
                 ScrollView {
+                    NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
+                        Image("plus")
+                            .resizable()
+                            .frame(width: 172, height: 172)
+                    }
+                    
+                    let calendar = Calendar.current
+                    let dayOfWeek = calendar.component(.weekday, from: Date())
+                    let dayOfWeekString = calendar.weekdaySymbols[dayOfWeek - 1]
+
+                    NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
+                        Text("Add \(dayOfWeekString)'s Song")
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity,alignment: .center)
+                            .font(.custom("Poppins-SemiBold", size: 18))
+                            .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
+                    }
+
+                    
+
+                    
+                    Spacer()
+                        .frame(height: 100)
+                    
+                    NavigationLink(destination: FindFriends(name: $name, usernm: $usernm, userID: $userID)){
+                        HStack{
+                            Text("Find Friends")
+                                .foregroundColor(.white)
+                                .font(.custom("Poppins-Regular", size: 20))
+                                .fixedSize(horizontal: false, vertical: true)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                                .frame(width: 230, height: 50)
+                                .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
+                        }
+                    }
+                    .navigationBarBackButtonHidden(true)
+                    
                     Button(action: {
                         dataManager.getUserFriendsAndLastSongUpload(userID: userID) { friendData, error in
                             if let error = error {
