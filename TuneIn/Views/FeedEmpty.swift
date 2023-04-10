@@ -125,7 +125,7 @@ struct FeedEmpty: View {
 //                                HStack{
 //                                    ZStack {
 //                                        Circle()
-//                                            .fill(Color("Blue"))
+//                                            .fill(Color("Red"))
 //                                            .frame(width: 40, height: 40)
 //                                        Text(String("H"))
 //                                            .font(.custom("Poppins-Regular", size: 18))
@@ -135,14 +135,14 @@ struct FeedEmpty: View {
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                                         .frame(maxWidth: .infinity,alignment: .center)
-                                        .font(.custom("Poppins-SemiBold", size: 16))
+                                        .font(.custom("Poppins-SemiBold", size: 18))
                                 //}
                                
                                 Text(username)
                                     .foregroundColor(.white)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .frame(maxWidth: .infinity,alignment: .center)
-                                    .font(.custom("Poppins-Regular", size: 14))
+                                    .font(.custom("Poppins-Regular", size: 16))
 //                                Text(songID)
 //                                    .foregroundColor(.white)
 //                                    .font(.system(size: 14, weight: .regular))
