@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Firebase
+
+
 struct FeedEmpty: View {
     
     @Environment(\.scenePhase) var scenePhase
@@ -95,22 +97,62 @@ struct FeedEmpty: View {
                            }.opacity(showButton ? 1 : 0) // Hide the button using opacity
                         .disabled(!showButton) // Disable the button after it's hidden
 
-                      VStack(alignment: .leading, spacing: 10) {
-                            ForEach(friendDataText.split(separator: "\n"), id: \.self) { friendDataLine in
-                                if friendDataLine.starts(with: "Name:") {
-                                    Text(friendDataLine)
-                                        .foregroundColor(.white)
-                                        .padding(10)
-                                        .background(Color.pink)
-                                        .cornerRadius(10)
-                                } else {
-                                    Text(friendDataLine)
-                                        .foregroundColor(.white)
-                                        .multilineTextAlignment(.leading)
-                                        .font(.system(size: 14, weight: .regular))
-                                }
+
+
+                    ForEach(friendDataText.split(separator: "\n"), id: \.self) { friendDataLine in
+                        if friendDataLine.starts(with: "Name:") {
+                            let nameRange = friendDataLine.range(of: "Name: ")!.upperBound..<friendDataLine.range(of: ", Username")!.lowerBound
+                            let usernameRange = friendDataLine.range(of: "Username: ")!.upperBound..<friendDataLine.range(of: ", Song")!.lowerBound
+                            let songIDRange = friendDataLine.range(of: "Song(id: ")!.upperBound..<friendDataLine.range(of: ", artist")!.lowerBound
+                            let artistRange = friendDataLine.range(of: "artist:")!.upperBound..<friendDataLine.range(of: ", name")!.lowerBound
+
+                            let name = String(friendDataLine[nameRange])
+                            let username = String(friendDataLine[usernameRange])
+                            let songID = String(friendDataLine[songIDRange])
+                            let artist = String(friendDataLine[artistRange])
+
+                            VStack {
+                                Text(name)
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 18, weight: .bold))
+                                Text(username)
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 14, weight: .regular))
+                                Text(songID)
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 14, weight: .regular))
+                                Text(artist)
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 14, weight: .regular))
                             }
+                            .padding(10)
+                            .background(Color.pink)
+                            .cornerRadius(10)
+                        } else {
+                            Text(friendDataLine)
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.leading)
+                                .font(.system(size: 14, weight: .regular))
                         }
+                    }
+
+//                            ForEach(friendDataText.split(separator: "\n"), id: \.self) { friendDataLine in
+//                                if friendDataLine.starts(with: "Name:") {
+//                                    Text(friendDataLine)
+//                                        .foregroundColor(.white)
+//                                        .padding(10)
+//                                        .background(Color.pink)
+//                                        .cornerRadius(10)
+//                                } else {
+//                                    Text(friendDataLine)
+//                                        .foregroundColor(.white)
+//                                        .multilineTextAlignment(.leading)
+//                                        .font(.system(size: 14, weight: .regular))
+//                                }
+//
+//
+//                            }
+                        
                     
                        }
                 .scrollIndicators(.hidden)
