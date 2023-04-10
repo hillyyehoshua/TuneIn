@@ -79,9 +79,16 @@ struct FeedEmpty: View {
                             if let error = error {
                                 print("Error: \(error)")
                             } else if let friendData = friendData {
-                                print("Friend data: \(friendData)")
+                                print("Friend data:")
+                                for friend in friendData {
+                                    let friendName = friend.friendName
+                                    let friendUsername = friend.friendUsername
+                                    let song = friend.song
+                                    print("Name: \(friendName), Username: \(friendUsername), Song: \(song)")
+                                }
                             }
                         }
+
 
 
                         }) {
