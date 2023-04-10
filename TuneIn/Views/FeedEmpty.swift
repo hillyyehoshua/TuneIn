@@ -17,6 +17,7 @@ struct FeedEmpty: View {
     @State var userID = "..."
     @State var isLoading = true
     @State var friendDataText = ""
+    @State var showButton = true
     
     var body: some View {
         
@@ -26,10 +27,7 @@ struct FeedEmpty: View {
             Color ("Dark Blue")
                 .edgesIgnoringSafeArea(.all)
             
-            //            if isLoading {
-            //                ProgressView()
-            //                    .progressViewStyle(CircularProgressViewStyle(tint: .blue))
-            //            } else {
+
             VStack (spacing: 17){
                 //Header that does not move
                 HStack{
@@ -53,11 +51,7 @@ struct FeedEmpty: View {
                     
                     //Add user's profile picture / image
                     NavigationLink(destination: Settings(name: $name, usernm: $usernm, userID: $userID)){
-                        //                        Image("HProfile")
-                        //                            .resizable()
-                        //                            .clipShape(Circle())
-                        //                            .frame(width: 40, height: 40)
-                        //                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+          
                         ZStack {
                             Circle()
                                 .fill(Color("Blue"))
@@ -87,6 +81,7 @@ struct FeedEmpty: View {
                                            friendDataString += friendDataLine
                                        }
                                        friendDataText = friendDataString
+                                       showButton = false // Hide the button after getting user friends
                                    }
                                }
                            }) {
@@ -97,16 +92,10 @@ struct FeedEmpty: View {
                                    .padding(.vertical, 5)
                                    .background(Color.blue)
                                    .cornerRadius(10)
-                           }
+                           }.opacity(showButton ? 1 : 0) // Hide the button using opacity
+                        .disabled(!showButton) // Disable the button after it's hidden
 
-                           // your existing code...
-
-                           // display the friend data text
-//                           Text(friendDataText)
-//                               .foregroundColor(.white)
-//                               .multilineTextAlignment(.leading)
-//                               .font(.system(size: 14, weight: .regular))
-                    VStack(alignment: .leading, spacing: 10) {
+                      VStack(alignment: .leading, spacing: 10) {
                             ForEach(friendDataText.split(separator: "\n"), id: \.self) { friendDataLine in
                                 if friendDataLine.starts(with: "Name:") {
                                     Text(friendDataLine)
