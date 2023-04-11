@@ -104,7 +104,7 @@ struct ProfileCreationTimeZone: View {
                 Spacer()
                 
                 if selection != 0 {
-                    NavigationLink(destination: FeedEmpty(name: name, usernm: usernm, userID: userID)){
+                    NavigationLink(destination: FeedEmpty(didDailyPost: false, name: name, usernm: usernm, userID: userID)){
                         HStack{
                             Text("Next")
                                 .foregroundColor(.white)
@@ -132,7 +132,7 @@ struct ProfileCreationTimeZone: View {
         }.onDisappear {
             let friends: [String] = []
             let uploadedSongs: [String] = []
-            dataManager.addUser(name: name, username: usernm, phone: phoneNumber, timezone: String(selection), friends: friends, uploadedSongs: uploadedSongs) { userID, error in
+            dataManager.addUser(name: name, username: usernm, phone: phoneNumber, timezone: String(selection), friends: friends, uploadedSongs: uploadedSongs, didDailyPost: false) { userID, error in
                 if let userID = userID {
                     // Do something with the created user ID
                     print("Created user ID: \(userID)")

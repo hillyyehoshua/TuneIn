@@ -74,7 +74,7 @@ struct LogInPhoneAuth: View {
                     
                 } else {
                     
-                    NavigationLink(destination: FeedEmpty()) {
+                    NavigationLink(destination: FeedEmpty(didDailyPost: false)) {
                         Text("Next")
                             .foregroundColor(.white)
                             .font(.custom("Poppins-Regular", size: 16))

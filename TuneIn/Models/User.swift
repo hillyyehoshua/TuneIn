@@ -15,4 +15,5 @@ struct User: Identifiable{
     var timezone: String = ""
     var friends: [String] = []
     var uploadedSongs: [String] = []
+    var didDailyPost: Bool = false
 }

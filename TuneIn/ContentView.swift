@@ -34,7 +34,7 @@ struct ContentView: View {
             let _ = print("There is a user logged in already with uid: \(String(describing: currUserUid))")
 //            let _ = dataManager.fetchCurrentUser
             NavigationView {
-                FeedEmpty()
+                FeedEmpty(didDailyPost: false)
             }
         }
 

@@ -87,6 +87,7 @@
 		B40B250729D6669F00780C7A /* SongSearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B250629D6669F00780C7A /* SongSearchListView.swift */; };
 		B40B250929D66C5D00780C7A /* ConfirmSongUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B250829D66C5D00780C7A /* ConfirmSongUpload.swift */; };
 		B40B250D29DE1EF100780C7A /* TestViewtogetcurrentuser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B250C29DE1EF100780C7A /* TestViewtogetcurrentuser.swift */; };
+		B40B250F29E49D4000780C7A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40B250E29E49D4000780C7A /* NotificationManager.swift */; };
 		B468500429A427F700ED1FF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500329A427F700ED1FF3 /* AppDelegate.swift */; };
 		B468500629A4281900ED1FF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500529A4281900ED1FF3 /* ViewController.swift */; };
 		B468500A29A42D9000ED1FF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468500929A42D9000ED1FF3 /* SceneDelegate.swift */; };
@@ -188,6 +189,7 @@
 		B40B250629D6669F00780C7A /* SongSearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearchListView.swift; sourceTree = "<group>"; };
 		B40B250829D66C5D00780C7A /* ConfirmSongUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmSongUpload.swift; sourceTree = "<group>"; };
 		B40B250C29DE1EF100780C7A /* TestViewtogetcurrentuser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewtogetcurrentuser.swift; sourceTree = "<group>"; };
+		B40B250E29E49D4000780C7A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		B468500329A427F700ED1FF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B468500529A4281900ED1FF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B468500929A42D9000ED1FF3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				7DE0566829C5766A000CE81E /* GoogleService-Info.plist */,
 				B468500329A427F700ED1FF3 /* AppDelegate.swift */,
 				B478FCBB29C92D0400F76B3E /* AuthManager.swift */,
+				B40B250E29E49D4000780C7A /* NotificationManager.swift */,
 				B468500929A42D9000ED1FF3 /* SceneDelegate.swift */,
 				B40B24FC29D65A3200780C7A /* TrackVM.swift */,
 				7DBE28B5297F30BF00A6DB06 /* ContentView.swift */,
@@ -643,6 +646,7 @@
 				B4F05CD6298B5F0400977951 /* MyProfile.swift in Sources */,
 				7DD6727429C7D5B90072809D /* ProfileCreationUserNM.swift in Sources */,
 				7DA10BCE299ED5EB00BCDB4F /* FeedEmpty.swift in Sources */,
+				B40B250F29E49D4000780C7A /* NotificationManager.swift in Sources */,
 				7DBE28B4297F30BF00A6DB06 /* TuneInApp.swift in Sources */,
 				7D2B562329CA4E44004B2920 /* Song.swift in Sources */,
 				B46B427A2981A74A00DFB1D1 /* EditProfile.swift in Sources */,
