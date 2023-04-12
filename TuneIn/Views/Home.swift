@@ -69,10 +69,10 @@ struct Home: View {
                 HStack {
                     Text("Already have an account?")
                         .font(.custom("Poppins-Regular", size: 14))
-                    //NavigationLink(destination: LogInNumber()){
+                    NavigationLink(destination: LogInNumber()){
                         Text("Log In")
                             .font(.custom("Poppins-SemiBold", size: 14))
-                    //}
+                    }
                 }
                 .foregroundColor(.white)
                 

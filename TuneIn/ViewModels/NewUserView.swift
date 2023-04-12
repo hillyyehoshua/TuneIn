@@ -23,8 +23,9 @@ struct NewUserView: View {
 
             TextField("timezone", text: $newTimeZone)
             Button {
+//                dataManager.addUser(name: newUser, username: newUserName, phone: newPhone, timezone: newTimeZone, friends: [])
                 
-                dataManager.addUser(name: newUser, username: newUserName, phone: newPhone, timezone: newTimeZone, friends: [], uploadedSongs: [], didDailyPost: false) { userID, error in
+                dataManager.addUser(name: newUser, username: newUserName, phone: newPhone, timezone: newTimeZone, friends: [], uploadedSongs: []) { userID, error in
                     if let userID = userID {
                         // Do something with the created user ID
                         print("Created user ID: \(userID)")

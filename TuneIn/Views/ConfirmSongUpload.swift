@@ -70,7 +70,7 @@ struct ConfirmSongUpload: View {
 
                 }
                 Spacer()
-                NavigationLink(destination: FeedEmpty(didDailyPost: true)) {
+                NavigationLink(destination: FeedEmpty()) { //to do - change to feedempty
                     Text("Upload song")
                         .foregroundColor(.white)
                         .font(.custom("Poppins-Regular", size: 16))

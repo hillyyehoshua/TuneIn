@@ -85,35 +85,35 @@ struct MyFriends: View {
                         .frame(height: 10)
                     
                     // start invite your friends
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(.white)
-                            .opacity(0.1)
-                            .frame(width: 348, height: 43)
-                        
-                        HStack{
-                            ZStack {
-                                Circle()
-                                    .fill(Color("Blue"))
-                                    .frame(width: 30, height: 30)
-                                Text(String(name.first!))
-                                    .font(.custom("Poppins-Regular", size: 16))
-                            }
-                            .padding(.leading, 35)
-                            
-                            Text("         Invite your friends to join the app!")
-                                .foregroundColor(.white)
-                                .font(.custom("Poppins-Regular", size: 16))
-                                .padding(.leading, 5)
-                                .opacity(0.7)
-                            Spacer()
-                            
-                            HStack {
-                                Image("upload")
-                                    .padding(.trailing, 35)
-                            }
-                        }
-                    }
+//                    ZStack{
+//                        RoundedRectangle(cornerRadius: 5)
+//                            .fill(.white)
+//                            .opacity(0.1)
+//                            .frame(width: 348, height: 43)
+//                        
+////                        HStack{
+////                            ZStack {
+////                                Circle()
+////                                    .fill(Color("Blue"))
+////                                    .frame(width: 30, height: 30)
+////                                Text(String(name.first!))
+////                                    .font(.custom("Poppins-Regular", size: 16))
+////                            }
+////                            .padding(.leading, 35)
+////                            
+////                            Text("         Invite your friends to join the app!")
+////                                .foregroundColor(.white)
+////                                .font(.custom("Poppins-Regular", size: 16))
+////                                .padding(.leading, 5)
+////                                .opacity(0.7)
+////                            Spacer()
+////                            
+////                            HStack {
+////                                Image("upload")
+////                                    .padding(.trailing, 35)
+////                            }
+////                        }
+//                    }
                     //end invite your friends
                     
                     Spacer()

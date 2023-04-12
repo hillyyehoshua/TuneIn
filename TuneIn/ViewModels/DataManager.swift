@@ -62,9 +62,8 @@ class DataManager: ObservableObject{
                     let timezone = data["timezone"] as? String ?? ""
                     let friends = data["friends"] as? [String] ?? [""]
                     let uploadedSongs = data["uploadedSongs"] as? [String] ?? [""]
-                    let didDailyPost = data["didDailyPost"] as? Bool ?? false
 
-                    let user = User(id: id, name: name, username: username, phone: phone, timezone: timezone, friends: friends, uploadedSongs: uploadedSongs, didDailyPost: didDailyPost)
+                    let user = User(id: id, name: name, username: username, phone: phone, timezone: timezone, friends: friends, uploadedSongs: uploadedSongs)
                     self.users.append(user)
                 }
                 completion(.success(self.users))
@@ -113,11 +112,8 @@ class DataManager: ObservableObject{
                     guard let friendData = friendSnapshot?.data(),
                           let friendName = friendData["name"] as? String,
                           let friendUsername = friendData["username"] as? String,
-                          let didDailyPost = friendData["didDailyPost"] as? Bool,
-                          didDailyPost == true,
-                          let uploadedSongsIDs = friendData["uploadedSongs"] as? [String],
-                          !uploadedSongsIDs.isEmpty else {
-                        print("[DEBUG] No friend data found for user with ID \(friendID) or friend didn't do daily post")
+                          let uploadedSongsIDs = friendData["uploadedSongs"] as? [String] else {
+                        print("[DEBUG] No friend data found for user with ID \(friendID)")
                         return
                     }
                     
@@ -217,7 +213,7 @@ class DataManager: ObservableObject{
                 completion(nil, NSError(domain: "fetchCurrentUser", code: 2, userInfo: [NSLocalizedDescriptionKey: "Error getting current user data"]))
                 return
             }
-            let currentUser = User(id: uid, name: userData["name"] as? String ?? "", username: userData["username"] as? String ?? "", phone: userData["phone"] as? String ?? "", timezone: userData["timezone"] as? String ?? "", friends: userData["friends"] as? [String] ?? [], uploadedSongs: userData["uploadedSongs"] as? [String] ?? [], didDailyPost: userData["didDailyPost"] as? Bool ?? false)
+            let currentUser = User(id: uid, name: userData["name"] as? String ?? "", username: userData["username"] as? String ?? "", phone: userData["phone"] as? String ?? "", timezone: userData["timezone"] as? String ?? "", friends: userData["friends"] as? [String] ?? [], uploadedSongs: userData["uploadedSongs"] as? [String] ?? [])
             completion(currentUser, nil)
         }
     }
@@ -318,6 +314,13 @@ class DataManager: ObservableObject{
         }
     }
     
+
+
+    //END: reading from Firestore
+
+    
+    // MARK: Writing to Firestore functions
+    
     /*returns an array of tuples containing the song and the user's name for every friend in the user's database.*/
     
 
@@ -366,12 +369,11 @@ class DataManager: ObservableObject{
             }
         }
     }
-    //END: reading from Firestore
 
-    
-    // MARK: Writing to Firestore functions
+
+  
         
-    func addUser(name: String, username: String, phone: String, timezone: String, friends: [String], uploadedSongs: [String], didDailyPost: Bool, completion: @escaping (String?, Error?) -> Void) {
+    func addUser(name: String, username: String, phone: String, timezone: String, friends: [String], uploadedSongs: [String], completion: @escaping (String?, Error?) -> Void) {
         
         guard let uid = AuthManager.shared.auth.currentUser?.uid else {
             print("[DEBUG] IN ADD USER FUNCTION: uid was nil")
@@ -401,8 +403,7 @@ class DataManager: ObservableObject{
             "phone": phone,
             "timezone": timezoneString,
             "friends": friends,
-            "uploadedSongs": uploadedSongs,
-            "didDailyPost": didDailyPost
+            "uploadedSongs": uploadedSongs
         ]
         ref.setData(data) { error in
             if let error = error {
@@ -425,8 +426,7 @@ class DataManager: ObservableObject{
         
         // Update the user document with the song ID using the "arrayUnion" method
         ref.updateData([
-            "uploadedSongs": FieldValue.arrayUnion([songID]),
-            "didDailyPost": true
+            "uploadedSongs": FieldValue.arrayUnion([songID])
         ]) { error in
             // Handle any errors that occur during the update operation
             if let error = error {
@@ -567,38 +567,6 @@ class DataManager: ObservableObject{
                 }
         }
     }
-    
-    func resetDidDailyPostProperty() {
-        let db = Firestore.firestore()
-        let usersCollection = db.collection("Users")
-        usersCollection.getDocuments { (snapshot, error) in
-            if let error = error {
-                print("Error getting users: \(error)")
-                return
-            }
-            guard let snapshot = snapshot else {
-                print("No user data available")
-                return
-            }
-            let batch = db.batch()
-            snapshot.documents.forEach { (document) in
-                let userId = document.data()["id"] as! String
-                let userRef = usersCollection.document(userId)
-                batch.updateData(["didDailyPost": false], forDocument: userRef)
-            }
-            batch.commit { (error) in
-                if let error = error {
-                    print("Error resetting didDailyPost property: \(error)")
-                } else {
-                    print("didDailyPost property successfully reset for all users")
-                }
-            }
-        }
-    }
-    
-
-
-
     // END: Helper functions
 
 }
