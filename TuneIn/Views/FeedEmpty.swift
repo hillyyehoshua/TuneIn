@@ -91,7 +91,7 @@ struct FeedEmpty: View {
 
                     
                     Spacer()
-                        .frame(height: 100)
+                        .frame(height: 20)
                     
 //                    NavigationLink(destination: FindFriends(name: $name, usernm: $usernm, userID: $userID)){
 //                        HStack{
@@ -126,14 +126,18 @@ struct FeedEmpty: View {
                             }
                         }
                     }) {
-                        Text("Refresh Feed!")
-                            .foregroundColor(.white)
-                            //.font(.system(size: 20, weight: .bold))
-                            .font(.custom("Poppins-Regular", size: 15))
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 5)
-                            .background(Color.blue)
-                            .cornerRadius(10)
+                        Image(systemName: "arrow.clockwise.circle")
+                            .foregroundColor(Color.blue)
+                            .font(.system(size: 25))
+                            
+//                        Text("Refresh Feed!")
+//                            .foregroundColor(.white)
+//                            //.font(.system(size: 20, weight: .bold))
+//                            .font(.custom("Poppins-Regular", size: 15))
+//                            .padding(.horizontal, 10)
+//                            .padding(.vertical, 5)
+//                            .background(Color.blue)
+//                            .cornerRadius(10)
                     }//.opacity(showButton ? 1 : 0) // Hide the button using opacity
                         //.disabled(!showButton) // Disable the button after it's hidden
                     
