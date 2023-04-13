@@ -73,6 +73,114 @@ class DataManager: ObservableObject{
         }
     }
     
+    func getLastSong(userID: String, completion: @escaping (Song?) -> Void) {
+        let db = Firestore.firestore()
+        let userRef = db.collection("Users").document(userID)
+        print ("This is the user ID: \(userID)")
+        
+        userRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                let uploadedSongsIDs = data?["uploadedSongs"] as? [String] ?? []
+                
+                print ("Made it here")
+                print ("uploadedSongsIDs: \(uploadedSongsIDs)")
+                
+                if let lastSongID = uploadedSongsIDs.last {
+                    print ("lastSongID: \(lastSongID)")
+                    let songRef = db.collection("Songs").document(lastSongID)
+                    
+                    let dispatchGroup = DispatchGroup()
+                    dispatchGroup.enter()
+                    
+                    songRef.getDocument { (document, error) in
+                        defer {
+                            dispatchGroup.leave()
+                        }
+                        
+                        if let document = document, document.exists {
+                            let data = document.data()
+                            let song = Song(id: lastSongID,
+                                            artist: data?["artist"] as? String ?? "",
+                                            name: data?["name"] as? String ?? "",
+                                            coverArt: data?["coverArt"] as? String ?? "",
+                                            album: data?["album"] as? String ?? "")
+                            completion(song)
+                        } else {
+                            print("Song document does not exist")
+                            completion(nil)
+                        }
+                    }
+                    
+                    dispatchGroup.notify(queue: .main) {
+                        print("[DEBUG]: Exiting feed function here")
+                        completion(nil)
+                    }
+                    
+                } else {
+                    print("No uploaded songs for user")
+                    completion(nil)
+                }
+            } else {
+                print("User document does not exist")
+                completion(nil)
+            }
+        }
+    }
+
+//    func getLastSong(userID: String, completion: @escaping (Song?) -> Void) {
+//        let db = Firestore.firestore()
+//        let userRef = db.collection("Users").document(userID)
+//        print ("This is the user ID: \(userID)")
+//
+//
+//        userRef.getDocument { (document, error) in
+//            if let document = document, document.exists {
+//
+//                let data = document.data()
+//                let uploadedSongsIDs = data?["uploadedSongs"] as? [String] ?? []
+//
+//                print ("Made it here")
+//                print ("uploadedSongsIDs: \(uploadedSongsIDs)")
+//
+//
+//                if let lastSongID = uploadedSongsIDs.last {
+//
+//                    print ("lastSongID: \(lastSongID)")
+//                    let songRef = db.collection("Songs").document(lastSongID)
+//
+//                    songRef.getDocument { (document, error) in
+//                        let dispatchGroup = DispatchGroup()
+//                        dispatchGroup.enter()
+//                        if let document = document, document.exists {
+//                            let data = document.data()
+//                            let song = Song(id: lastSongID,
+//                                            artist: data?["artist"] as? String ?? "",
+//                                            name: data?["name"] as? String ?? "",
+//                                            coverArt: data?["coverArt"] as? String ?? "",
+//                                            album: data?["album"] as? String ?? "")
+//                            completion(song)
+//                        } else {
+//                            print("Song document does not exist")
+//                            completion(nil)
+//                        }
+//                    }.dispatchGroup.notify(queue: .main) {
+//                        print("[DEBUG]: Exiting feed function here")
+//                        print("[DEBUG]: \(song)")
+//                        completion(song, nil)
+//                } else {
+//                    print("No uploaded songs for user")
+//                    completion(nil)
+//                }
+//            } else {
+//                print("User document does not exist")
+//                completion(nil)
+//            }
+//            }
+//        }
+//    }
+    
+    
     func getUserFriendsAndLastSongUpload(userID: String, completion: @escaping ([(friendName: String, friendUsername: String, song: Song)]?, Error?) -> Void) {
         let userRef = Firestore.firestore().collection("Users").document(userID)
         userRef.getDocument { (snapshot, error) in
@@ -288,6 +396,10 @@ class DataManager: ObservableObject{
         }
     }
 
+    
+    //get last uploaded song for the user...
+   
+    
     func getUserData(userID: String, completion: @escaping (Dictionary<String, String>?, Error?) -> Void) {
         let db = Firestore.firestore()
         let userDoc = db.collection("Users").document(userID)

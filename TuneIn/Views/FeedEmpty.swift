@@ -68,44 +68,32 @@ struct FeedEmpty: View {
                 
                 //Scroll and see all of peoples' posts
                 ScrollView {
-                    NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
-                        Image("plus")
-                            .resizable()
-                            .frame(width: 172, height: 172)
-                    }
+                    AddSong(name: $name, usernm: $usernm, userID: $userID)
+//                    NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
+//                        Image("plus")
+//                            .resizable()
+//                            .frame(width: 172, height: 172)
+//                    }
+//
+//                    let calendar = Calendar.current
+//                    let dayOfWeek = calendar.component(.weekday, from: Date())
+//                    let dayOfWeekString = calendar.weekdaySymbols[dayOfWeek - 1]
+//
+//                    NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
+//                        Text("Add \(dayOfWeekString)'s Song")
+//                            .foregroundColor(.white)
+//                            .multilineTextAlignment(.center)
+//                            .frame(maxWidth: .infinity,alignment: .center)
+//                            .font(.custom("Poppins-SemiBold", size: 18))
+//                            .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
+//                    }
                     
-                    let calendar = Calendar.current
-                    let dayOfWeek = calendar.component(.weekday, from: Date())
-                    let dayOfWeekString = calendar.weekdaySymbols[dayOfWeek - 1]
-
-                    NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
-                        Text("Add \(dayOfWeekString)'s Song")
-                            .foregroundColor(.white)
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity,alignment: .center)
-                            .font(.custom("Poppins-SemiBold", size: 18))
-                            .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
-                    }
-
                     
-
+                    
                     
                     Spacer()
                         .frame(height: 20)
-                    
-//                    NavigationLink(destination: FindFriends(name: $name, usernm: $usernm, userID: $userID)){
-//                        HStack{
-//                            Text("Find Friends")
-//                                .foregroundColor(.white)
-//                                .font(.custom("Poppins-Regular", size: 20))
-//                                .fixedSize(horizontal: false, vertical: true)
-//                                .multilineTextAlignment(.center)
-//                                .padding()
-//                                .frame(width: 230, height: 50)
-//                                .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
-//                        }
-//                    }
-//                    .navigationBarBackButtonHidden(true)
+
                     
                     Button(action: {
                         dataManager.getUserFriendsAndLastSongUpload(userID: userID) { friendData, error in
@@ -129,17 +117,8 @@ struct FeedEmpty: View {
                         Image(systemName: "arrow.clockwise.circle")
                             .foregroundColor(Color.blue)
                             .font(.system(size: 25))
-                            
-//                        Text("Refresh Feed!")
-//                            .foregroundColor(.white)
-//                            //.font(.system(size: 20, weight: .bold))
-//                            .font(.custom("Poppins-Regular", size: 15))
-//                            .padding(.horizontal, 10)
-//                            .padding(.vertical, 5)
-//                            .background(Color.blue)
-//                            .cornerRadius(10)
                     }//.opacity(showButton ? 1 : 0) // Hide the button using opacity
-                        //.disabled(!showButton) // Disable the button after it's hidden
+                    //.disabled(!showButton) // Disable the button after it's hidden
                     
                     
                     
@@ -164,79 +143,68 @@ struct FeedEmpty: View {
                                 .replacingOccurrences(of: "\"", with: "")
                                 .replacingOccurrences(of: ")", with: "")
 
-                            
-                            VStack {
-//                                HStack{
-//                                    ZStack {
-//                                        Circle()
-//                                            .fill(Color("Red"))
-//                                            .frame(width: 40, height: 40)
-//                                        Text(String("H"))
-//                                            .font(.custom("Poppins-Regular", size: 18))
-//                                    }
+                                VStack {
+                                    
                                     Text(name)
                                         .foregroundColor(.white)
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                                         .frame(maxWidth: .infinity,alignment: .center)
                                         .font(.custom("Poppins-SemiBold", size: 18))
-                                //}
-                               
-                                Text(username)
-                                    .foregroundColor(.white)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .frame(maxWidth: .infinity,alignment: .center)
-                                    .font(.custom("Poppins-Regular", size: 16))
-//                                Text(songID)
-//                                    .foregroundColor(.white)
-//                                    .font(.system(size: 14, weight: .regular))
-                                
-//                                Text(coverArt)
-//                                    .foregroundColor(.white)
-//                                    .font(.system(size: 14, weight: .regular))
-                                AsyncImage(url: URL(string: coverArt)) { phase in
-                                    switch phase {
-                                    case .empty:
-                                        ProgressView()
-                                    case .success(let image):
-                                        image
-                                            .resizable()
-                                            .scaledToFit()
-                                    case .failure:
-                                        Image(systemName: "xmark.circle")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .foregroundColor(.white)
-                                            .frame(width: 40, height: 40)
-                                    @unknown default:
-                                        EmptyView()
+                                    
+                                    Text(username)
+                                        .foregroundColor(.white)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .frame(maxWidth: .infinity,alignment: .center)
+                                        .font(.custom("Poppins-Regular", size: 16))
+
+                                    AsyncImage(url: URL(string: coverArt)) { phase in
+                                        switch phase {
+                                        case .empty:
+                                            ProgressView()
+                                        case .success(let image):
+                                            image
+                                                .resizable()
+                                                .scaledToFit()
+                                        case .failure:
+                                            Image(systemName: "xmark.circle")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .foregroundColor(.white)
+                                                .frame(width: 40, height: 40)
+                                        @unknown default:
+                                            EmptyView()
+                                        }
                                     }
-                                }
-                                
-                                Text(songName)
-                                    .foregroundColor(.white)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    
+                                    Text(songName)
+                                        .foregroundColor(.white)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
                                     //.padding(EdgeInsets(top: -5, leading: 45, bottom: 0, trailing: 0))
-                                    .frame(maxWidth: .infinity,alignment: .center)
-                                    .font(.custom("Poppins-SemiBold", size: 18))
-                                Text(artist)
-                                    .foregroundColor(.white)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    //.padding(EdgeInsets(top: 0, leading: 45, bottom: 5, trailing: 0))
-                                    //.padding(.trailing, 100)
-                                    //.multilineTextAlignment(.leading)
-                                    .frame(maxWidth: .infinity,alignment: .center)
-                                    .font(.custom("Poppins-Regular", size: 16))
-//                                Text(albumName)
-//                                    .foregroundColor(.white)
-//                                    .font(.system(size: 14, weight: .regular))
-                            }
-                            .padding(10)
-                            //.background(Color.pink)
-                            .background(Color("RoundRect"))
-                            .opacity(0.9)
-                            //.frame(width: 330, height: 425)
-                            .cornerRadius(10)
+                                        .frame(maxWidth: .infinity,alignment: .center)
+                                        .font(.custom("Poppins-SemiBold", size: 18))
+                                    Text(artist)
+                                        .foregroundColor(.white)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+
+                                        .frame(maxWidth: .infinity,alignment: .center)
+                                        .font(.custom("Poppins-Regular", size: 16))
+                                    //                                Text(albumName)
+                                    //                                    .foregroundColor(.white)
+                                    //                                    .font(.system(size: 14, weight: .regular))
+                                    Spacer()
+                                        .frame(height: 10)
+                                }
+                                .padding(10)
+                                //.background(Color.pink)
+                                .background(Color("RoundRect"))
+                                .opacity(0.9)
+                                //.frame(width: 330, height: 425)
+                                .cornerRadius(10)
+//                                Spacer()
+//                                    .frame(height: 10)
+                            
+                            
                         } else {
                             Text(friendDataLine)
                                 .foregroundColor(.white)
@@ -246,7 +214,7 @@ struct FeedEmpty: View {
                     }
                     
                     
-                   
+                    
                     
                 }
                 .scrollIndicators(.hidden)
@@ -268,63 +236,119 @@ struct FeedEmpty: View {
                     }
                 }
             }
-        
+            
             
         }
     }
     
-    //Playlist with today's songs
-    struct Empty: View {
-        @Binding var name: String
-        @Binding var usernm: String
-        @Binding var userID: String
-        
-        var body: some View {
-            VStack (spacing: 1){
-                NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
-                    Image("plus")
-                        .resizable()
-                        .frame(width: 172, height: 172)
-                }
-                
-                
-                NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
-                    Text("Add Monday's Song")
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.center)
-                    //.frame(maxWidth: .infinity, alignment: .leading)
-                        .frame(maxWidth: .infinity,alignment: .center)
-                        .font(.custom("Poppins-SemiBold", size: 18))
-                        .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
-                }
-                
-                Spacer()
-                    .frame(height: 100)
-                
-                NavigationLink(destination: FindFriends(name: $name, usernm: $usernm, userID: $userID)){
-                    HStack{
-                        Text("Find Friends")
-                            .foregroundColor(.white)
-                            .font(.custom("Poppins-Regular", size: 20))
-                            .fixedSize(horizontal: false, vertical: true)
-                            .multilineTextAlignment(.center)
-                            .padding()
-                            .frame(width: 230, height: 50)
-                            .background(RoundedRectangle(cornerRadius: 30).fill(Color ("Blue")).shadow(radius: 3))
-                    }
-                }
-                .navigationBarBackButtonHidden(true)
-                
-                
-                
-                
+}
+
+//struct AddSong: View{
+//
+//    @Binding var name: String
+//    @Binding var usernm: String
+//    @Binding var userID: String
+//
+//    var body: some View{
+//
+//        NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
+//            Image("plus")
+//                .resizable()
+//                .frame(width: 172, height: 172)
+//        }
+//
+//        let calendar = Calendar.current
+//        let dayOfWeek = calendar.component(.weekday, from: Date())
+//        let dayOfWeekString = calendar.weekdaySymbols[dayOfWeek - 1]
+//
+//        NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
+//            Text("Add \(dayOfWeekString)'s Song")
+//                .foregroundColor(.white)
+//                .multilineTextAlignment(.center)
+//                .frame(maxWidth: .infinity,alignment: .center)
+//                .font(.custom("Poppins-SemiBold", size: 18))
+//                .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
+//        }
+//    }
+//}
+
+struct AddSong: View{
+    
+    @EnvironmentObject var dataManager: DataManager
+    @Binding var name: String
+    @Binding var usernm: String
+    @Binding var userID: String
+    
+//    func getLastSongTitle() -> String {
+//        // Call the getLastSong function from the datamanager and pass in the userID
+//
+//        var lastSongTitle = ""
+//
+//        dataManager.getLastSong(userID: userID) { lastSong in
+//            print ("lastSong : \(lastSong)")
+//            let lastSong = lastSong
+////            if let lastSong = lastSong {
+////                lastSongTitle = lastSong.name
+////                print("Last uploaded song title: \(lastSong.name)")
+////            } else {
+////                print("Error getting last uploaded song")
+////            }
+//        }
+//
+//        return lastSongTitle
+//
+//    }
+    
+    func getLastSongTitle() -> String {
+        var lastSong = ""
+        dataManager.getLastSong(userID: userID) { song in
+            if let song = song {
+                print("Last uploaded song title: \(song.name)")
+                lastSong = song.name
+                //return song.name
+            } else {
+                print("Error getting last uploaded song")
+                lastSong = "Error"
+                //return nil
             }
-            
-            
         }
+        return lastSong
         
     }
+    
+    
+
+
+
+
+    
+    var body: some View{
+        
+        
+        NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
+            Image("plus")
+                .resizable()
+                .frame(width: 172, height: 172)
+        }
+        
+        let calendar = Calendar.current
+        let dayOfWeek = calendar.component(.weekday, from: Date())
+        let dayOfWeekString = calendar.weekdaySymbols[dayOfWeek - 1]
+        
+        NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
+            Text("Add \(dayOfWeekString)'s Song")
+                .foregroundColor(.white)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity,alignment: .center)
+                .font(.custom("Poppins-SemiBold", size: 18))
+                .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
+        }
+        
+        // Print the title of the last uploaded song to the user's screen
+        Text("Last Uploaded Song: \(getLastSongTitle())")
+    }
 }
+
 
 struct FeedEmpty_Previews: PreviewProvider {
     static var previews: some View {
