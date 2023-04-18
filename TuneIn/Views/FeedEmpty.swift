@@ -45,6 +45,7 @@ struct FeedEmpty: View {
                             .font(.system(size: 25))
                             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
                     }
+
                     
                     //App logo
                     Text("TuneIn")

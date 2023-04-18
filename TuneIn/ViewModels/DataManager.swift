@@ -72,7 +72,7 @@ class DataManager: ObservableObject{
             }
         }
     }
-    
+        
     func getLastSong(userID: String, completion: @escaping (Song?) -> Void) {
         let db = Firestore.firestore()
         let userRef = db.collection("Users").document(userID)
@@ -388,9 +388,29 @@ class DataManager: ObservableObject{
             }
         }
     }
-
     
-
+    
+    func getFriendsForUser(userID: String, completion: @escaping ([String]) -> Void) {
+        let db = Firestore.firestore()
+        let userRef = db.collection("Users").document(userID)
+        
+        userRef.getDocument { (document, error) in
+            if let error = error {
+                print("Error retrieving document: \(error)")
+                completion([])
+            } else if let document = document, document.exists {
+                if let friends = document.get("friends") as? [String] {
+                    completion(friends)
+                } else {
+                    print("No friends found for user with ID \(userID)")
+                    completion([])
+                }
+            } else {
+                print("Document does not exist")
+                completion([])
+            }
+        }
+    }
 
     //END: reading from Firestore
 

@@ -14,6 +14,7 @@ struct MyFriends: View {
     @Binding var userID: String
     @State var isLoading = true
     @State private var searchreq = ""
+    @State private var searchQuery = ""
     @State private var friends: [Dictionary<String, String>] = []
     @State private var isRemovedDict: [String: Bool] = [:]
     @State private var isRemoved = false
@@ -34,6 +35,18 @@ struct MyFriends: View {
     }
     // END: Custom back button code
     
+    var filteredFriends: [Dictionary<String, String>] {
+        if searchQuery.isEmpty {
+            return friends
+        } else {
+            return friends.filter { friend in
+                let name = friend["name"] ?? ""
+                let username = friend["username"] ?? ""
+                return name.localizedCaseInsensitiveContains(searchQuery) || username.localizedCaseInsensitiveContains(searchQuery)
+            }
+        }
+    }
+    
     var body: some View {
         ZStack {
             //set the background
@@ -50,7 +63,7 @@ struct MyFriends: View {
                     ZStack {
                         HStack {
                             
-                            Text("TuneIn")
+                            Text("Your friends")
                                 .frame(alignment: .center)
                                 .foregroundColor(.white)
                                 .font(.custom("Poppins-SemiBold", size: 30))
@@ -64,57 +77,31 @@ struct MyFriends: View {
                             .fill(.white)
                             .opacity(0.1)
                             .frame(width: 348, height: 43)
+                        
                         HStack{
                             Image("search")
                                 .frame(width: 25, height: 25, alignment: .leading)
-                                .padding(.leading, 35)
+                                .padding(.leading, 5)
                             
-                            TextField("", text: $searchreq)
-                                .modifier(PlaceholderStyle(showPlaceHolder: searchreq.isEmpty, placeholder: "Look at your friend list!          "))
+                            Spacer()
+                                .frame(width: 15)
+                            
+                            TextField("", text: $searchQuery)
+                                .modifier(PlaceholderStyle(showPlaceHolder: searchQuery.isEmpty, placeholder: "Search your friends"))
                                 .multilineTextAlignment(.leading)
                                 .foregroundColor(.white)
                                 .accentColor(.white)
                                 .font(.custom("Poppins-Regular", size: 16))
                                 .opacity(0.7)
+                            
                             Spacer()
                         }
+                        .padding(.leading, 25)
                     }
                     // end search bar
                     
                     Spacer()
                         .frame(height: 10)
-                    
-                    // start invite your friends
-//                    ZStack{
-//                        RoundedRectangle(cornerRadius: 5)
-//                            .fill(.white)
-//                            .opacity(0.1)
-//                            .frame(width: 348, height: 43)
-//                        
-////                        HStack{
-////                            ZStack {
-////                                Circle()
-////                                    .fill(Color("Blue"))
-////                                    .frame(width: 30, height: 30)
-////                                Text(String(name.first!))
-////                                    .font(.custom("Poppins-Regular", size: 16))
-////                            }
-////                            .padding(.leading, 35)
-////                            
-////                            Text("         Invite your friends to join the app!")
-////                                .foregroundColor(.white)
-////                                .font(.custom("Poppins-Regular", size: 16))
-////                                .padding(.leading, 5)
-////                                .opacity(0.7)
-////                            Spacer()
-////                            
-////                            HStack {
-////                                Image("upload")
-////                                    .padding(.trailing, 35)
-////                            }
-////                        }
-//                    }
-                    //end invite your friends
                     
                     Spacer()
                         .frame(height: 35)
@@ -122,7 +109,7 @@ struct MyFriends: View {
                     // MARK: Friend section
                     ScrollView {
                         
-                        ForEach(friends, id: \.self) { friendDict in
+                        ForEach(filteredFriends, id: \.self) { friendDict in
                                 
                             let friendID = friendDict["id"] ?? ""
                             let friendName = friendDict["name"] ?? ""
@@ -140,7 +127,8 @@ struct MyFriends: View {
                                     Text(String(friendName.prefix(1)))
                                         .font(.custom("Poppins-Regular", size: 24))
                                 }.padding(.leading, 10)
-                                VStack{
+                                
+                                VStack(alignment: .leading){
                                     Text(friendName)
                                         .foregroundColor(.white)
                                         .font(.custom("Poppins-SemiBold", size: 16))
@@ -148,6 +136,7 @@ struct MyFriends: View {
                                         .foregroundColor(.white)
                                         .font(.custom("Poppins-Regular", size: 12))
                                 }
+                                
                                 Spacer()
                                 
                                 Button(action: {
