@@ -97,8 +97,8 @@
 		B478FCC029CB647500F76B3E /* LogInNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCBF29CB647500F76B3E /* LogInNumber.swift */; };
 		B478FCC229CB65E000F76B3E /* LogInPhoneAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478FCC129CB65E000F76B3E /* LogInPhoneAuth.swift */; };
 		B478FCC529CB709B00F76B3E /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = B478FCC429CB709B00F76B3E /* iPhoneNumberField */; };
+		B4B81A0E29EF46F7000E45C5 /* MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B81A0D29EF46F7000E45C5 /* MyProfile.swift */; };
 		B4F05CD4298B5AF800977951 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD3298B5AF800977951 /* Notifications.swift */; };
-		B4F05CD6298B5F0400977951 /* MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F05CD5298B5F0400977951 /* MyProfile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,8 +200,8 @@
 		B478FCBD29CA0E5000F76B3E /* ProfileCreationPhoneAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreationPhoneAuth.swift; sourceTree = "<group>"; };
 		B478FCBF29CB647500F76B3E /* LogInNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInNumber.swift; sourceTree = "<group>"; };
 		B478FCC129CB65E000F76B3E /* LogInPhoneAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInPhoneAuth.swift; sourceTree = "<group>"; };
+		B4B81A0D29EF46F7000E45C5 /* MyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfile.swift; sourceTree = "<group>"; };
 		B4F05CD3298B5AF800977951 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
-		B4F05CD5298B5F0400977951 /* MyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -380,10 +380,10 @@
 				7DBE28B3297F30BF00A6DB06 /* TuneInApp.swift */,
 				B40B250029D65C4F00780C7A /* SearchTrack.swift */,
 				7DBE2943297F4F8600A6DB06 /* Settings.swift */,
+				B4B81A0D29EF46F7000E45C5 /* MyProfile.swift */,
 				7D2B562429CB9707004B2920 /* MyFriends.swift */,
 				B4F05CD3298B5AF800977951 /* Notifications.swift */,
 				B40B250C29DE1EF100780C7A /* TestViewtogetcurrentuser.swift */,
-				B4F05CD5298B5F0400977951 /* MyProfile.swift */,
 				7D242A4C2989FD0F00B77902 /* Feed.swift */,
 				7DA10BCD299ED5EB00BCDB4F /* FeedEmpty.swift */,
 				B478FCAF29C513B000F76B3E /* UploadSongView.swift */,
@@ -637,10 +637,10 @@
 				B468500429A427F700ED1FF3 /* AppDelegate.swift in Sources */,
 				7DA10BD0299EF65000BCDB4F /* Styles.swift in Sources */,
 				7D2B562529CB9707004B2920 /* MyFriends.swift in Sources */,
+				B4B81A0E29EF46F7000E45C5 /* MyProfile.swift in Sources */,
 				B468500A29A42D9000ED1FF3 /* SceneDelegate.swift in Sources */,
 				B478FCC029CB647500F76B3E /* LogInNumber.swift in Sources */,
 				B40B250129D65C4F00780C7A /* SearchTrack.swift in Sources */,
-				B4F05CD6298B5F0400977951 /* MyProfile.swift in Sources */,
 				7DD6727429C7D5B90072809D /* ProfileCreationUserNM.swift in Sources */,
 				7DA10BCE299ED5EB00BCDB4F /* FeedEmpty.swift in Sources */,
 				7DBE28B4297F30BF00A6DB06 /* TuneInApp.swift in Sources */,

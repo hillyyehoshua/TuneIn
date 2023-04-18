@@ -48,36 +48,38 @@ struct Settings: View {
                     }
                 }
                 
-                ZStack{
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(.white)
-                        .opacity(0.1)
-                        .frame(width: 348, height: 74)
-                    HStack {
-                        ZStack {
-                            Circle()
-                                .fill(Color("Blue"))
-                                .frame(width: 52, height: 52)
-                            Text(String(name.first!))
-                                .font(.custom("Poppins-Regular", size: 25))
-                        }
-                        .padding(.leading, 35)
-                        VStack (alignment: .leading){
-                            Text(name)
-                                .foregroundColor(.white)
-                                .font(.custom("Poppins-SemiBold", size: 16))
-                                .padding(.leading, 5)
-                            Text(usernm)
-                                .foregroundColor(.white)
-                                .font(.custom("Poppins-Regular", size: 14))
-                                .padding(.leading, 5)
-                        }
-                        Spacer()
+                NavigationLink(destination: MyProfile(name: $name, usernm: $usernm, userID: $userID)){
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(.white)
+                            .opacity(0.1)
+                            .frame(width: 348, height: 74)
                         HStack {
-                            Image("right")
-                                .frame(alignment: .trailing)
+                            ZStack {
+                                Circle()
+                                    .fill(Color("Blue"))
+                                    .frame(width: 52, height: 52)
+                                Text(String(name.first!))
+                                    .font(.custom("Poppins-Regular", size: 25))
+                            }
+                            .padding(.leading, 35)
+                            VStack (alignment: .leading){
+                                Text(name)
+                                    .foregroundColor(.white)
+                                    .font(.custom("Poppins-SemiBold", size: 16))
+                                    .padding(.leading, 5)
+                                Text(usernm)
+                                    .foregroundColor(.white)
+                                    .font(.custom("Poppins-Regular", size: 14))
+                                    .padding(.leading, 5)
+                            }
+                            Spacer()
+                            HStack {
+                                Image("right")
+                                    .frame(alignment: .trailing)
+                            }
+                            .padding(.trailing, 35)
                         }
-                        .padding(.trailing, 35)
                     }
                 }
                 
