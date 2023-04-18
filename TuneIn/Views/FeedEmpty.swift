@@ -20,12 +20,17 @@ struct FeedEmpty: View {
     @State var isLoading = true
     @State var friendDataText = ""
     @State var showButton = true
+    @State var lastSongName = "..."
+    @State var lastSongCoverArt = "..."
+    
+    // MARK: Custom back button code
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         
         ZStack{
             //App background color
-            let _ = print ("user ID in feed empty \(String(describing: $userID))")
+            let _ = print ("[DEBUG] user ID in feed empty \(String(describing: $userID))")
             Color ("Dark Blue")
                 .edgesIgnoringSafeArea(.all)
             
@@ -44,7 +49,6 @@ struct FeedEmpty: View {
                     //App logo
                     Text("TuneIn")
                         .foregroundColor(.white)
-                    //.frame(maxWidth: .infinity, alignment: .leading)
                         .frame(maxWidth: .infinity,alignment: .center)
                         .padding(EdgeInsets(top: 5, leading: 10, bottom: 0, trailing: 0))
                         .font(.custom("Poppins-SemiBold", size: 32))
@@ -68,28 +72,61 @@ struct FeedEmpty: View {
                 
                 //Scroll and see all of peoples' posts
                 ScrollView {
-                    AddSong(name: $name, usernm: $usernm, userID: $userID)
-//                    NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
-//                        Image("plus")
-//                            .resizable()
-//                            .frame(width: 172, height: 172)
-//                    }
-//
-//                    let calendar = Calendar.current
-//                    let dayOfWeek = calendar.component(.weekday, from: Date())
-//                    let dayOfWeekString = calendar.weekdaySymbols[dayOfWeek - 1]
-//
-//                    NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
-//                        Text("Add \(dayOfWeekString)'s Song")
-//                            .foregroundColor(.white)
-//                            .multilineTextAlignment(.center)
-//                            .frame(maxWidth: .infinity,alignment: .center)
-//                            .font(.custom("Poppins-SemiBold", size: 18))
-//                            .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
-//                    }
                     
-                    
-                    
+                    if lastSongCoverArt == "..." {
+                        NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
+                            Image("plus")
+                                .resizable()
+                                .frame(width: 172, height: 172)
+                        }
+                    } else {
+                        ZStack {
+                            AsyncImage(url: URL(string: lastSongCoverArt)) { phase in
+                                switch phase {
+                                case .empty:
+                                    ProgressView()
+                                case .success(let image):
+                                    image
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 172, height: 172)
+                                case .failure:
+                                    Image(systemName: "xmark.circle")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .foregroundColor(.white)
+                                        .frame(width: 40, height: 40)
+                                @unknown default:
+                                    EmptyView()
+                                }
+                            }
+                            .overlay(
+                                NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])) {
+                                    Image(systemName: "plus.circle.fill")
+                                        .resizable()
+                                        .renderingMode(.original)
+                                        .foregroundColor(.red)
+                                        .frame(width: 30, height: 30)
+                                }
+                                .frame(alignment: .bottomTrailing)
+                                .offset(x: 86, y: 86)
+                            )
+                        }
+                    }
+
+
+                    let calendar = Calendar.current
+                    let dayOfWeek = calendar.component(.weekday, from: Date())
+                    let dayOfWeekString = calendar.weekdaySymbols[dayOfWeek - 1]
+
+                    NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
+                        Text("Add \(dayOfWeekString)'s Song")
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity,alignment: .center)
+                            .font(.custom("Poppins-SemiBold", size: 18))
+                            .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
+                    }
                     
                     Spacer()
                         .frame(height: 20)
@@ -113,6 +150,17 @@ struct FeedEmpty: View {
                                 showButton = false // Hide the button after getting user friends
                             }
                         }
+                        
+                        dataManager.getLastSong(userID: userID) { song in
+                            if let song = song {
+                                print("[DEBUG] Fetched last uploaded song with name: \(song.name)")
+                                self.lastSongName = song.name
+                                self.lastSongCoverArt = song.coverArt
+                            } else {
+                                print("[DEBUG] Error getting last uploaded song")
+                            }
+                        }
+                        
                     }) {
                         Image(systemName: "arrow.clockwise.circle")
                             .foregroundColor(Color.blue)
@@ -180,7 +228,6 @@ struct FeedEmpty: View {
                                     Text(songName)
                                         .foregroundColor(.white)
                                         .frame(maxWidth: .infinity, alignment: .leading)
-                                    //.padding(EdgeInsets(top: -5, leading: 45, bottom: 0, trailing: 0))
                                         .frame(maxWidth: .infinity,alignment: .center)
                                         .font(.custom("Poppins-SemiBold", size: 18))
                                     Text(artist)
@@ -189,21 +236,14 @@ struct FeedEmpty: View {
 
                                         .frame(maxWidth: .infinity,alignment: .center)
                                         .font(.custom("Poppins-Regular", size: 16))
-                                    //                                Text(albumName)
-                                    //                                    .foregroundColor(.white)
-                                    //                                    .font(.system(size: 14, weight: .regular))
+
                                     Spacer()
                                         .frame(height: 10)
                                 }
                                 .padding(10)
-                                //.background(Color.pink)
                                 .background(Color("RoundRect"))
                                 .opacity(0.9)
-                                //.frame(width: 330, height: 425)
                                 .cornerRadius(10)
-//                                Spacer()
-//                                    .frame(height: 10)
-                            
                             
                         } else {
                             Text(friendDataLine)
@@ -212,140 +252,38 @@ struct FeedEmpty: View {
                                 .font(.system(size: 14, weight: .regular))
                         }
                     }
-                    
-                    
-                    
-                    
                 }
                 .scrollIndicators(.hidden)
                 .scrollDismissesKeyboard(.immediately)
-                //            }
             }
             .onAppear {
                 if Auth.auth().currentUser != nil {
                     dataManager.fetchCurrentUser { user, error  in
                         if error != nil {
-                            print("Error fetching current user")
+                            print("[DEBUG] Error fetching current user")
                         } else if let user = user {
-                            print("Fetched current user with id: \(user.id)")
+                            print("[DEBUG] Fetched current user with id: \(user.id)")
                             self.name = dataManager.currentUser.name
                             self.usernm = dataManager.currentUser.username
                             self.userID = dataManager.currentUser.id
                             //                        isLoading = false
+                            
+                            dataManager.getLastSong(userID: userID) { song in
+                                if let song = song {
+                                    print("[DEBUG] Fetched last uploaded song with name: \(song.name)")
+                                    self.lastSongName = song.name
+                                    self.lastSongCoverArt = song.coverArt
+                                } else {
+                                    print("[DEBUG] Error getting last uploaded song")
+                                }
+                            }
                         }
                     }
+
                 }
             }
-            
-            
         }
-    }
-    
-}
-
-//struct AddSong: View{
-//
-//    @Binding var name: String
-//    @Binding var usernm: String
-//    @Binding var userID: String
-//
-//    var body: some View{
-//
-//        NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
-//            Image("plus")
-//                .resizable()
-//                .frame(width: 172, height: 172)
-//        }
-//
-//        let calendar = Calendar.current
-//        let dayOfWeek = calendar.component(.weekday, from: Date())
-//        let dayOfWeekString = calendar.weekdaySymbols[dayOfWeek - 1]
-//
-//        NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
-//            Text("Add \(dayOfWeekString)'s Song")
-//                .foregroundColor(.white)
-//                .multilineTextAlignment(.center)
-//                .frame(maxWidth: .infinity,alignment: .center)
-//                .font(.custom("Poppins-SemiBold", size: 18))
-//                .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
-//        }
-//    }
-//}
-
-struct AddSong: View{
-    
-    @EnvironmentObject var dataManager: DataManager
-    @Binding var name: String
-    @Binding var usernm: String
-    @Binding var userID: String
-    
-//    func getLastSongTitle() -> String {
-//        // Call the getLastSong function from the datamanager and pass in the userID
-//
-//        var lastSongTitle = ""
-//
-//        dataManager.getLastSong(userID: userID) { lastSong in
-//            print ("lastSong : \(lastSong)")
-//            let lastSong = lastSong
-////            if let lastSong = lastSong {
-////                lastSongTitle = lastSong.name
-////                print("Last uploaded song title: \(lastSong.name)")
-////            } else {
-////                print("Error getting last uploaded song")
-////            }
-//        }
-//
-//        return lastSongTitle
-//
-//    }
-    
-    func getLastSongTitle() -> String {
-        var lastSong = ""
-        dataManager.getLastSong(userID: userID) { song in
-            if let song = song {
-                print("[DEBUG] Last uploaded song title: \(song.name)")
-                lastSong = song.name
-                //return song.name
-            } else {
-                print("[DEBUG] Error getting last uploaded song")
-                lastSong = "Error"
-                //return nil
-            }
-        }
-        return lastSong
-        
-    }
-    
-    
-
-
-
-
-    
-    var body: some View{
-        
-        
-        NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
-            Image("plus")
-                .resizable()
-                .frame(width: 172, height: 172)
-        }
-        
-        let calendar = Calendar.current
-        let dayOfWeek = calendar.component(.weekday, from: Date())
-        let dayOfWeekString = calendar.weekdaySymbols[dayOfWeek - 1]
-        
-        NavigationLink(destination: SongSearchListView(name: $name, userID: $userID, songs: [])){
-            Text("Add \(dayOfWeekString)'s Song")
-                .foregroundColor(.white)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity,alignment: .center)
-                .font(.custom("Poppins-SemiBold", size: 18))
-                .padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0))
-        }
-        
-        // Print the title of the last uploaded song to the user's screen
-        Text("Last Uploaded Song: \(getLastSongTitle())")
+        .navigationBarBackButtonHidden(true)
     }
 }
 
