@@ -303,11 +303,11 @@ struct AddSong: View{
         var lastSong = ""
         dataManager.getLastSong(userID: userID) { song in
             if let song = song {
-                print("Last uploaded song title: \(song.name)")
+                print("[DEBUG] Last uploaded song title: \(song.name)")
                 lastSong = song.name
                 //return song.name
             } else {
-                print("Error getting last uploaded song")
+                print("[DEBUG] Error getting last uploaded song")
                 lastSong = "Error"
                 //return nil
             }
