@@ -97,26 +97,6 @@ struct MyFriends: View {
                             Spacer()
                         }
                         .padding(.leading, 25)
-
-//                        HStack{
-//                            Image("search")
-//                                .frame(width: 25, height: 25, alignment: .leading)
-//                                .padding(.leading, 5)
-//
-//                            Spacer()
-//                                .frame(width: 15)
-//
-//                            TextField("", text: $searchQuery)
-//                                .modifier(PlaceholderStyle(showPlaceHolder: searchQuery.isEmpty, placeholder: "Search your friends"))
-//                                .multilineTextAlignment(.leading)
-//                                .foregroundColor(.white)
-//                                .accentColor(.white)
-//                                .font(.custom("Poppins-Regular", size: 16))
-//                                .opacity(0.7)
-//
-//                            Spacer()
-//                        }
-//                        .padding(.leading, 25)
                     }
                     // end search bar
                     

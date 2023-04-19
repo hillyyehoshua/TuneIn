@@ -9,6 +9,21 @@ struct SongSearchListView: View {
     @State private var selectedSong: Song?
     @State private var isSearchBarHidden = false
     @Environment(\.presentationMode) var presentationMode
+    
+    // MARK: Custom back button code
+    @Environment(\.presentationMode) var backbutton: Binding<PresentationMode>
+    
+    var btnBack : some View { Button(action: {
+        self.backbutton.wrappedValue.dismiss()
+    }) {
+        HStack {
+            Image("left") // set image here
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.white)
+        }
+    }
+    }
+    // END: Custom back button code
 
     init(name: Binding<String>, userID: Binding<String>, songs: [Song]) {
         self._name = name
@@ -28,19 +43,45 @@ struct SongSearchListView: View {
             Color("Dark Blue")
                 .edgesIgnoringSafeArea(.all)
             VStack {
-                HStack (alignment: .top, spacing: 0) {
-                    TextField("Search", text: $searchText)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding(.horizontal)
-                    Button(action: {
-                        searchTracks(query: searchText) { songs in
-                            self.songs = songs
-                            print(songs)
-                        }
-                    }, label: {
-                        Text("Search")
-                    })
-                    .padding(.vertical)
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(.white)
+                        .opacity(0.1)
+                        .frame(width: 348, height: 43)
+                    
+                    HStack (alignment: .center, spacing: 0) {
+                        
+                        Image("search")
+                            .frame(width: 25, height: 25, alignment: .leading)
+                            .padding(.leading, 5)
+                        
+                        Spacer()
+                            .frame(width: 15)
+                        
+                        TextField("", text: $searchText)
+                            .modifier(PlaceholderStyle(showPlaceHolder: searchText.isEmpty, placeholder: "Search for your new tune!"))
+                            .padding(.horizontal)
+                            .multilineTextAlignment(.leading)
+                            .foregroundColor(.white)
+                            .accentColor(.white)
+                            .font(.custom("Poppins-Regular", size: 14))
+                            .padding(.leading, -100) // add negative padding to align text with icon
+                        
+                        Button(action: {
+                            searchTracks(query: searchText) { songs in
+                                self.songs = songs
+                                print(songs)
+                            }
+                        }, label: {
+                            Text("Search")
+                                .font(.custom("Poppins-Regular", size: 14))
+                        })
+                        .padding(.vertical)
+                        .padding(.trailing, 35)
+                    }
+                    .padding(.leading, 25)
+
                 }
 
                 if !songs.isEmpty {
@@ -99,5 +140,7 @@ struct SongSearchListView: View {
                 presentationMode.wrappedValue.dismiss()
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
     }
 }

@@ -132,7 +132,7 @@ struct FeedEmpty: View {
                     Spacer()
                         .frame(height: 20)
 
-                    
+                    // Start reload button
                     Button(action: {
                         dataManager.getUserFriendsAndLastSongUpload(userID: userID) { friendData, error in
                             if let error = error {
@@ -168,9 +168,12 @@ struct FeedEmpty: View {
                             .font(.system(size: 25))
                     }//.opacity(showButton ? 1 : 0) // Hide the button using opacity
                     //.disabled(!showButton) // Disable the button after it's hidden
+                    // End reload button
                     
+                    Spacer()
+                        .frame(height: 20)
                     
-                    
+                    // Start friends' songs
                     ForEach(friendDataText.split(separator: "\n"), id: \.self) { friendDataLine in
                         if friendDataLine.starts(with: "Name:") {
                             let nameRange = friendDataLine.range(of: "Name: ")!.upperBound..<friendDataLine.range(of: ", Username")!.lowerBound
@@ -246,6 +249,9 @@ struct FeedEmpty: View {
                                 .opacity(0.9)
                                 .cornerRadius(10)
                             
+                            Spacer()
+                                .frame(height: 15)
+                            
                         } else {
                             Text(friendDataLine)
                                 .foregroundColor(.white)
@@ -256,6 +262,7 @@ struct FeedEmpty: View {
                 }
                 .scrollIndicators(.hidden)
                 .scrollDismissesKeyboard(.immediately)
+                // End friend songs
             }
             .onAppear {
                 if Auth.auth().currentUser != nil {

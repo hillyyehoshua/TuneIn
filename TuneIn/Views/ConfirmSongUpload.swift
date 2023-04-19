@@ -16,6 +16,17 @@ struct ConfirmSongUpload: View {
     var selectedSong: Song
     @Environment(\.presentationMode) var presentationMode
     
+    var btnBack : some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+    }) {
+        HStack {
+            Image("left") // set image here
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.white)
+        }
+    }
+    }
+    
     var body: some View {
         ZStack{
             Color("Dark Blue")
@@ -30,7 +41,7 @@ struct ConfirmSongUpload: View {
                     RoundedRectangle(cornerRadius: 5)
                         .fill(.white)
                         .opacity(0.1)
-                        .frame(maxWidth: .infinity, maxHeight: 300)
+                        .frame(maxWidth: .infinity, maxHeight: 400)
                         .background (
                             VStack {
                                             AsyncImage(url: URL(string: selectedSong.coverArt)) { phase in
@@ -54,18 +65,24 @@ struct ConfirmSongUpload: View {
                                             .frame(width: 200, height: 200)
 
                                             Text(selectedSong.name)
-                                                .font(.title)
+//                                                .font(.title)
+                                                .font(.custom("Poppins-SemiBold", size: 24))
+                                                .multilineTextAlignment(.center)
                                                 .foregroundColor(.white)
+                                                .padding(5)
                                                 //.padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
 
                                             Text("\(selectedSong.artist) - \(selectedSong.album)")
-                                                .font(.subheadline)
+//                                                .font(.subheadline)
+                                                .font(.custom("Poppins-Regular", size: 20))
+                                                .multilineTextAlignment(.center)
                                                 .foregroundColor(.white)
+                                                .padding(5)
                                                 //.padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
 
                                             //Spacer()
                                         }
-                                        .frame(maxWidth: 400, maxHeight: 200)
+                                        .frame(maxWidth: 400, maxHeight: 400)
                         )
 
                 }
@@ -101,12 +118,14 @@ struct ConfirmSongUpload: View {
 
             }
             .padding()
-            .navigationBarTitle("Confirm Upload", displayMode: .inline)
-            .navigationBarHidden(true)
-            
-            .foregroundColor(.white)
+//            .navigationBarTitle("Confirm Upload", displayMode: .inline)
+//            .navigationBarHidden(true)
+
+//            .foregroundColor(.white)
 
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
     }
 }
 

@@ -61,7 +61,7 @@ struct Settings: View {
                                     .frame(width: 52, height: 52)
                                 Text(String(name.first!))
                                     .font(.custom("Poppins-Regular", size: 25))
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.black)
                             }
                             .padding(.leading, 35)
                             VStack (alignment: .leading){

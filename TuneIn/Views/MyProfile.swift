@@ -8,6 +8,7 @@ struct MyProfile: View {
     @Binding var name: String
     @Binding var usernm: String
     @Binding var userID: String
+    
     // MARK: Custom back button code
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -89,16 +90,15 @@ struct MyProfile: View {
                 .navigationBarTitle("", displayMode: .inline)
                 .navigationBarHidden(true)
             }
-            // Enables Custom back button
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: btnBack)
             .onAppear {
                 dataManager.getUserSongs(userID: userID) { songs in
                     print("[DEBUG] Successfully got the current user's songs")
                     self.uploadedSongs = songs
                 }
             }
-
         }
+        // Enables Custom back button
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: btnBack)
     }
 }
