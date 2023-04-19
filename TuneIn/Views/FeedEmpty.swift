@@ -44,7 +44,7 @@ struct FeedEmpty: View {
                             .foregroundColor(Color(.white))
                             .font(.system(size: 25))
                             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
-                    }
+                    }//.transition(.move(edge: .left))
 
                     
                     //App logo
@@ -106,7 +106,7 @@ struct FeedEmpty: View {
                                     Image(systemName: "plus.circle.fill")
                                         .resizable()
                                         .renderingMode(.original)
-                                        .foregroundColor(.red)
+                                        .foregroundColor(Color("Light Blue"))
                                         .frame(width: 30, height: 30)
                                 }
                                 .frame(alignment: .bottomTrailing)

@@ -77,8 +77,7 @@ struct MyFriends: View {
                             .fill(.white)
                             .opacity(0.1)
                             .frame(width: 348, height: 43)
-                        
-                        HStack{
+                        HStack {
                             Image("search")
                                 .frame(width: 25, height: 25, alignment: .leading)
                                 .padding(.leading, 5)
@@ -93,10 +92,31 @@ struct MyFriends: View {
                                 .accentColor(.white)
                                 .font(.custom("Poppins-Regular", size: 16))
                                 .opacity(0.7)
+                                .padding(.leading, -150) // add negative padding to align text with icon
                             
                             Spacer()
                         }
                         .padding(.leading, 25)
+
+//                        HStack{
+//                            Image("search")
+//                                .frame(width: 25, height: 25, alignment: .leading)
+//                                .padding(.leading, 5)
+//
+//                            Spacer()
+//                                .frame(width: 15)
+//
+//                            TextField("", text: $searchQuery)
+//                                .modifier(PlaceholderStyle(showPlaceHolder: searchQuery.isEmpty, placeholder: "Search your friends"))
+//                                .multilineTextAlignment(.leading)
+//                                .foregroundColor(.white)
+//                                .accentColor(.white)
+//                                .font(.custom("Poppins-Regular", size: 16))
+//                                .opacity(0.7)
+//
+//                            Spacer()
+//                        }
+//                        .padding(.leading, 25)
                     }
                     // end search bar
                     
