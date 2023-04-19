@@ -66,7 +66,6 @@ struct SongSearchListView: View {
                             .foregroundColor(.white)
                             .accentColor(.white)
                             .font(.custom("Poppins-Regular", size: 14))
-                            .padding(.leading, -100) // add negative padding to align text with icon
                         
                         Button(action: {
                             searchTracks(query: searchText) { songs in

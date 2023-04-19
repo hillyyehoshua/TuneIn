@@ -92,7 +92,6 @@ struct MyFriends: View {
                                 .accentColor(.white)
                                 .font(.custom("Poppins-Regular", size: 16))
                                 .opacity(0.7)
-                                .padding(.leading, -150) // add negative padding to align text with icon
                             
                             Spacer()
                         }
